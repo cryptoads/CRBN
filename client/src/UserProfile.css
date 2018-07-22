@@ -1,0 +1,14 @@
+.profile-info {
+    background: #FDFDFD;
+    box-shadow: 2px -1px 7px 1px rgba(231,231,231,0.31);
+}
+
+.profile-picture {
+    width: 300px;
+}
+
+.basic-info-container {
+    float: left;
+    margin-top: 60px;
+    margin-left: 3%;
+}

@@ -3,7 +3,9 @@ import React from 'react';
 
 let Feed = () => {
     return(
-      <h2>Feed</h2>
+      <div className='profile-info'>
+        <h2>Feed</h2>
+      </div>
     ); 
 }
 
