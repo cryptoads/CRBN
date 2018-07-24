@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import BasicInfo from './BasicInfo';
 import FootPrintChart from './FootprintChart';
 import Feed from './Feed';
-import EditModal from './EditModal';
+import ChartDataModal from './ChartDataModal';
 import '../UserProfile.css';
  
-
-
-
 class UserProfile extends Component {
   
   constructor() {
@@ -29,10 +26,9 @@ class UserProfile extends Component {
   render() {
     return(
       <div className="container-fluid">
-        <EditModal isLoggedIn={this.state.loggedIn} />
+        <ChartDataModal isLoggedIn={this.state.loggedIn} />
         <BasicInfo isLoggedIn={this.state.loggedIn} basicInfo={this.state.basicInfoObj} />
         <FootPrintChart isLoggedIn={this.state.loggedIn} />
-        <Feed isLoggedIn={this.state.loggedIn} />
       </div>
     ); 
   }

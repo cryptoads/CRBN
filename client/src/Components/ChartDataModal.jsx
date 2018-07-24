@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class EditModal extends Component {
+class ChartDataModal extends Component {
     render() {
         let modalJSX = (
         <div className="perspective-container">
@@ -69,4 +69,4 @@ class EditModal extends Component {
     }
 }
 
-export default EditModal;
+export default ChartDataModal;
