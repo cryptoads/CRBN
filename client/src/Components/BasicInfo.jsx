@@ -2,10 +2,10 @@ import React from 'react';
  
 
 let BasicInfo = (props) => {
-    let profileInfo = props.info;
+    let profileInfo = props.basicInfo;
     return(
     <div className="basic-info-container">
-      <img className='profile-picture' src={profileInfo.imgUrl} />
+      <img alt="profile-pic" className='profile-picture' src={profileInfo.imgUrl} />
       <p>{profileInfo.name}</p>
       <div className="profile-info basic-info-text">
         <p>Intro:</p>
