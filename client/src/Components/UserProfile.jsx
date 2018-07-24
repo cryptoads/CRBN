@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import BasicInfo from './BasicInfo';
 import FootPrintChart from './FootprintChart';
 import Feed from './Feed';
+import EditModal from './EditModal';
 import '../UserProfile.css';
  
 
 
 
-let UserProfile = () => {
-    let basicInfo = {
+class UserProfile extends Component {
+  
+  constructor() {
+    super();
+    this.state = {
+      loggedIn: false,
+      basicInfoObj: {
         name: 'Joe Leafdriver',
         city: 'Atlanta',
         state: 'GA',
@@ -16,14 +22,20 @@ let UserProfile = () => {
         joinedYear: '2018',
         bio: `I'm just your average LEAF-driving, Earth-saving kinda guy.`,
         imgUrl: './img/placeholder-img.jpg'
-    };
+      }
+    }
+  }
+    
+  render() {
     return(
       <div>
-        <BasicInfo info={basicInfo} />
-        <FootPrintChart />
-        <Feed />
+        <EditModal isLoggedIn={this.state.loggedIn} />
+        <BasicInfo isLoggedIn={this.state.loggedIn} basicInfo={this.state.basicInfoObj} />
+        <FootPrintChart isLoggedIn={this.state.loggedIn} />
+        <Feed isLoggedIn={this.state.loggedIn} />
       </div>
     ); 
+  }
 }
 
 export default UserProfile;
