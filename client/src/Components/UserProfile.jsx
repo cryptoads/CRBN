@@ -28,7 +28,7 @@ class UserProfile extends Component {
     
   render() {
     return(
-      <div>
+      <div className="container-fluid">
         <EditModal isLoggedIn={this.state.loggedIn} />
         <BasicInfo isLoggedIn={this.state.loggedIn} basicInfo={this.state.basicInfoObj} />
         <FootPrintChart isLoggedIn={this.state.loggedIn} />

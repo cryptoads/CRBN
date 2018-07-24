@@ -4,7 +4,7 @@ import React from 'react';
 let BasicInfo = (props) => {
     let profileInfo = props.basicInfo;
     return(
-    <div className="basic-info-container">
+    <div className="basic-info-container col-4">
       <img alt="profile-pic" className='profile-picture' src={profileInfo.imgUrl} />
       <p>{profileInfo.name}</p>
       <div className="profile-info basic-info-text">

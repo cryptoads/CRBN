@@ -1,5 +1,7 @@
 body {
     background-color: #F3FBF4;
+    font-family: 'Quicksand', sans-serif;
+
 }
 
 .App {
@@ -14,7 +16,7 @@ body {
 
 .App-header {
   background-color: #FDFDFD;
-  color: rgb(144, 231, 130);
+  color: #08E6C8;
   height: 50px;
   padding: 10px;
 
@@ -28,6 +30,7 @@ body {
 
 .App-title {
   font-size: 1.5em;
+  font-weight: 800;
 }
 
 .App-intro {
