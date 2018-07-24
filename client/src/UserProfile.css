@@ -1,0 +1,33 @@
+.profile-info {
+    background: #FDFDFD;
+    box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
+
+}
+
+.profile-picture {
+    width: 300px;
+    box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
+}
+
+.basic-info-container {
+    float: left;
+    margin-top: 60px;
+    margin-left: 3%;
+    padding: 15px;
+    width: 300px;
+}
+
+.basic-info-text {
+    padding: 15px;
+}
+
+.chart-container {
+    display: inline-block;
+    margin-top: 60px;
+
+}
+
+.feed-container {
+    clear: both;
+}
+
