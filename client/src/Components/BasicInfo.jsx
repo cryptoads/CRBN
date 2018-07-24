@@ -1,12 +1,19 @@
 import React from 'react';
  
 
-let BasicInfo = () => {
+let BasicInfo = (props) => {
+    let profileInfo = props.info;
     return(
-      <div className="profile-info basic-info-container">
-        <img className='profile-picture' src='./img/placeholder-img.jpg' />
-        <h2>Basic Info</h2>
+    <div className="basic-info-container">
+      <img className='profile-picture' src={profileInfo.imgUrl} />
+      <p>{profileInfo.name}</p>
+      <div className="profile-info basic-info-text">
+        <p>Intro:</p>
+        <small>{profileInfo.bio}</small>
+        <p>Lives in {profileInfo.city}, {profileInfo.state}</p>
+        <p>Member since {profileInfo.joinedMonth}, {profileInfo.joinedYear}</p>
       </div>
+    </div>
     ); 
 }
 
