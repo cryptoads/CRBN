@@ -24,10 +24,11 @@
     display: inline-block;
     margin-top: 60px;
     padding: 15px;
+    height: 560px;
 
 }
 
-.edit-footprint-info {
+.edit-info-link {
     color: #08E6C8;
     font-size: 14px;
     cursor: pointer;
