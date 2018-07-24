@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios'
 
 class App extends Component {
+
+  componentWillMount(){
+    axios.get('indexRouter/test')
+    .then((res)=>{console.log(res)})
+  }
   render() {
     return (
       <div className="App">
@@ -12,6 +18,7 @@ class App extends Component {
         </header>
         <p className="App-intro">
           <a href="http://localhost:3001/login">test</a>
+          <a href="http://localhost:3001/logout">logout</a>
         </p>
       </div>
     );
