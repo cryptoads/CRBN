@@ -81,7 +81,7 @@ class ChartDataModal extends Component {
         }
         console.log(userData); 
         axios({
-            url: '/',
+            url: '/updateInfo',
             method: 'post',
             data: { formData: userData }
         })

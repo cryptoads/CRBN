@@ -4,6 +4,7 @@ var models = require('../models');
 const ensureAuthenticated = require('../auth').ensureAuthenticated;
 const bodyParser = require('body-parser');
 
+router.use(bodyParser({urlencoded:true}))
 
 /* GET home page. */
 router.get('/test', function(req, res, next) {
@@ -15,10 +16,36 @@ router.get('/test', function(req, res, next) {
      }
 })
 
-router.post('/*', function(req, res, next){
-    if(req.isAuthenticated()){
+router.post('/updateInfo', function(req, res, next){
 
-    }
+    let mpg = Number(req.body.formData.mpg);
+    let milesDriven = Number(req.body.formData.milesDriven);
+    let maintenance = req.body.formData.maintenance;
+    let zip = Number(req.body.formData.zip);
+    let gasBill = Number(req.body.formData.gasBill);
+    let electricBill = Number(req.body.formData.electricBill);
+    let recycling = req.body.formData.recycling;
+
+    if(req.isAuthenticated()){
+        models.user.update({
+        'mpg': mpg,
+        'miles_driven': milesDriven,
+        'maintenance': maintenance,
+        'zip': zip,
+        'natgas_bill': gasBill,
+        'electric_bill': electricBill,
+        'recycling': recycling,
+    },{
+        where: {
+            id: req.user,
+        }
+    }).then(user => {
+        res.json({'success': true});
+    })
+  }else{
+    res.send('You need to login!')
+  }  
 })
+
 
 module.exports = router;
