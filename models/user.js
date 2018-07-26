@@ -26,7 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     aluminum: DataTypes.BOOLEAN,
     plastic: DataTypes.BOOLEAN,
     glass: DataTypes.BOOLEAN,
-    paper: DataTypes.BOOLEAN
+    paper: DataTypes.BOOLEAN,
+    intro: DataTypes.TEXT(250),
+    imgUrl: DataTypes.STRING,
 
   }, {});
   return user;

@@ -12,7 +12,7 @@ router.get('/test', function(req, res, next) {
        models.user.findById(req.user,{
        }).then((data)=>{res.json(data)})
      }else{
-        res.send('no workie')
+        res.json({loggedIn: false})
      }
 })
 
