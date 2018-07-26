@@ -21,7 +21,7 @@ class App extends Component {
           <h1 className="App-title">CRBN</h1>
         </header>
 
-        <UserProfile />
+        <UserProfile loggedIn={false} />
       </div>
     );
   }

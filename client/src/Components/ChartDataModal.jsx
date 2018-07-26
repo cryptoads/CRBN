@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 class ChartDataModal extends Component {
     render() {
         let modalJSX = (
