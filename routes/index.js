@@ -6,12 +6,19 @@ const bodyParser = require('body-parser');
 
 
 /* GET home page. */
-router.get('/*', function(req, res, next) {
+router.get('/test', function(req, res, next) {
      if(req.isAuthenticated()){
-        res.send('this works')
+       models.user.findById(req.user,{
+       }).then((data)=>{res.json(data)})
      }else{
         res.send('no workie')
      }
-
 })
+
+router.post('/*', function(req, res, next){
+    if(req.isAuthenticated()){
+
+    }
+})
+
 module.exports = router;
