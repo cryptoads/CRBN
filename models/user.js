@@ -15,7 +15,18 @@ module.exports = (sequelize, DataTypes) => {
      },
     fbid: DataTypes.STRING,
     githubid: DataTypes.STRING,
-    password:DataTypes.STRING
+    password:DataTypes.STRING,
+    miles_driven: DataTypes.FLOAT(1),
+    mpg: DataTypes.INTEGER,
+    maintenance: DataTypes.BOOLEAN,
+    zip: DataTypes.INTEGER(5),
+    electric_bill: DataTypes.FLOAT(2),
+    natgas_bill: DataTypes.FLOAT(2),
+    household_members: DataTypes.INTEGER,
+    aluminum: DataTypes.BOOLEAN,
+    plastic: DataTypes.BOOLEAN,
+    glass: DataTypes.BOOLEAN,
+    paper: DataTypes.BOOLEAN
 
   }, {});
   return user;

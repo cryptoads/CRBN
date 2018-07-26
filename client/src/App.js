@@ -9,9 +9,11 @@ import UserProfile from './Components/UserProfile';
 class App extends Component {
 
   componentWillMount(){
-    axios.get('indexRouter/test')
-    .then((res) => { console.log(res) })
+    axios.get('/test')
+    .then((res)=>{console.log(res)})
   }
+
+
   render() {
     return (
       <div className="App">
