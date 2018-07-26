@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 setupAuth(app);
 
-app.use('/indexRouter', indexRouter);
+app.use('/', indexRouter);
 
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

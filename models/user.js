@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     miles_driven: DataTypes.FLOAT(1),
     mpg: DataTypes.INTEGER,
     maintenance: DataTypes.BOOLEAN,
-    zip: DataType.INTEGER(5),
+    zip: DataTypes.INTEGER(5),
     electric_bill: DataTypes.FLOAT(2),
     natgas_bill: DataTypes.FLOAT(2),
     household_members: DataTypes.INTEGER,
