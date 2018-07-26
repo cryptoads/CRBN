@@ -10,7 +10,7 @@ class App extends Component {
 
   componentWillMount(){
     axios.get('indexRouter/test')
-    .then((res)=>{console.log(res)})
+    .then((res) => { console.log(res) })
   }
   render() {
     return (
@@ -19,7 +19,7 @@ class App extends Component {
           <h1 className="App-title">CRBN</h1>
         </header>
 
-        <UserProfile />
+        <UserProfile loggedIn={false} />
       </div>
     );
   }
