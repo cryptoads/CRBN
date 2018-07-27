@@ -12,11 +12,12 @@ class App extends Component {
     this.state = { loggedIn: false }
   }
 
-  componentWillMount(){
+  componentWillMount() {
     axios.get('/test')
     .then((res)=>{
       this.setState({loggedIn: res.data.loggedIn})
       console.log(this.state.loggedIn)
+      console.log(res)
     })
   }
 
@@ -26,9 +27,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">CRBN</h1>
-          <a href="http://localhost:3001/login">Log In</a>
-          <br />
-          <a href="http://localhost:3001/logout">Log Out</a>
+          { this.state.loggedIn !== false ? <a href="http://localhost:3001/logout">Log Out</a> : <a href="http://localhost:3001/login">Log In</a>  }          
         </header>
 
         <UserProfile loggedIn = {this.state.loggedIn}  />
