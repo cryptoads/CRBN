@@ -10,7 +10,6 @@ class UserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: this.props.loggedIn,
       basicInfoObj: {
         name: 'Joe Leafdriver',
         city: 'Atlanta',
@@ -40,9 +39,10 @@ class UserProfile extends Component {
   render() {
     return(
       <div className="container-fluid">
-        <ChartDataModal loggedIn={this.state.loggedIn} chartData={this.state.chartDataObj} />
-        <BasicInfo loggedIn={this.state.loggedIn} basicInfo={this.state.basicInfoObj} />
-        <FootPrintChart loggedIn={this.state.loggedIn} chartData={this.state.chartDataObj}/>
+        {console.log(this.props.loggedIn)}
+        <ChartDataModal loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
+        <BasicInfo loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
+        <FootPrintChart loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj}/>
       </div>
     ); 
   }

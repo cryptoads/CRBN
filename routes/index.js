@@ -10,7 +10,7 @@ router.use(bodyParser({urlencoded:true}))
 router.get('/test', function(req, res, next) {
      if(req.isAuthenticated()){
        models.user.findById(req.user,{
-       }).then((data)=>{res.json(data)})
+       }).then((data)=>{res.json({data, loggedIn: true})})
      }else{
         res.json({loggedIn: false})
      }

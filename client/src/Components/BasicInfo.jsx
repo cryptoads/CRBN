@@ -8,6 +8,7 @@ let BasicInfo = (props) => {
     <div className="basic-info-container col-4">
       <img alt="profile-pic" className='profile-picture' src={profileInfo.imgUrl} />
       <p>{profileInfo.name}</p>
+      {console.log(loginState)}
       <span className='edit-info-link'>{ loginState !== false ? 'Edit Basic Info' : '' }</span>
       <div className="profile-info basic-info-text">
         <p>Intro:</p>
