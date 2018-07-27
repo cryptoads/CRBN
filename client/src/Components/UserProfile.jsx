@@ -4,6 +4,7 @@ import FootPrintChart from './FootprintChart';
 import Feed from './Feed';
 import ChartDataModal from './ChartDataModal';
 import '../UserProfile.css';
+import axios from 'axios';
  
 class UserProfile extends Component {
   
@@ -32,19 +33,76 @@ class UserProfile extends Component {
             'Home',
             'Waste'
           ]
-      }
+      },
+      userData: { }
     }
   }
     
   render() {
     return(
       <div className="container-fluid">
-        {console.log(this.props.loggedIn)}
         <ChartDataModal loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
         <BasicInfo loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
         <FootPrintChart loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj}/>
       </div>
     ); 
+  }
+  componentWillMount() {
+    axios.get('/test')
+    .then((res)=> {
+      this.setState({ userData: res}); // set userData state with info from DB
+
+      if (this.props.loggedIn) {
+      
+      let theData = {...this.state.userData.data.data} // make a copy of user data 
+      
+      /* Set up variables for CRBN score equation */
+      let maintenance = theData.maintenance;
+      let mpg = theData.mpg;
+      let milesDriven = theData.milesDriven;
+      let aluminum = theData.aluminum;
+      let plastic = theData.plastic;
+      let glass = theData.glass;
+      let paper = theData.paper;
+
+      /*Individual variables that make up the CRBN score */
+      let vehiclecO2;
+      let wastecO2 = 700;
+      let homecO2;
+
+      /* Vehicle cO2 calculations */
+      if (maintenance == true) {
+        let vehiclecO2 = (((milesDriven / mpg)*19.59)/2204.62)
+      } else {
+        let vehiclecO2 = (((milesDriven/mpg)*19.59)/2204.62)*(1.04)
+      }
+      
+      /*Waste cO2 calculations */
+      let recyclingScores = {
+        aluminum: 90,
+        plastic: 35, 
+        glass: 25,
+        paper: 125
+      }
+
+      theData.aluminum == true;
+
+      for (var key in recyclingScores) {
+        if ( theData[key] == true) {
+          wastecO2 = wastecO2 - recyclingScores[key];
+          console.log(theData.data.data[key]);
+        } else {
+          wastecO2 = wastecO2;
+        }
+      }
+    }
+      
+
+
+      
+      
+
+    })
   }
 
 }
