@@ -47,6 +47,9 @@ class UserProfile extends Component {
       </div>
     ); 
   }
+
+
+  
   componentWillMount() {
     axios.get('/test')
     .then((res)=> {
