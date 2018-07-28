@@ -16,6 +16,14 @@ router.get('/test', function(req, res, next) {
      }
 })
 
+
+router.get('/test/:id', function(req, res, next) {
+    const id = Number(req.params.id);
+    models.user.findById(id,{})
+    .then((data)=>{res.json({data, loggedIn: false})
+    })
+})
+
 router.post('/updateInfo', function(req, res, next){
 
     let mpg = Number(req.body.formData.mpg);
