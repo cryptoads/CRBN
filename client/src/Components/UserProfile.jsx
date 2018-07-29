@@ -106,6 +106,9 @@ class UserProfile extends Component {
       }
     }
 
+    wastecO2 = wastecO2 / 2204.62;
+
+
     console.log('waste cO2 is ' + wastecO2)
 
     /* Get the output rate */ 
@@ -134,7 +137,7 @@ class UserProfile extends Component {
       waste: Math.round(wastecO2 * 100) / 100,
       home: Math.round(homecO2 * 100) / 100
     }
-    let thecrbnScore = roundedScores.vehicle + roundedScores.waste + roundedScores.home;
+    let thecrbnScore = Math.round(roundedScores.vehicle + roundedScores.waste + roundedScores.home);
 
     this.setState( { 
       chartDataObj: {
