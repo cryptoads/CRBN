@@ -10,11 +10,14 @@ class FootprintChart extends Component {
   render() {
     let loginState = this.props.loggedIn;
     let data = this.props.chartData;
+    let userCRBNScore = this.props.crbnScore;
 
     let chartJSX = (
     <div className='profile-info chart-container col-8'>
       <h2>Footprint</h2>
         <span onClick={this.editLinkClick.bind(this)} className="edit-info-link">{ loginState !== false ? 'Edit Basic Info' : '' }</span>
+        <hr />
+        <h3>CRBN Score: {userCRBNScore}</h3>
         <Doughnut data={data} />
     </div>)
     return (
