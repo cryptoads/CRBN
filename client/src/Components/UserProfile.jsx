@@ -13,15 +13,10 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       basicInfoObj: {
-        name: 'Joe Leafdriver',
-        city: 'Atlanta',
-        state: 'GA',
-        joinedMonth: 'May',
-        joinedYear: '2018',
-        bio: `I'm just your average LEAF-driving, Earth-saving kinda guy.`,
-        imgUrl: './img/placeholder-img.jpg'
+
       },
       chartDataObj: {
+        showChart: false,
         crbnScore: null,
         datasets: [{
             data: [10, 20, 30],
@@ -36,9 +31,7 @@ class UserProfile extends Component {
             'Waste'
           ]
       },
-      userData: {
-        crbnScore: 'calculating...'
-       }
+      userData: { }
     }
   }
     
@@ -48,21 +41,56 @@ class UserProfile extends Component {
         <ChartDataModal loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
         <BasicInfo loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
         <FootPrintChart crbnScore={this.state.chartDataObj.crbnScore} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
-      </div>
+     </div>
     ); 
   }
+
+
 
   componentWillMount() {
     axios.get('/test')
     .then((res) => {
+    
       this.setState({ userData: res}); // set userData state with info from DB
+  
+      if (this.props.loggedIn == true) {     
+        let user = {...this.state.userData.data.data} // make a copy of user data
 
-      if (this.props.loggedIn) {     
-        let user = {...this.state.userData.data.data} // make a copy of user data 
-        this.calculateScore(user)
+            this.setState( {
+              basicInfoObj:  {
+                name: user.username,
+                city: user.city,
+                state: user.state,
+                joinedMonth: 'May',
+                joinedYear: '2018',
+                intro: user.intro,
+                imgUrl: user.imgUrl,
+                createdAt: user.createdAt
+              }        
+          });
+
+
+        let chartDataComplete = () => {
+          let itemsToCheck =  [ 'aluminum', 'electric_bill', 'glass', 'maintenance', 
+            'miles_driven', 'mpg', 'natgas_bill', 'paper', 'plastic', 'zip']; 
+          for (var key in user) {
+            if (itemsToCheck.includes(key) && (user.key == null || user.key == "")) {
+              return false;
+            } else if (key == 'zip' && user.key == 0) {
+              return false; 
+            } else {
+              return true;
+            }
+          }
+      }
+        let chartCheck = chartDataComplete();
+        console.log(`chart check is ${chartCheck}`)
+        if (chartCheck !== false) { 
+          this.calculateScore(user)
+        }
       }
     });
-  }
+}
 
   calculateScore(user) {
     /*======================================

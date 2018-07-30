@@ -10,6 +10,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = { loggedIn: false }
+    this.logout = this.logout.bind(this);
+
   }
 
   componentWillMount() {
@@ -27,14 +29,20 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">CRBN</h1>
-          { this.state.loggedIn !== false ? <a href="http://localhost:3001/logout">Log Out</a> : <a href="http://localhost:3001/login">Log In</a>  }          
+          { this.state.loggedIn ? <button src={this.logout}>Log Out</button> : "" }
         </header>
-        <UserProfile loggedIn = {this.state.loggedIn}  />
-
-        <Login className="login"></Login>
+        {this.state.loggedIn == true ? <UserProfile loggedIn = {this.state.loggedIn}  /> : <Login className="login"></Login>}   
       </div>
     );
   }
+
+  logout(event) {
+    event.preventDefault();
+    axios({url: 'http://localhost:3001/logout', method: 'get'})
+    .then( this.setState({ user: null }))
+    .then( err => console.error(err)); 
+  }
 }
+
 
 export default App;

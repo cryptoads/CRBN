@@ -70,15 +70,40 @@ class ChartDataModal extends Component {
         modalOverlay.classList.toggle("closed");
     }
     updateUser(e) {
-        e.preventDefault();
+        
+        /* Get radio button selection */
+        let radioSelection; 
+        let regMaintenance;
+        let radioBtns = document.getElementsByName('maintenance'); 
+        for (let i = 0; i < radioBtns.length; i++) {
+            if (radioBtns[i].checked) {
+                console.log(radioBtns[i].value);
+                radioSelection = radioBtns[i].value;
+                break;
+            }
+        }
+        if (radioSelection == "Yes") {
+            regMaintenance = true;
+        } else { regMaintenance = false }
+
+        /* Get checkbox selections */
+        let checkboxes = document.getElementsByName('recycling');
+        let recyclingSelections = [];
+        for (let i=0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                console.log(checkboxes[i].value);
+                recyclingSelections.push(checkboxes[i].value);
+            }
+        }
+
         let userData = {
             mpg: document.getElementsByName('mpg')[0].value,
             milesDriven: document.getElementsByName('milesDriven')[0].value,
-            maintenance: document.querySelector('input[name=maintenance][checked]'),
+            maintenance: regMaintenance,
             zip: document.getElementsByName('zip')[0].value,
             gasBill: document.getElementsByName('gasBill')[0].value,
             electricBill: document.getElementsByName('electricBill')[0].value,
-            recycling: document.querySelector('input[name=recycling][checked]')
+            recycling: recyclingSelections
         }
         console.log(userData); 
         axios({
