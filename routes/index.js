@@ -34,6 +34,15 @@ router.post('/updateInfo', function(req, res, next){
     let electricBill = Number(req.body.formData.electricBill);
     let recycling = req.body.formData.recycling;
 
+    let recyclingObj = {aluminum: false, plastic: false, glass: false, paper: false};
+    
+    for (var key in recyclingObj) {
+        if (recycling.includes(key)) {
+            recyclingObj[key] = true; 
+        }
+    }
+    console.log(recyclingObj)
+
     if(req.isAuthenticated()){
         models.user.update({
         'mpg': mpg,
@@ -42,7 +51,10 @@ router.post('/updateInfo', function(req, res, next){
         'zip': zip,
         'natgas_bill': gasBill,
         'electric_bill': electricBill,
-        'recycling': recycling,
+        'aluminum': recyclingObj.aluminum,
+        'plastic': recyclingObj.plastic,
+        'glass': recyclingObj.glass,
+        'paper': recyclingObj.paper
     },{
         where: {
             id: req.user,

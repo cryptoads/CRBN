@@ -93,7 +93,6 @@ class Login extends Component {
     }
 
     login = (event) => {
-        event.preventDefault();
         axios({
             method: 'post',
             url: '/auth/login',
