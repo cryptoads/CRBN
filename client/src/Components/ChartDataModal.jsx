@@ -70,6 +70,7 @@ class ChartDataModal extends Component {
         modalOverlay.classList.toggle("closed");
     }
     updateUser(e) {
+         e.preventDefault();
         
         /* Get radio button selection */
         let radioSelection; 

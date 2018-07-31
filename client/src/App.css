@@ -1,3 +1,4 @@
+
 body {
     background-color: #F3FBF4;
     font-family: 'Quicksand', sans-serif;
@@ -35,7 +36,7 @@ body {
   margin-right: 30px;
 }
 
-.appBtn  {
+.appBtn, .gitHubButton {
   background: none;
   text-transform: uppercase;
   color: #08E6C8;
@@ -47,7 +48,7 @@ body {
 
 }
 
-.appBtn:hover {
+.appBtn:hover,  .gitHubButton:hover {
   background: #08E6C8;
   color: #fff;
   padding: 7px 10px;
@@ -56,12 +57,12 @@ body {
   
 }
 
-.appBtn:active {
+.appBtn:active, .gitHubButton:active {
   box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
 
 }
 
-.appBtn:focus {
+.appBtn:focus, .gitHubButton:focus {
   outline: 0;
 }
 
@@ -119,7 +120,7 @@ body {
   outline: 0;
 }
 
-.user-form form .appBtn{
+.user-form form .appBtn, .gitHubButton{
   margin-top: 25px;
   width: 150px;
 }

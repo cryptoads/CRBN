@@ -19,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     miles_driven: DataTypes.FLOAT(1),
     mpg: DataTypes.INTEGER,
     maintenance: DataTypes.BOOLEAN,
-    zip: DataTypes.INTEGER(5),
+    zip: { 
+      type: DataTypes.INTEGER(5),
+      defaultValue: '30338'
+          },
     electric_bill: DataTypes.FLOAT(2),
     natgas_bill: DataTypes.FLOAT(2),
     household_members: DataTypes.INTEGER,
@@ -28,7 +31,10 @@ module.exports = (sequelize, DataTypes) => {
     glass: DataTypes.BOOLEAN,
     paper: DataTypes.BOOLEAN,
     intro: DataTypes.TEXT(250),
-    imgUrl: DataTypes.STRING,
+    imgUrl: {
+      type: DataTypes.STRING,
+      defaultValue: "https://qph.fs.quoracdn.net/main-qimg-80b031daebee6d6cdbafec6daf5a47b9-c"
+            },
 
   }, {});
   return user;
