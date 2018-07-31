@@ -147,7 +147,7 @@ const setupAuth = (app) => {
     app.get ('/login', passport.authenticate('github'));
     app.get ('/logout', function (req, res, next){
         req.logout();
-        res.json({logginIn: false});
+        res.redirect('http://localhost:3000/');
     });
 
     app.get('/github/auth', 
