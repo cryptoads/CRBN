@@ -17,15 +17,52 @@ body {
 .App-header {
   background-color: #FDFDFD;
   color: #08E6C8;
-  height: 50px;
+  height: 60px;
   padding: 10px;
+  text-align: left;
 
 }
 
 .App-header h1 {
   font-size: 2em;
-  text-align: left;
-  margin-left: 3%;
+  text-align: left; 
+  display: inline;
+  margin-left: 30px;
+}
+
+.App-header .appBtn {
+  float: right;
+  margin-right: 30px;
+}
+
+.appBtn {
+  background: none;
+  text-transform: uppercase;
+  color: #08E6C8;
+  border: .5px solid #bebebe;
+  padding: 5px 10px;
+  transition: 0.3s ease-in-out; 
+  box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
+  cursor: pointer;
+
+}
+
+.appBtn:hover {
+  background: #08E6C8;
+  color: #fff;
+  padding: 7px 10px;
+  border: none;
+
+  
+}
+
+.appBtn:active {
+  box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
+
+}
+
+.appBtn:focus {
+  outline: 0;
 }
 
 .App-title {
@@ -42,7 +79,47 @@ body {
   to { transform: rotate(360deg); }
 }
 
+.loginRegisterSwitch {
+  margin-left: 10px;
+  margin-bottom: 15px;
+  border: none;
+  background: none;
+  border-bottom: 1px solid #bebebe;
+  text-transform: uppercase;
+}
+
+.loginRegisterSwitch:focus {
+  outline: 0;
+  border-bottom: 1.5px solid #08E6C8;
+}
+
+.loginRegisterSwitch::after {
+  outline: 0;
+  border-bottom: 1.5px solid #08E6C8;
+}
 
 .user-form {
   margin-top: 125px;
+}
+
+.user-form h2 {
+  margin-bottom: 30px;
+  color: #0f0f0f;
+  font-weight: 700; 
+}
+
+.user-form input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #bebebe;
+  margin-left: 20px;
+}
+
+.user-form input:focus {
+  outline: 0;
+}
+
+.user-form form .appBtn{
+  margin-top: 25px;
+  width: 150px;
 }
