@@ -38,8 +38,8 @@ class App extends Component {
 
   logout(event) {
     event.preventDefault();
-    axios({url: 'http://localhost:3001/logout', method: 'get'})
-    .then( this.setState({ user: null }))
+    axios({url: '/logout', method: 'get'})
+    .then((res)=>{this.setState({ loggedIn: res.loggedIn })})
     .then( err => console.error(err)); 
   }
 }
