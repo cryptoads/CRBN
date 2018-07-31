@@ -112,9 +112,9 @@ class UserProfile extends Component {
 
     /* Vehicle cO2 calculations */
     if (maintenance == true) {
-      vehiclecO2 = Math.round((((milesDriven / mpg) * 19.59) / 2204.62));
+      vehiclecO2 = (((milesDriven / mpg) * 19.59) / 2204.62);
     } else {
-      vehiclecO2 = Math.round((((milesDriven / mpg) * 19.59) / 2204.62) * (1.04));
+      vehiclecO2 = (((milesDriven / mpg) * 19.59) / 2204.62) * (1.04);
     }
     console.log('vehicle cO2 is ' + vehiclecO2)
     
@@ -158,14 +158,19 @@ class UserProfile extends Component {
     homecO2 = natgascO2 + electriccO2; 
 
     console.log('home cO2 is ' + homecO2);
+
+    function round(num, places) {
+      var multiplier = Math.pow(10, places);
+      return Math.round(num * multiplier) / multiplier;
+    }
     
     /* Final Score */
     let roundedScores = {
-      vehicle: Math.round(vehiclecO2 * 100) / 100,
-      waste: Math.round(wastecO2 * 100) / 100,
-      home: Math.round(homecO2 * 100) / 100
+      vehicle: round(vehiclecO2, 2),
+      waste: round(wastecO2, 2),
+      home: round(homecO2, 2)
     }
-    let thecrbnScore = Math.round(roundedScores.vehicle + roundedScores.waste + roundedScores.home);
+    let thecrbnScore = round(((roundedScores.vehicle + roundedScores.waste + roundedScores.home) * 100) / 100, 2);
 
     this.setState( { 
       chartDataObj: {
