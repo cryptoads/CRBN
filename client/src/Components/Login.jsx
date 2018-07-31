@@ -15,6 +15,9 @@ class Login extends Component {
         };
     }
 
+
+   
+
     render() {
         return (
         <div className="login-form">
@@ -28,6 +31,7 @@ class Login extends Component {
                     <button className="loginRegisterSwitch" onClick={this.showSignupForm} disabled={this.state.signupFormVisible}>Register</button>
                     <button className="loginRegisterSwitch" onClick={this.showLoginForm} disabled={!this.state.signupFormVisible}>Login</button>
                     {this.state.signupFormVisible ? (
+                        <div>
                         <form id="registerForm" onSubmit={this.register}>
                             <h2>Register</h2>
                             <div className="form-field">
@@ -38,9 +42,12 @@ class Login extends Component {
                                 <label htmlFor="registerPassword">Password:</label>
                                 <input name="registerPassword" type="password" required />
                             </div>
-                            <button className="appBtn" type="submit">Register</button>
+                            <button className="appBtn" type="submit">Register</button><br />
                         </form>
+                        <a href="httP://localhost:3001/login"><button className="gitHubButton" type="submit">GitHub</button></a>
+                        </div>
                     ) : (
+                    <div>
                         <form id="loginForm" onSubmit={this.login}>
                             <h2>Login</h2>
                             <div className="form-field">
@@ -53,6 +60,9 @@ class Login extends Component {
                             </div>
                             <button className="appBtn" type="submit">Login</button>
                         </form>
+
+                        <a href="httP://localhost:3001/login"><button className="gitHubButton" type="submit">GitHub</button></a>
+                        </div>
                     )}
                 </div>
             )
@@ -127,6 +137,7 @@ class Login extends Component {
             console.log(res);
         });
     }
+
 }
 
 export default Login;
