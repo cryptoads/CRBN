@@ -25,8 +25,8 @@ class Login extends Component {
                 </div>
             ) : (
                 <div className="user-form">
-                    <button onClick={this.showSignupForm} disabled={this.state.signupFormVisible}>Register</button>
-                    <button onClick={this.showLoginForm} disabled={!this.state.signupFormVisible}>Login</button>
+                    <button className="loginRegisterSwitch" onClick={this.showSignupForm} disabled={this.state.signupFormVisible}>Register</button>
+                    <button className="loginRegisterSwitch" onClick={this.showLoginForm} disabled={!this.state.signupFormVisible}>Login</button>
                     {this.state.signupFormVisible ? (
                         <form id="registerForm" onSubmit={this.register}>
                             <h2>Register</h2>
@@ -38,7 +38,7 @@ class Login extends Component {
                                 <label htmlFor="registerPassword">Password:</label>
                                 <input name="registerPassword" type="password" required />
                             </div>
-                            <button type="submit">Register</button>
+                            <button className="appBtn" type="submit">Register</button>
                         </form>
                     ) : (
                         <form id="loginForm" onSubmit={this.login}>
@@ -51,7 +51,7 @@ class Login extends Component {
                                 <label htmlFor="password">Password:</label>
                                 <input name="password" type="password" required />
                             </div>
-                            <button type="submit">Login</button>
+                            <button className="appBtn" type="submit">Login</button>
                         </form>
                     )}
                 </div>

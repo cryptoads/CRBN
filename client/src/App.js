@@ -29,7 +29,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">CRBN</h1>
-          { this.state.loggedIn ? <button src={this.logout}>Log Out</button> : "" }
+          { this.state.loggedIn ? <button className="appBtn" onClick={this.logout}>Log Out</button> : "" }
         </header>
         {this.state.loggedIn == true ? <UserProfile loggedIn = {this.state.loggedIn}  /> : <Login className="login"></Login>}   
       </div>
