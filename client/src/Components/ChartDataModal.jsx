@@ -46,6 +46,11 @@ class ChartDataModal extends Component {
                             <label>Electric Bill: </label>
                             <input type="text" name="electricBill" />
                         </p>
+                        <p>
+                            <label>Size of Household: </label>
+                            <input type="text" name="householdSize" />
+                        </p>
+
                         <h4>Waste</h4>
                         <p>
                             <label>Recycling Habits</label>
@@ -110,6 +115,7 @@ class ChartDataModal extends Component {
             zip: document.getElementsByName('zip')[0].value,
             gasBill: document.getElementsByName('gasBill')[0].value,
             electricBill: document.getElementsByName('electricBill')[0].value,
+            householdSize: document.getElementsByName('householdSize')[0].value,
             recycling: recyclingSelections
         }
         console.log(userData); 
