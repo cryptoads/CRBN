@@ -4,51 +4,60 @@ import axios from 'axios';
 class ChartDataModal extends Component {
     constructor(props) {
         super(props);
+
+        axios.get('/test').then( res => {return res.data.data} ).then( data => this.setState({user: data }));
+
         this.state = {
-            chartData: this.props.chartData
+            chartData: this.props.chartData,
+            user: {}
         }
     }
+
     render() {
+        
+        let {zip, natgas_bill, electric_bill, mpg, miles_driven, household_members} = this.state.user;
+
         let modalJSX = (
         <div className="perspective-container">
             <div id="modal-overlay" className="modal-overlay closed"></div>
                 <div id="modal" className="modal closed">
                 <span className="closeLink" onClick={this.closeModal.bind(this)}>X</span>
-                <div className="modal-content">
+                <div className="modal-content container m-auto">
                     <form className="updateProfileForm">
                         <h4>Vehicle</h4>
                         <p>
                             <label>Miles Per Gallon: </label>
-                            <input type="text" name="mpg"/>
+                            <input placeholder={mpg} type="text" name="mpg"/>
                         </p>
                         <p>
                             <label>Miles Driven Annually: </label>
-                            <input type="text" name="milesDriven" />
+                            <input placeholder={miles_driven} type="text" name="milesDriven" />
                         </p>
                         <p>
                             <label>Regular Maintenance? </label>
                             <br />
                             <label>Yes</label>
-                            <input type="radio" value="Yes" id="yes" name="maintenance" />
+                            <input type="radio" value="Yes" id="yes" name="maintenance" 
+                            />
                             <label>No</label>
                             <input type="radio" value="No" id="no" name="maintenance" />
                         </p>
                         <h4>Home</h4>
                         <p>
                             <label>Zip Code: </label>
-                            <input type="text" name="zip" />
+                            <input placeholder={zip} type="text" name="zip" />
                         </p>
                         <p>
                             <label>Gas Bill (monthly): </label>
-                            <input type="text" name="gasBill" />
+                            <input placeholder={natgas_bill} type="text" name="gasBill" />
                         </p>
                         <p>
                             <label>Electric Bill: </label>
-                            <input type="text" name="electricBill" />
+                            <input placeholder={electric_bill} type="text" name="electricBill" />
                         </p>
                         <p>
                             <label>Size of Household: </label>
-                            <input type="text" name="householdSize" />
+                            <input placeholder={household_members} type="text" name="householdSize" />
                         </p>
 
                         <h4>Waste</h4>
@@ -65,7 +74,7 @@ class ChartDataModal extends Component {
                             <label>Aluminum</label>
                             <input type="checkbox" id="aluminum" value="aluminum" name="recycling" />
                         </p>
-                        <input type="submit" onClick={this.updateUser.bind(this)} value="Update" />
+                        <button className="appBtn" type="submit" onClick={this.updateUser.bind(this)}>Update</button>
                     </form>
                 </div>
             </div>
@@ -73,7 +82,26 @@ class ChartDataModal extends Component {
         return (
             modalJSX
         );
-        }
+    }
+
+    componentDidMount() {
+        let checkboxSelections = [ "aluminum", "glass", "paper", "plastic" ];
+
+        axios.get('/test').then( res => {return res.data.data})
+        .then( user => {
+            checkboxSelections.forEach( box => {
+                let input = document.querySelector(`[value=${box}]`);
+                if (user[box] == true) { input.checked = true }      
+        })
+        return user.maintenance;
+        })
+        .then( maintenance => {
+            let input = document.querySelector(`[name=maintenance]`); 
+            maintenance ? input.checked = true : input.checked = false;
+        }); 
+
+    }
+
     closeModal() {
         let theModal = document.querySelector('#modal');
         let modalOverlay = document.querySelector('#modal-overlay');
