@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class ChartDataModal extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            chartData: this.props.chartData
+        }
+    }
     render() {
         let modalJSX = (
         <div className="perspective-container">
@@ -85,7 +91,7 @@ class ChartDataModal extends Component {
         }
         if (radioSelection == "Yes") {
             regMaintenance = true;
-        } else { regMaintenance = false }
+        } else { regMaintenance = false }        
 
         /* Get checkbox selections */
         let checkboxes = document.getElementsByName('recycling');
@@ -112,6 +118,8 @@ class ChartDataModal extends Component {
             method: 'post',
             data: { formData: userData }
         })
+        .then( window.location.reload() );
+
     }
 }
 

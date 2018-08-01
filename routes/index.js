@@ -60,8 +60,9 @@ router.post('/updateInfo', function(req, res, next){
             id: req.user,
         }
     }).then(user => {
-        res.json({'success': true});
+        res.json({'success': true})
     })
+    .then(res.redirect(req.get('referer')));
   }else{
     res.send('You need to login!')
   }  

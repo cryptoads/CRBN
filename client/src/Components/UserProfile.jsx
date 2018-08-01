@@ -12,6 +12,7 @@ class UserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      modalOpen: false,
       basicInfoObj: {
 
       },
@@ -38,7 +39,7 @@ class UserProfile extends Component {
   render() {
     return(
       <div className="container-fluid">
-        <ChartDataModal loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
+        <ChartDataModal calculateScore={this.calculateScore.bind(this)} updateChart={this.updateChart.bind(this)} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
         <BasicInfo loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
         <FootPrintChart crbnScore={this.state.chartDataObj.crbnScore} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
      </div>
@@ -69,7 +70,6 @@ class UserProfile extends Component {
               }        
           });
 
-
         let chartDataComplete = () => {
           let itemsToCheck =  [ 'aluminum', 'electric_bill', 'glass', 'maintenance', 
             'miles_driven', 'mpg', 'natgas_bill', 'paper', 'plastic', 'zip']; 
@@ -91,6 +91,10 @@ class UserProfile extends Component {
       }
     });
 }
+
+  updateChart(data) {
+    this.setState({ chartDataObj: data });
+  }
 
   calculateScore(user) {
     /*======================================
@@ -172,8 +176,8 @@ class UserProfile extends Component {
     }
     let thecrbnScore = round(((roundedScores.vehicle + roundedScores.waste + roundedScores.home) * 100) / 100, 2);
 
-    this.setState( { 
-      chartDataObj: {
+    let thechartDataObj =
+      {
         crbnScore: thecrbnScore,
         datasets: [{
             data: [roundedScores.vehicle, roundedScores.home, roundedScores.waste],
@@ -188,9 +192,12 @@ class UserProfile extends Component {
             'Waste'
           ]
     }
-  }); 
+
+
+    this.setState({chartDataObj: thechartDataObj}); 
 
     console.log('The CRBN score is: ' + thecrbnScore); 
+    return thechartDataObj; 
     
   }
 }
