@@ -22,10 +22,11 @@ class Login extends Component {
         return (
         <div className="login-form">
             {this.state.user ? (
-                <div className="user">
-                    <span className="username">User: {this.state.user.username}</span>
-                    <button onClick={this.logout}>Log Out</button>
-                </div>
+                <br />
+                // <div className="user">
+                //     <span className="username">User: {this.state.user.username}</span>
+                //     <button onClick={this.logout}>Log Out</button>
+                // </div>
             ) : (
                 <div className="user-form">
                     <button className="loginRegisterSwitch" onClick={this.showSignupForm} disabled={this.state.signupFormVisible}>Register</button>
@@ -102,6 +103,7 @@ class Login extends Component {
     }
 
     login = (event) => {
+        event.preventDefault();
         axios({
             method: 'post',
             url: '/auth/login',
@@ -111,6 +113,7 @@ class Login extends Component {
             }
         })
         .then((res) => {
+         window.location.reload();
             this.setState({
                 user: res.data.user,
                 showSignupForm: false,
