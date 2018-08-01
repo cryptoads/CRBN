@@ -32,6 +32,7 @@ router.post('/updateInfo', function(req, res, next){
     let zip = Number(req.body.formData.zip);
     let gasBill = Number(req.body.formData.gasBill);
     let electricBill = Number(req.body.formData.electricBill);
+    let householdSize = Number(req.body.formData.householdSize);
     let recycling = req.body.formData.recycling;
 
     let recyclingObj = {aluminum: false, plastic: false, glass: false, paper: false};
@@ -51,6 +52,7 @@ router.post('/updateInfo', function(req, res, next){
         'zip': zip,
         'natgas_bill': gasBill,
         'electric_bill': electricBill,
+        'household_members': householdSize,
         'aluminum': recyclingObj.aluminum,
         'plastic': recyclingObj.plastic,
         'glass': recyclingObj.glass,
@@ -62,8 +64,8 @@ router.post('/updateInfo', function(req, res, next){
     }).then(user => {
         res.json({'success': true})
     })
-    .then(res.redirect(req.get('referer')));
-  }else{
+
+    }else{
     res.send('You need to login!')
   }  
 })

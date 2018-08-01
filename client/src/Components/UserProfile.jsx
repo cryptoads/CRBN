@@ -39,7 +39,7 @@ class UserProfile extends Component {
   render() {
     return(
       <div className="container-fluid">
-        <ChartDataModal calculateScore={this.calculateScore.bind(this)} updateChart={this.updateChart.bind(this)} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
+        <ChartDataModal updateChart={this.updateChart.bind(this)} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
         <BasicInfo loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
         <FootPrintChart crbnScore={this.state.chartDataObj.crbnScore} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
      </div>
@@ -92,22 +92,26 @@ class UserProfile extends Component {
     });
 }
 
-  updateChart(data) {
+  updateChart() {
+    let user = { ...this.state.userData.data.data }
+    let data = this.calculateScore(user); 
     this.setState({ chartDataObj: data });
   }
 
   calculateScore(user) {
-    /*======================================
-    CRBN Score Equation
-    =======================================*/
+    /************************
+    * CRBN Score Equation
+    *************************/
+
     /* Set up variables for CRBN score equation */
     let maintenance = user.maintenance;
-    let mpg = (user.mpg);
-    let milesDriven = (user.miles_driven);
+    let mpg = user.mpg;
+    let milesDriven = user.miles_driven;
     let aluminum = user.aluminum;
     let plastic = user.plastic;
     let glass = user.glass;
     let paper = user.paper;
+    let householdMembers = user.household_members;
 
     /*Individual variables that make up the CRBN score */
     let vehiclecO2;
@@ -159,7 +163,7 @@ class UserProfile extends Component {
     let electricBill = user.electric_bill;
     let natgascO2 = (((natGasBill / 10.68) * 119.58) * 12) / 2204.62;
     let electriccO2 = ((electricBill / .119) * (outputRate) * 12) / 2204.62;
-    homecO2 = natgascO2 + electriccO2; 
+    homecO2 = (natgascO2 + electriccO2) / householdMembers; 
 
     console.log('home cO2 is ' + homecO2);
 
