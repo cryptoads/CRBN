@@ -20,7 +20,7 @@ const setupAuth = (app) => {
     passport.use(new GitHubStrategy({
         clientID:process.env.client_id,
         clientSecret:process.env.client_secret,
-        callbackURL: 'http://localhost:3001/github/auth'
+        callbackURL: 'https://crbnapp.herokuapp.com/github/auth'
     }, (accessToken, refreshToken, profile, done)=>{
         models.user.findOrCreate({where:{
             githubid: profile.id, 
@@ -153,7 +153,7 @@ const setupAuth = (app) => {
     app.get('/github/auth', 
         passport.authenticate('github', {failureRedirect: '/login'}),
         (req, res)=>{
-            res.redirect('http://localhost:3000/');
+            res.redirect('https://crbnapp.herokuapp.com/');
         });
 };
 
