@@ -45,7 +45,7 @@ class Login extends Component {
                             </div>
                             <button className="appBtn" type="submit">Register</button><br />
                         </form>
-                        <a href="/login"><button className="gitHubButton" type="submit">GitHub</button></a>
+                        <a href="https://crbnapp.herokuapp.com/login"><button className="gitHubButton" type="submit">GitHub</button></a>
                         </div>
                     ) : (
                     <div>
@@ -61,7 +61,7 @@ class Login extends Component {
                             </div>
                             <button className="appBtn" type="submit">Login</button>
                         </form>
-                        <a href="/login"><button className="gitHubButton" type="submit">GitHub</button></a>
+                        <a href="https://crbnapp.herokuapp.com/login"><button className="gitHubButton" type="submit">GitHub</button></a>
                         </div>
                     )}
                 </div>
