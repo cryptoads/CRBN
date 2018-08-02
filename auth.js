@@ -17,26 +17,26 @@ const setupAuth = (app) => {
         saveUninitialized: true
     }));
 
-    passport.use(new GitHubStrategy({
-        clientID:process.env.client_id,
-        clientSecret:process.env.client_secret,
-        callbackURL: 'http://localhost:3001/github/auth'
-    }, (accessToken, refreshToken, profile, done)=>{
-        models.user.findOrCreate({where:{
-            githubid: profile.id, 
-        }
-        }).then(result => {
-            models.user.update({
-                username: profile.username,
-                imgUrl: profile.photos[0].value
-            },{ where: {
-                 githubid: profile.id
-                 }
-             })
-            return done(null, result[0]);
-        })
-        .catch(done)
-    }));
+    // passport.use(new GitHubStrategy({
+    //     clientID:process.env.client_id,
+    //     clientSecret:process.env.client_secret,
+    //     callbackURL: 'http://localhost:3001/github/auth'
+    // }, (accessToken, refreshToken, profile, done)=>{
+    //     models.user.findOrCreate({where:{
+    //         githubid: profile.id, 
+    //     }
+    //     }).then(result => {
+    //         models.user.update({
+    //             username: profile.username,
+    //             imgUrl: profile.photos[0].value
+    //         },{ where: {
+    //              githubid: profile.id
+    //              }
+    //          })
+    //         return done(null, result[0]);
+    //     })
+    //     .catch(done)
+    // }));
 
 
         passport.use(new LocalStrategy({

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import LoginImg from "../LoginImg.js";
 
 class Login extends Component {
 
@@ -20,7 +21,10 @@ class Login extends Component {
 
     render() {
         return (
-        <div className="login-form">
+        <div className="login-form" style={LoginImg}>
+        <h3>Know your CRBN score.</h3>
+        <h3>Reduce your CRBN score.</h3>
+        <h3>Be a better person than your friends.</h3>
             {this.state.user ? (
                 <div className="user">
                     <span className="username">User: {this.state.user.username}</span>
@@ -74,6 +78,7 @@ class Login extends Component {
         this.setState({
             signupFormVisible: false,
         })
+        window.location.reload();
     }
 
     showSignupForm = (event) => {
@@ -93,7 +98,11 @@ class Login extends Component {
             }
         })
             .then((res) => {
+                if(res.status === 200){
+                    sessionStorage.setItem('SignedUp', true)
+                }
                 this.showLoginForm();
+                
                 console.log(res);
             })
             .catch((res) => {
