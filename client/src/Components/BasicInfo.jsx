@@ -6,7 +6,7 @@ let BasicInfo = (props) => {
     let loginState = props.loggedIn;
 
     return(
-    <div className="basic-info-container col-sm-12 col-md-12 col-4">
+    <div className="basic-info-container col-sm-12 col-md-4 col-lg-4">
       <img alt="profile-pic" className='profile-picture' src={profileInfo.imgUrl} />
       <p>{profileInfo.name}</p>
       {console.log(loginState)}
