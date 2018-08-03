@@ -115,6 +115,18 @@
     margin: 1%;
 }
 
+.alert {
+    display: none;
+}
+
+.errorInput {
+    border: 1px solid rgb(231, 148, 148);
+}
+
+.show {
+    display: block;
+}
+
 .closeLink {
     cursor: pointer;
     position: absolute;

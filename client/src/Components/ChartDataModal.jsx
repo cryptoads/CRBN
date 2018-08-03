@@ -9,7 +9,9 @@ class ChartDataModal extends Component {
 
         this.state = {
             chartData: this.props.chartData,
-            user: {}
+            user: {},
+            hasErrors: false,
+            errorMsg: ""
         }
     }
 
@@ -23,15 +25,16 @@ class ChartDataModal extends Component {
                 <div id="modal" className="modal closed">
                 <span className="closeLink" onClick={this.closeModal.bind(this)}>X</span>
                 <div className="modal-content container m-auto">
+                    <div role="alert" className={this.state.errorMsg.length <= 0 ? "alert alert-danger" : "alert alert-danger show"}>{this.state.errorMsg}</div>
                     <form className="updateProfileForm">
                         <h4>Vehicle</h4>
                         <p>
                             <label>Miles Per Gallon: </label>
-                            <input placeholder={mpg} type="text" name="mpg"/>
+                            <input defaultValue={mpg} type="text" name="mpg"/>
                         </p>
                         <p>
                             <label>Miles Driven Annually: </label>
-                            <input placeholder={miles_driven} type="text" name="milesDriven" />
+                            <input defaultValue={miles_driven} type="text" name="milesDriven" />
                         </p>
                         <p>
                             <label>Regular Maintenance? </label>
@@ -45,19 +48,19 @@ class ChartDataModal extends Component {
                         <h4>Home</h4>
                         <p>
                             <label>Zip Code: </label>
-                            <input placeholder={zip} type="text" name="zip" />
+                            <input defaultValue={zip} type="text" name="zip" />
                         </p>
                         <p>
                             <label>Gas Bill (monthly): </label>
-                            <input placeholder={natgas_bill} type="text" name="gasBill" />
+                            <input defaultValue={natgas_bill} type="text" name="gasBill" />
                         </p>
                         <p>
                             <label>Electric Bill: </label>
-                            <input placeholder={electric_bill} type="text" name="electricBill" />
+                            <input defaultValue={electric_bill} type="text" name="electricBill" />
                         </p>
                         <p>
                             <label>Size of Household: </label>
-                            <input placeholder={household_members} type="text" name="householdSize" />
+                            <input defaultValue={household_members} type="text" name="householdSize" />
                         </p>
 
                         <h4>Waste</h4>
@@ -102,6 +105,40 @@ class ChartDataModal extends Component {
 
     }
 
+     validateForm() {
+        /* Validate Form Data */ 
+        let userData = {
+           mpg: document.getElementsByName('mpg')[0].value,
+           milesDriven: document.getElementsByName('milesDriven')[0].value,
+           zip: document.getElementsByName('zip')[0].value,
+           gasBill: document.getElementsByName('gasBill')[0].value,
+           electricBill: document.getElementsByName('electricBill')[0].value,
+           householdSize: document.getElementsByName('householdSize')[0].value,
+       }
+
+       let checkArray = []; 
+
+        Object.keys(userData).forEach( item => {
+            if (userData[item].length < 1 || userData[item] == "") {
+               document.getElementsByName(item)[0].classList.add('errorInput');
+               checkArray.push(false);
+           } else { checkArray.push(true) }
+       })
+       console.log(checkArray);
+       if (checkArray.includes(false)) { 
+           this.setState({ errorMsg: `Please check your entry and try again` });
+           this.setState({ hasErrors: true});
+        }
+       else if(!(checkArray.includes(false))) {
+        this.setState({ errorMsg: "" }); 
+        this.setState({ hasErrors: false }); 
+        }
+    } 
+    
+    componentWillUnmount() {
+        this.props.updateChart();
+    }
+
     closeModal() {
         let theModal = document.querySelector('#modal');
         let modalOverlay = document.querySelector('#modal-overlay');
@@ -111,6 +148,8 @@ class ChartDataModal extends Component {
     updateUser(e) {
          e.preventDefault();
         
+         this.validateForm(); 
+
         /* Get radio button selection */
         let radioSelection; 
         let regMaintenance;
@@ -146,14 +185,16 @@ class ChartDataModal extends Component {
             householdSize: document.getElementsByName('householdSize')[0].value,
             recycling: recyclingSelections
         }
-        console.log(userData); 
-        axios({
-            url: '/updateInfo',
-            method: 'post',
-            data: { formData: userData }
-        })
-        .then( window.location.reload() );
-
+        
+        if (!(this.state.hasErrors)) {
+            axios({
+                url: '/updateInfo',
+                method: 'post',
+                data: { formData: userData }
+            })
+            this.closeModal();
+            this.props.updateChart();
+            }
     }
 }
 
