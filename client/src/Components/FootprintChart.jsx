@@ -14,7 +14,7 @@ class FootprintChart extends Component {
     let willLoadChart = this.props.showChart;
 
     let chartJSX = (
-    <div className='profile-info chart-container col-sm-4 col-md-6 col-8'>
+    <div className='profile-info chart-container col-sm-12 col-md-12 col-8'>
       <h2>Footprint</h2>
         <span onClick={this.editLinkClick.bind(this)} className="edit-info-link">{ loginState !== false ? 'Edit Footprint Info' : '' }</span>
         <hr />
