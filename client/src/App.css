@@ -39,7 +39,7 @@ body {
 .appBtn, .gitHubButton {
   background: none;
   text-transform: uppercase;
-  color: #08E6C8;
+  color: rgb(165, 252, 240);
   border: .5px solid #bebebe;
   padding: 5px 10px;
   transition: 0.3s ease-in-out; 
@@ -49,6 +49,24 @@ body {
 }
 
 .appBtn:hover,  .gitHubButton:hover {
+  background: rgb(165, 252, 240);
+  color: #fff;
+  padding: 7px 10px;
+  border: none;
+
+  
+}
+
+.login-form .appBtn,  .gitHubButton {
+  background: #fff;
+  color: rgb(14, 201, 176);
+  padding: 7px 10px;
+  border: none;
+
+  
+}
+
+.login-form .appBtn:hover,  .gitHubButton:hover {
   background: #08E6C8;
   color: #fff;
   padding: 7px 10px;
