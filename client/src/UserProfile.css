@@ -103,6 +103,11 @@
     text-align: left;
 }
 
+.loader {
+    display: block;
+    z-index: 10;
+}
+
 .modal-content input {
     margin-left: 2%;
 }

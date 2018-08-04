@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import grid from '../grid.json';
+import { resolve } from 'url';
+
 
 class ChartDataModal extends Component {
     constructor(props) {
@@ -11,7 +14,8 @@ class ChartDataModal extends Component {
             chartData: this.props.chartData,
             user: {},
             hasErrors: false,
-            errorMsg: ""
+            errorMsg: "",
+            isLoading: false
         }
     }
 
@@ -25,6 +29,7 @@ class ChartDataModal extends Component {
                 <div id="modal" className="modal closed">
                 <span className="closeLink" onClick={this.closeModal.bind(this)}>X</span>
                 <div className="modal-content container m-auto">
+                    <span className={ this.state.isLoading ? 'loader' : 'closed' }><img src='img/loader.gif' /></span>
                     <div role="alert" className={this.state.errorMsg.length <= 0 ? "alert alert-danger" : "alert alert-danger show"}>{this.state.errorMsg}</div>
                     <form className="updateProfileForm">
                         <h4>Vehicle</h4>
@@ -105,8 +110,11 @@ class ChartDataModal extends Component {
 
     }
 
-     validateForm() {
+
+    validateFormFunc() {
         /* Validate Form Data */ 
+        this.setState({isLoading: true});
+
         let userData = {
            mpg: document.getElementsByName('mpg')[0].value,
            milesDriven: document.getElementsByName('milesDriven')[0].value,
@@ -116,28 +124,58 @@ class ChartDataModal extends Component {
            householdSize: document.getElementsByName('householdSize')[0].value,
        }
 
+       let zipArr = grid.map(entry => entry.zip); 
        let checkArray = []; 
 
+       /* Check for blank values */
         Object.keys(userData).forEach( item => {
             if (userData[item].length < 1 || userData[item] == "") {
                document.getElementsByName(item)[0].classList.add('errorInput');
                checkArray.push(false);
-           } else { checkArray.push(true) }
+           } else { 
+               document.getElementsByName(item)[0].classList.remove('errorInput');
+               checkArray.push(true) 
+            }
        })
-       console.log(checkArray);
-       if (checkArray.includes(false)) { 
-           this.setState({ errorMsg: `Please check your entry and try again` });
-           this.setState({ hasErrors: true});
+
+       if (checkArray.includes(false)) {
+           this.setState({ errorMsg: `Cannot leave any entries blank` });
+           this.setState({ hasErrors: true }); 
+       } else if(!(checkArray.includes(false))) {
+            this.setState({ errorMsg: "" }); 
+            this.setState({ hasErrors: false }); 
+            }
+
+       /* Check for valid MPG */
+       if (userData.mpg > 300 || userData.mpg < 1) {
+            document.getElementsByName('mpg')[0].classList.add('errorInput');
+            this.setState({ errorMsg: `Must enter a valid mpg` });
+            return;
+            }
+
+        /* Check for valid zip code */ 
+        if (!(zipArr.includes(userData.zip))) {
+            this.setState({ 
+                errorMsg: `Zip code not found. Try another.`,
+                hasErrors: true 
+            });
+            return;
+        } else if (userData.zip == undefined) {
+            this.setState({
+                hasErrors: true,
+                errorMsg: `Must include a zip code`
+            })
+            return;
         }
-       else if(!(checkArray.includes(false))) {
-        this.setState({ errorMsg: "" }); 
-        this.setState({ hasErrors: false }); 
+        else if (zipArr.includes(userData.zip)) {
+            this.setState({ 
+                hasErrors: false,
+                errorMsg: ""
+            })
+            return;
         }
-    } 
-    
-    componentWillUnmount() {
-        this.props.updateChart();
-    }
+
+    }    
 
     closeModal() {
         let theModal = document.querySelector('#modal');
@@ -145,10 +183,14 @@ class ChartDataModal extends Component {
         theModal.classList.toggle("closed");
         modalOverlay.classList.toggle("closed");
     }
+    updateChart(){
+        this.props.updateChart();
+        this.closeModal();
+    }
+
+     
     updateUser(e) {
          e.preventDefault();
-        
-         this.validateForm(); 
 
         /* Get radio button selection */
         let radioSelection; 
@@ -186,14 +228,16 @@ class ChartDataModal extends Component {
             recycling: recyclingSelections
         }
         
-        if (!(this.state.hasErrors)) {
+        if (this.state.hasErrors == false) {
             axios({
                 url: '/updateInfo',
                 method: 'post',
                 data: { formData: userData }
             })
-            this.closeModal();
-            this.props.updateChart();
+            this.validateFormFunc()
+            this.updateChart()
+            this.setState({ isLoading: false })
+
             }
     }
 }
