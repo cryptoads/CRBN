@@ -39,7 +39,7 @@ body {
 .appBtn, .gitHubButton {
   background: none;
   text-transform: uppercase;
-  color: rgb(165, 252, 240);
+  color: #08E6C8;
   border: .5px solid #bebebe;
   padding: 5px 10px;
   transition: 0.3s ease-in-out; 
