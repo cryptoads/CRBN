@@ -20,7 +20,7 @@ const setupAuth = (app) => {
     passport.use(new GitHubStrategy({
         clientID:process.env.client_id,
         clientSecret:process.env.client_secret,
-        callbackURL: 'http://localhost:3001/github/auth'
+        callbackURL: process.env.callbackURL
     }, (accessToken, refreshToken, profile, done)=>{
         models.user.findOrCreate({where:{
             githubid: profile.id, 
@@ -144,16 +144,16 @@ const setupAuth = (app) => {
         }
     )
 
-    app.get ('/login', passport.authenticate('github'));
+    app.get ('/github/login', passport.authenticate('github'));
     app.get ('/logout', function (req, res, next){
         req.logout();
         res.json({logginIn: false});
     });
 
     app.get('/github/auth', 
-        passport.authenticate('github', {failureRedirect: '/login'}),
+        passport.authenticate('github', {failureRedirect: '/github/login'}),
         (req, res)=>{
-            res.redirect('http://localhost:3000/');
+            res.redirect('/');
         });
 };
 

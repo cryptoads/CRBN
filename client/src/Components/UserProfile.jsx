@@ -6,6 +6,7 @@ import ChartDataModal from './ChartDataModal';
 import '../UserProfile.css';
 import axios from 'axios';
 import grid from '../grid.json';
+import LoginImg from "../LoginImg2.js";
  
 class UserProfile extends Component {
   
@@ -38,10 +39,14 @@ class UserProfile extends Component {
     
   render() {
     return(
-      <div className="container-fluid">
+
+      <div className="container-fluid" style={LoginImg} >
+        <div className="Row">
+
         <ChartDataModal updateChart={this.updateChart.bind(this)} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
         <BasicInfo id={this.state.userData.id} loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
         <FootPrintChart crbnScore={this.state.chartDataObj.crbnScore} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
+        </div>
      </div>
     ); 
   }
