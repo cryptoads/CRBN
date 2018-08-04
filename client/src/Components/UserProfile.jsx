@@ -6,6 +6,7 @@ import ChartDataModal from './ChartDataModal';
 import '../UserProfile.css';
 import axios from 'axios';
 import grid from '../grid.json';
+import LoginImg from "../LoginImg2.js";
  
 class UserProfile extends Component {
   
@@ -38,10 +39,12 @@ class UserProfile extends Component {
     
   render() {
     return(
-      <div className="container-fluid">
+
+      <div className="container-fluid" style={LoginImg} >
         <div className="Row">
+
         <ChartDataModal updateChart={this.updateChart.bind(this)} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
-        <BasicInfo loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
+        <BasicInfo id={this.state.userData.id} loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
         <FootPrintChart crbnScore={this.state.chartDataObj.crbnScore} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
         </div>
      </div>
@@ -54,10 +57,10 @@ class UserProfile extends Component {
     axios.get('/test')
     .then((res) => {
     
-      this.setState({ userData: res}); // set userData state with info from DB
+      this.setState({ userData: res.data.data}); // set userData state with info from DB
   
       if (this.props.loggedIn == true) {     
-        let user = {...this.state.userData.data.data} // make a copy of user data
+        let user = {...this.state.userData} // make a copy of user data
 
             this.setState( {
               basicInfoObj:  {
@@ -95,9 +98,10 @@ class UserProfile extends Component {
 }
 
   updateChart() {
-    let user = { ...this.state.userData.data.data }
-    let data = this.calculateScore(user); 
-    this.setState({ chartDataObj: data });
+    console.log('chart update initiated')
+    axios.get('/test')
+    .then( res => {return res.data.data} )
+    .then( userData => this.calculateScore(userData)); 
   }
 
   calculateScore(user) {

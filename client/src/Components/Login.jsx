@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import LoginImg from "../LoginImg.js";
+
 
 class Login extends Component {
 
@@ -21,7 +23,10 @@ class Login extends Component {
 
     render() {
         return (
+
         <div className="login-form" style={LoginImg}>
+
+
             {this.state.user ? (
                 <br />
                 // <div className="user">
