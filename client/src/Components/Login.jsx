@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import LoginImg from "../LoginImg.js"
+
+import LoginImg from "../LoginImg.js";
+
 
 class Login extends Component {
 
@@ -21,7 +23,10 @@ class Login extends Component {
 
     render() {
         return (
-        <div className="login-form" style{LoginImg}>
+
+        <div className="login-form" style={LoginImg}>
+
+
             {this.state.user ? (
                 <br />
                 // <div className="user">
@@ -46,7 +51,7 @@ class Login extends Component {
                             </div>
                             <button className="appBtn" type="submit">Register</button><br />
                         </form>
-                        <a href="httP://localhost:3001/login"><button className="gitHubButton" type="submit">GitHub</button></a>
+                        <a href="/github/auth"><button className="gitHubButton" type="submit">GitHub</button></a>
                         </div>
                     ) : (
                     <div>
@@ -62,7 +67,7 @@ class Login extends Component {
                             </div>
                             <button className="appBtn" type="submit">Login</button>
                         </form>
-                        <a href="httP://localhost:3001/login"><button className="gitHubButton" type="submit">GitHub</button></a>
+                        <a href="/github/auth"><button className="gitHubButton" type="submit">GitHub</button></a>
                         </div>
                     )}
                 </div>

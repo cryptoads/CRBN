@@ -10,4 +10,6 @@ const LoginImg = {
     overflow: 'hidden'
   };
   
+
   export default LoginImg;
+
