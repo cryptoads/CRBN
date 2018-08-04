@@ -39,7 +39,7 @@ class UserProfile extends Component {
     
   render() {
     return(
-      <div className="container-fluid">
+      <div className="container-fluid" style={LoginImg}>
         <ChartDataModal updateChart={this.updateChart.bind(this)} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
         <BasicInfo id={this.state.userData.id} loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
         <FootPrintChart crbnScore={this.state.chartDataObj.crbnScore} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
