@@ -24,6 +24,26 @@ router.get('/test/:id', function(req, res, next) {
     })
 })
 
+router.post('/updatebasicinfo', (req, res) => {
+    let name = req.body.name; 
+    let intro = req.body.intro; 
+
+    if(req.isAuthenticated()){
+        models.user.update({
+        'username': name,
+        'intro': intro
+    },{
+        where: {
+            id: req.user,
+        }
+    }).then(user => {
+        res.json({'success': true})
+    })
+}
+}); 
+
+
+
 router.post('/updateInfo', function(req, res, next){
 
     let mpg = Number(req.body.formData.mpg);

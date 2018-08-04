@@ -40,7 +40,7 @@ class UserProfile extends Component {
     return(
       <div className="container-fluid">
         <ChartDataModal updateChart={this.updateChart.bind(this)} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
-        <BasicInfo loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
+        <BasicInfo id={this.state.userData.id} loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
         <FootPrintChart crbnScore={this.state.chartDataObj.crbnScore} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
      </div>
     ); 
