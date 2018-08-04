@@ -49,7 +49,7 @@ body {
 }
 
 .appBtn:hover,  .gitHubButton:hover {
-  background: rgb(165, 252, 240);
+  background: #08E6C8 ;
   color: #fff;
   padding: 7px 10px;
   border: none;
