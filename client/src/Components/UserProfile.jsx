@@ -6,7 +6,7 @@ import ChartDataModal from './ChartDataModal';
 import '../UserProfile.css';
 import axios from 'axios';
 import grid from '../grid.json';
-import LoginImg from "../LoginImg.js";
+
  
 class UserProfile extends Component {
   
@@ -40,7 +40,7 @@ class UserProfile extends Component {
   render() {
     return(
 
-      <div className="container-fluid" style={LoginImg} >
+      <div className="container-fluid" >
         <div className="Row">
 
         <ChartDataModal updateChart={this.updateChart.bind(this)} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
