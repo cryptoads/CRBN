@@ -6,6 +6,7 @@ import ChartDataModal from './ChartDataModal';
 import '../UserProfile.css';
 import axios from 'axios';
 import grid from '../grid.json';
+import LoginImg from "../LoginImg2.js";
  
 class UserProfile extends Component {
   
