@@ -25,7 +25,7 @@ class Login extends Component {
         return (
 
         <div className="login-form" style={LoginImg}>
-            <h3>Know your CRBN score.</h3>
+            <h3 style="padding-top: 5px;">Know your CRBN score.</h3>
             <h3>Reduce your CRBN score.</h3>
             <h3>Be a better person than your friends.</h3>
 
