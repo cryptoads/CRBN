@@ -25,7 +25,9 @@ class Login extends Component {
         return (
 
         <div className="login-form" style={LoginImg}>
-
+            <h3>Know your CRBN score.</h3>
+            <h3>Reduce your CRBN score.</h3>
+            <h3>Be a better person than your friends.</h3>
 
             {this.state.user ? (
                 <br />
@@ -35,6 +37,7 @@ class Login extends Component {
                 // </div>
             ) : (
                 <div className="user-form">
+
                     <button className="loginRegisterSwitch" onClick={this.showSignupForm} disabled={this.state.signupFormVisible}>Register</button>
                     <button className="loginRegisterSwitch" onClick={this.showLoginForm} disabled={!this.state.signupFormVisible}>Login</button>
                     {this.state.signupFormVisible ? (
