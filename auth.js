@@ -143,7 +143,7 @@ const setupAuth = (app) => {
             res.json({ user: cleanUser });
         }
     )
-// adding a session destroy on request line
+// adding a session destroy on request line to fix github cache issue
     app.get ('/github/login', passport.authenticate('github'));
     app.get ('/logout', function (req, res, next){
         req.session.destroy();
