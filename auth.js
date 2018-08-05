@@ -146,9 +146,8 @@ const setupAuth = (app) => {
 // adding a session destroy on request line
     app.get ('/github/login', passport.authenticate('github'));
     app.get ('/logout', function (req, res, next){
-        req.logout();
         req.session.destroy();
-        res.json({logginIn: false});
+        res.json({loggedIn: false});
     });
 
     app.get('/github/auth', 
