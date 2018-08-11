@@ -16,7 +16,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// dirname is public for local and client/build for prduction
+// dirname is public for local and client/build for prduction, add to .env
 app.use(express.static(path.join(__dirname, process.env.public)));
 
 setupAuth(app);

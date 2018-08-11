@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker, { unregister } from './registerServiceWorker';
+import { BrowserRouter as Routes } from 'react-router-dom';
 
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Routes><App /></Routes>, document.getElementById('root'));
 unregister()
