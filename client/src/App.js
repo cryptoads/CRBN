@@ -28,7 +28,7 @@ class App extends Component {
           <h1 className="App-title">CRBN</h1>
           {this.state.loggedIn ? (
             <React.Fragment>
-              <Link to="events">Events</Link>
+              <button className="appBtn"><Link to="events">Events</Link></button>
               <Route path="/events" component={EventsList} />
               <button className="appBtn" onClick={this.logout}>
                 Log Out
