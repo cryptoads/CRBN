@@ -115,7 +115,8 @@ class UserProfile extends Component {
       .then(res => {
         return res.data.data;
       })
-      .then(userData => this.calculateScore(userData));
+      .then(userData => this.calculateScore(userData))
+      .then(this.forceUpdate());
   }
 
   calculateScore(user) {

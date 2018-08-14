@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Login from './Components/Login';
 import UserProfile from './Components/UserProfile';
@@ -29,7 +29,9 @@ class App extends Component {
           {this.state.loggedIn ? (
             <React.Fragment>
               <button className="appBtn"><Link to="events">Events</Link></button>
-              <Route path="/events" component={EventsList} />
+              <Switch>
+		  <Route exact path="/events" component={EventsList} />
+	      </Switch>
               <button className="appBtn" onClick={this.logout}>
                 Log Out
               </button>
