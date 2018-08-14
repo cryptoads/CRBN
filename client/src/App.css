@@ -48,13 +48,21 @@ body {
 
 }
 
+.appBtn a {
+  text-transform: uppercase;
+  color: #08E6C8;
+  text-decoration: none;
+  }
+
 .appBtn:hover,  .gitHubButton:hover {
   background: #08E6C8 ;
   color: #fff;
   padding: 7px 10px;
   border: none;
+}
 
-  
+.appBtn a:hover {
+  color: #fff;
 }
 
 .login-form .appBtn,  .gitHubButton {

@@ -3,6 +3,9 @@ var router = express.Router();
 var models = require('../models');
 const ensureAuthenticated = require('../auth').ensureAuthenticated;
 const bodyParser = require('body-parser');
+const axios = require('axios');
+require('dotenv').config();
+const stringify = require('../stringify.js');
 
 router.use(bodyParser({urlencoded:true}))
 
@@ -89,6 +92,18 @@ router.post('/updateInfo', function(req, res, next){
     res.send('You need to login!')
   }  
 })
+
+/* Event Routes */
+
+/* Index all CRBN events */ 
+router.get('/events', (req, res) => {
+  axios.get(`https://www.eventbriteapi.com/v3/organizers/${process.env.ORGANIZER_ID}/events`)
+  .then( events => {
+    res.json(stringify(events))
+  })
+  .catch( err => res.send(err))
+})
+
 
 
 module.exports = router;
