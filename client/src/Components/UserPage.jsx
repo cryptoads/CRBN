@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import StaticBasic from './StaticBasic';
 import StaticFootprint from './StaticFootprint';
-import Feed from './Feed';
 import '../UserProfile.css';
 import axios from 'axios';
 import grid from '../grid.json';
