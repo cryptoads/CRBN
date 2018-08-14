@@ -7,7 +7,6 @@ const setupAuth = require('./auth');
 require('dotenv').config()
 
 var indexRouter = require('./routes/index');
-
 var app = express();
 
 // view engine setup
@@ -22,7 +21,6 @@ app.use(express.static(path.join(__dirname, process.env.public)));
 setupAuth(app);
 
 app.use('/', indexRouter);
-
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));

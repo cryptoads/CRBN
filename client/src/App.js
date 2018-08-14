@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-
 import axios from 'axios'
 import { Link, Route, Switch } from 'react-router-dom'; 
 import UserPage from './Components/UserPage';
@@ -8,7 +7,6 @@ import MainApp from './Components/MainApp';
 
 
 class App extends Component {
-
 
 
   render() {
@@ -22,8 +20,6 @@ class App extends Component {
     );
   }
 
-
 }
-
 
 export default App;
