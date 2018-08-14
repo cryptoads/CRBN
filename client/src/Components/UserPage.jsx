@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import StaticBasic from './StaticBasic';
 import StaticFootprint from './StaticFootprint';
 import Feed from './Feed';
-import UserChart from './UserChart';
 import '../UserProfile.css';
 import axios from 'axios';
 import grid from '../grid.json';
@@ -43,7 +42,6 @@ class UserPage extends Component {
       <div className="container-fluid" >
         <div className="Row">
 
-        <UserChart updateChart={this.updateChart.bind(this)} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
         <StaticBasic id={this.state.userData.id} loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
         <StaticFootprint crbnScore={this.state.chartDataObj.crbnScore} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
         </div>
