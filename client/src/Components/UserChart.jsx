@@ -3,11 +3,10 @@ import axios from 'axios';
 import grid from '../grid.json';
 import { resolve } from 'url';
 
-
 class UserChart extends Component {
     constructor(props) {
         super(props);
-
+        
         axios.get('/test/20').then( res => {return res.data.data} ).then( data => this.setState({user: data }));
 
         this.state = {
@@ -94,7 +93,7 @@ class UserChart extends Component {
 
     componentDidMount() {
         let checkboxSelections = [ "aluminum", "glass", "paper", "plastic" ];
-
+        
         axios.get('/test/20').then( res => {return res.data.data})
         .then( user => {
             checkboxSelections.forEach( box => {
