@@ -48,6 +48,7 @@ class UserProfile extends Component {
             loggedIn={this.props.loggedIn}
             chartData={this.state.chartDataObj}
           />
+          <EventsList />
         </div>
       </div>
     );
