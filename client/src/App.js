@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import axios from 'axios'
 import Login from './Components/Login';
 import UserProfile from './Components/UserProfile';
-
 
 class App extends Component {
   constructor() {
@@ -30,6 +28,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">CRBN</h1>
           { this.state.loggedIn ? <button className="appBtn" onClick={this.logout}>Log Out</button> : "" }
+          <button className="appBtn">Login</button>
         </header>
         {this.state.loggedIn == true ? <UserProfile loggedIn = {this.state.loggedIn}  /> : <Login className="login"></Login>}   
       </div>
