@@ -48,6 +48,8 @@ class UserProfile extends Component {
             loggedIn={this.props.loggedIn}
             chartData={this.state.chartDataObj}
           />
+          <EventsList />
+
           <div className="row">
           <div className="links col-4">
           <a href={"https://www.facebook.com/sharer/sharer.php?u=crbnapp.herokuapp.com/test/" + this.state.userData.id} target="_blank">
@@ -56,7 +58,6 @@ class UserProfile extends Component {
           <i className="fab fa-google-plus-square fa-3x d-inline"></i>
           </div>
           </div>
-
         </div>
       </div>
     );

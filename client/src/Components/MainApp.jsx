@@ -27,7 +27,7 @@ render(){
           <h1 className="App-title">CRBN</h1>
           { this.state.loggedIn ? <button className="appBtn" onClick={this.logout}>Log Out</button> : "" }
         </header>
-        {this.state.loggedIn == true ? <UserProfile loggedIn = {this.state.loggedIn}  /> : <Login className="login"></Login>}   
+        {this.state.loggedIn == true ? <UserProfile loggedIn = {this.state.loggedIn} logout={this.logout}  /> : <Login className="login"></Login>}   
       </div>
       )
   }
