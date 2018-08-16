@@ -69,9 +69,11 @@ body {
   background: #fff;
   color: rgb(14, 201, 176);
   padding: 7px 10px;
-  border: none;
+  border: none;  
+}
 
-  
+.login-form h3:first-child {
+  margin-top: 60px;
 }
 
 .login-form .appBtn:hover,  .gitHubButton:hover {
@@ -79,8 +81,6 @@ body {
   color: #fff;
   padding: 7px 10px;
   border: none;
-
-  
 }
 
 .appBtn:active, .gitHubButton:active {
