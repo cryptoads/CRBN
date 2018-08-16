@@ -18,28 +18,30 @@ const setupAuth = (app) => {
     }));
 
     passport.use(new GitHubStrategy({
-        clientID:process.env.client_id,
-        clientSecret:process.env.client_secret,
+        clientID: process.env.client_id,
+        clientSecret: process.env.client_secret,
         callbackURL: process.env.callbackURL
-    }, (accessToken, refreshToken, profile, done)=>{
-        models.user.findOrCreate({where:{
-            githubid: profile.id, 
-        }
+    }, (accessToken, refreshToken, profile, done) => {
+        models.user.findOrCreate({
+            where: {
+                githubid: profile.id,
+            }
         }).then(result => {
             models.user.update({
                 username: profile.username,
                 imgUrl: profile.photos[0].value
-            },{ where: {
-                 githubid: profile.id
-                 }
-             })
+            }, {
+                where: {
+                    githubid: profile.id
+                }
+                })
             return done(null, result[0]);
         })
-        .catch(done)
+            .catch(done)
     }));
 
 
-        passport.use(new LocalStrategy({
+    passport.use(new LocalStrategy({
         // options: https://github.com/jaredhanson/passport-local#parameters
         // change these if you want a different field name for username or password
         // usernameField: 'username',
@@ -51,29 +53,29 @@ const setupAuth = (app) => {
                 'username': username
             }
         })
-        .then((currentUser) => {
-            // if there isn't a current User
-            if (!currentUser) {
-                // return an error
-                return done(null, false, { message: 'Incorrect username' })
-            }
-            // If the password doesn't match
-            if (!bcrypt.compareSync(password, currentUser.password)) {
-                // return an error
-                return done(null, false, { message: 'Incorrect password' })
-            }
-            // otherwise, return the user object
-            return done(null, currentUser)
-        })
-        .catch(done);
+            .then((currentUser) => {
+                // if there isn't a current User
+                if (!currentUser) {
+                    // return an error
+                    return done(null, false, { message: 'Incorrect username' })
+                }
+                // If the password doesn't match
+                if (!bcrypt.compareSync(password, currentUser.password)) {
+                    // return an error
+                    return done(null, false, { message: 'Incorrect password' })
+                }
+                // otherwise, return the user object
+                return done(null, currentUser)
+            })
+            .catch(done);
     }));
 
 
-    passport.serializeUser(function(user, done){
+    passport.serializeUser(function (user, done) {
         done(null, user.id);
     });
 
-    passport.deserializeUser(function(id, done){
+    passport.deserializeUser(function (id, done) {
         done(null, id);
     });
 
@@ -84,11 +86,11 @@ const setupAuth = (app) => {
     // this is a simple API to check if there is a user
 
     app.get('/api/user', (req, res, next) => {
-    if (req.user) {
-        return res.json({ user: req.user })
-    } else {
-        return res.json({ user: null })
-    }
+        if (req.user) {
+            return res.json({ user: req.user })
+        } else {
+            return res.json({ user: null })
+        }
     })
 
     app.post('/auth/signup', (req, res) => {
@@ -100,42 +102,42 @@ const setupAuth = (app) => {
                 'username': username
             }
         })
-        .then((currentUser) => {
-            // if there is a user already
-            if (currentUser) {
-                // return an error
-                return res.json({
-                    error: `Sorry, already a username '${username}' is already taken`
-                });
-            }
-            // otherwise, create a new user and encrypt the password
-            models.user.create({
-                'username': username,
-                'password': bcrypt.hashSync(password, 10)
+            .then((currentUser) => {
+                // if there is a user already
+                if (currentUser) {
+                    // return an error
+                    return res.json({
+                        error: `Sorry, already a username '${username}' is already taken`
+                    });
+                }
+                // otherwise, create a new user and encrypt the password
+                models.user.create({
+                    'username': username,
+                    'password': bcrypt.hashSync(password, 10)
+                })
+                    .then((newUser) => {
+                        // we don't want to return everything, so put all the fields into a new object
+                        const data = {
+                            ...newUser.get()
+                        };
+                        // and then delete the password off that object
+                        delete data.password;
+                        // return the cleaned object
+                        return res.json(data);
+                    })
+                    .catch((err) => {
+                        // if there's an error, return that
+                        return res.json(err);
+                    });
             })
-            .then((newUser) => {
-                // we don't want to return everything, so put all the fields into a new object
-                const data = {
-                    ...newUser.get()
-                };
-                // and then delete the password off that object
-                delete data.password;
-                // return the cleaned object
-                return res.json(data);
-            })
-            .catch((err) => {
-                // if there's an error, return that
-                return res.json(err);
-            });
-        })
     })
 
-        app.post('/auth/login',
+    app.post('/auth/login',
         passport.authenticate('local'),
         (req, res) => {
             // req.user will have been deserialized at this point, so we need
             // to get the values and remove any sensitive ones
-            const cleanUser = {...req.user.get()};
+            const cleanUser = { ...req.user.get() };
             if (cleanUser.password) {
                 console.log(`Removing password from user:`, cleanUser.username);
                 delete cleanUser.password
@@ -143,22 +145,22 @@ const setupAuth = (app) => {
             res.json({ user: cleanUser });
         }
     )
-// adding a session destroy on request line to fix github cache issue
-    app.get ('/github/login', passport.authenticate('github'));
-    app.get ('/logout', function (req, res, next){
+    // adding a session destroy on request line to fix github cache issue
+    app.get('/github/login', passport.authenticate('github'));
+    app.get('/logout', function (req, res, next) {
         req.session.destroy();
-        res.json({loggedIn: false});
+        res.json({ loggedIn: false });
     });
 
-    app.get('/github/auth', 
-        passport.authenticate('github', {failureRedirect: '/github/login'}),
-        (req, res)=>{
+    app.get('/github/auth',
+        passport.authenticate('github', { failureRedirect: '/github/login' }),
+        (req, res) => {
             res.redirect('/');
         });
 };
 
 const ensureAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         return next();
     }
     res.redirect('/login');

@@ -7,13 +7,12 @@
 .profile-picture {
     width: 260px;
     box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
+    margin-bottom: 40px;
 }
 
 .basic-info-container {
-    float: left;
-    margin-top: 60px;
+    margin-top: 50px;
     padding: 15px;
-    width: 300px;
 }
 
 .basic-info-text {
@@ -24,6 +23,8 @@
     display: inline-block;
     margin-top: 60px;
     padding: 15px;
+    min-width: 120px;
+    max-width: 1200px;
 
 }
 
@@ -125,7 +126,14 @@
 
 .loader {
     display: block;
-    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.loader img {
+    margin-top: 20%;
+    width: 90%;
 }
 
 .modal-content input {
@@ -165,5 +173,9 @@
     right: 20px;
     
     border: 0;
+}
+
+.events {
+    
 }
 

@@ -1,35 +1,46 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
 class EventsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [
-        {title: 'Trees Atlanta Beltline Planting', date: '10/26/2018'},
-        {title: 'Trees Atlanta Volunteer Event', date: '8/25/2018'},
-        {title: 'Beltline Beautification Day', date: '8/15/2018'},
-      ],
+      events: [{name: {text: 'test'}, start: { local: '2018-09-21T19:00:00' }}],
       userData: this.props.userData,
     };
   }
 
   render() {
-    let {events} = this.state;
+    let { events } = this.state;
     return (
-      <div className="events-container col-8">
-        <h2>Events</h2>
-        <ul className="events-ul">
-          {events.map(event => {
-            return (
-              <li>
-                {event.title} - {event.date}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <React.Fragment>
+        <div className="events col-sm-12 col-md-10 col-lg-10">
+          <h2>Upcoming Events</h2>
+          <ul className="events-ul">
+            {events.map(event => {
+              return (
+                <li>
+                {event.name.text} <a target="blank" href={event.url}><br /><button className='appBtn'>Register</button></a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </React.Fragment>
     );
   }
+
+  componentWillMount() {
+    axios.get('http://localhost:3001/events')
+      .then(eventData => {
+        console.log(eventData)
+        this.setState({ events: eventData.data })
+      })
+      .catch(err => console.error(err));
+  }
+
+convertDate() { (dateString) => new Date(dateString)};
+
 }
 
 export default EventsList;

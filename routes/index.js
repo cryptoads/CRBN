@@ -5,6 +5,13 @@ const ensureAuthenticated = require('../auth').ensureAuthenticated;
 const bodyParser = require('body-parser');
 const axios = require('axios');
 require('dotenv').config();
+const fclone = require('fclone');
+
+/* Initialize Eventbrite SDK */
+
+const eventbriteAPI = require('node-eventbrite');
+const token = process.env.EVENTBRITE_OAUTH_TOKEN;
+
 
 router.use(bodyParser({urlencoded:true}))
 
@@ -95,13 +102,17 @@ router.post('/updateInfo', function(req, res, next){
 /* Event Routes */
 
 /* Index all CRBN events */ 
+
+
 router.get('/events', (req, res) => {
-  axios.get(`https://www.eventbriteapi.com/v3/organizers/${process.env.ORGANIZER_ID}/events`)
-  .then( events => {
-    res.json(stringify(events))
-  })
-  .catch( err => res.send(err))
-})
+    axios.get(`https://www.eventbriteapi.com/v3/organizers/17682837426/events?token=${process.env.EVENTBRITE_OAUTH_TOKEN}`)
+    .then( events => {
+    let safeData = fclone(events); 
+    res.json((safeData.data.events));
+    })
+    .catch( err => console.log(err))
+    })
+
 
 
 
