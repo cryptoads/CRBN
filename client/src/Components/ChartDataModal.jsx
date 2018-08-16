@@ -192,7 +192,7 @@ class ChartDataModal extends Component {
     updateUser(e) {
         e.preventDefault();
 
-        /* Show loader for 2s while chart updates */
+        /* Show loader while chart updates */
         this.setState({ isLoading: true });
 
         setTimeout(() => {
@@ -242,7 +242,7 @@ class ChartDataModal extends Component {
                 this.updateChart()
                 this.setState({isLoading: false});
             }
-        }, 2000
+        }, 3000
         )
     }
 }
