@@ -14,7 +14,7 @@ class EventsList extends Component {
     let { events } = this.state;
     return (
       <React.Fragment>
-        <div className="events container col-12 text-center">
+        <div className="events col-sm-12 col-md-7 col-lg-7 ml-auto">
           <h2>Upcoming Events</h2>
           <ul className="events-ul">
             {events.map(event => {

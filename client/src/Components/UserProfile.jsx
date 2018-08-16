@@ -50,6 +50,7 @@ class UserProfile extends Component {
           />
           <EventsList />
 
+
           <div className="row">
             <div className="links col-4">
               <a href={"https://www.facebook.com/sharer/sharer.php?u=crbnapp.herokuapp.com/test/" + this.state.userData.id} target="_blank">
@@ -95,6 +96,7 @@ class UserProfile extends Component {
         return res.data.data;
       })
       .then(userData => this.calculateScore(userData))
+      .then(window.location.reload());
   }
 
   calculateScore(user) {
