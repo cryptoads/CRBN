@@ -18,11 +18,26 @@ class LeaderBoard extends Component{
 
     render(){
         const sorted = this.state.res.data.sort((a,b)=>{return a.score-b.score})
-        const cards = sorted.map((el, i)=>{return <h1 key={i}>{i+1}<img src={el.imgUrl} />{el.username}, {el.score}</h1>})
+        const cards = sorted.map((el, i)=>{return <tr><th key={i} scope="row">{i+1}</th>
+                                                  <td><img src={el.imgUrl} /></td>
+                                                  <td>{el.username}</td> 
+                                                  <td>{el.score}</td> </tr>})
         return(
-            <div>
+            <div className="container">
             
-            {cards}
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col"></th>
+                  <th scope="col">User</th>
+                  <th scope="col">CRBN Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cards}
+              </tbody>
+            </table>
             
             </div>
             )
