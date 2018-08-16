@@ -118,4 +118,12 @@ router.post('/user/score', (req, res)=>{
     }
 })
 
+router.get('/all/scores', (req, res)=> {
+    models.user.findAll({
+        attributes:['username', 'imgUrl', 'score']
+    })
+    .then(data => {res.json({data})
+})
+})
+
 module.exports = router;
