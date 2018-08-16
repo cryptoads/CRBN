@@ -43,12 +43,14 @@ class UserProfile extends Component {
             loggedIn={this.props.loggedIn}
             basicInfo={this.state.basicInfoObj}
           />
-          <FootPrintChart
-            crbnScore={this.state.chartDataObj.crbnScore}
-            loggedIn={this.props.loggedIn}
-            chartData={this.state.chartDataObj}
-          />
-          <EventsList />
+          <div className="col-sm-12 col-md-8 col-lg-8">
+            <FootPrintChart
+              crbnScore={this.state.chartDataObj.crbnScore}
+              loggedIn={this.props.loggedIn}
+              chartData={this.state.chartDataObj}
+            />
+            <EventsList />
+          </div>
 
 
           <div className="row">

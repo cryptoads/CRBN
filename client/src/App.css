@@ -167,7 +167,7 @@ display: block;
 .events ul li {
   font-size: 1.5em;
   margin-top: 4%;
-  border-bottom: 1px solid #cac9c9;
+  border-bottom: 1px solid #bebebe;
 }
 
 .events ul li button {
@@ -193,6 +193,9 @@ display: block;
 
 .appFooter {
   background: #fdfdfd;
+  color: #08E6C8;
+  font-weight: 500;
+  font-size: 18px;
   box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
   height: 80px;
   bottom: 0;
