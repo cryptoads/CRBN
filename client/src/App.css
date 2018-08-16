@@ -10,11 +10,6 @@ body {
   color: #2e2e2e;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
   background-color: #FDFDFD;
   color: #08E6C8;
@@ -69,9 +64,11 @@ body {
   background: #fff;
   color: rgb(14, 201, 176);
   padding: 7px 10px;
-  border: none;
+  border: none;  
+}
 
-  
+.login-form h3:first-child {
+  margin-top: 60px;
 }
 
 .login-form .appBtn:hover,  .gitHubButton:hover {
@@ -79,8 +76,6 @@ body {
   color: #fff;
   padding: 7px 10px;
   border: none;
-
-  
 }
 
 .appBtn:active, .gitHubButton:active {
