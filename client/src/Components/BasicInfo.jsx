@@ -15,15 +15,15 @@ class BasicInfo extends Component {
     let basicInfo = this.props.basicInfo;
     let loggedIn = this.props.loggedIn;
     return (
-    <div className="basic-info-container col-sm-12 col-md-4 col-lg-4">
+    <div className="basic-info-container col-sm-12 col-md-3 col-lg-3 mr-auto">
       <img alt="profile-pic" className='profile-picture' src={basicInfo.imgUrl} />
-      <br />
+      
+      <div className="profile-info basic-info-text">
       <span onClick={this.editButtonClicked} className='edit-info-link'> {loggedIn !== false ? 'Edit Basic Info' : ''}</span>
       <button onClick={this.saveButtonClicked} className="saveButton appBtn hide">Save</button>
       <p className="username">
         {basicInfo.name}
       </p>
-      <div className="profile-info basic-info-text">
         <span>
           Intro:
         </span>

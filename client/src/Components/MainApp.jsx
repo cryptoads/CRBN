@@ -3,6 +3,7 @@ import AppHeader from './AppHeader';
 import LoginPageHeader from './LoginPageHeader';
 import Login from './Login';
 import UserProfile from './UserProfile';
+import AppFooter from './AppFooter';
 import axios from 'axios'
 
 class MainApp extends Component {
@@ -19,12 +20,15 @@ class MainApp extends Component {
     if (this.state.loggedIn) {
       MainJSX = (<div className="App">
         <AppHeader logout={this.logout} />
-        {this.state.loggedIn == true ? <UserProfile loggedIn={this.state.loggedIn} logout={this.logout} /> : <Login className="login"></Login>}
+        {this.state.loggedIn == true ? 
+        <React.Fragment><UserProfile loggedIn={this.state.loggedIn} logout={this.logout} /><AppFooter /></React.Fragment> : 
+        <React.Fragment><Login className="login"></Login><AppFooter /></React.Fragment>}
       </div>)
     } else {
       MainJSX = (<div className="App">
         <LoginPageHeader />
-        <Login className="login"></Login>}
+        <Login className="login"></Login>
+        <AppFooter />
     </div>)
     }
 

@@ -149,7 +149,13 @@ body {
 /* Event Page Styles */
 .events {
 margin: 100px auto 75px auto;
+padding: 30px;
+padding-bottom: 20px;
+background: #fdfdfd;
+box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
+display: block;
 }
+
 .events h1{
 }
 
@@ -183,5 +189,16 @@ margin: 100px auto 75px auto;
 .event-image {
   width: 70%;
   margin: 0 auto;
+}
+
+.appFooter {
+  background: #fdfdfd;
+  box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
+  height: 80px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
