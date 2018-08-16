@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import Background from './LoginImg2.jpg';
 
 const LoginImg = {
