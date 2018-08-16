@@ -1,6 +1,6 @@
 
 body {
-    background-color: #F3FBF4;
+    background-color: #e3ffdf;
     font-family: 'Quicksand', sans-serif;
 
 }
@@ -32,13 +32,13 @@ body {
 }
 
 .appBtn, .gitHubButton {
-  background: none;
+  background: #fff;
   text-transform: uppercase;
   color: #08E6C8;
-  border: .5px solid #bebebe;
   padding: 5px 10px;
+  border: .5px solid lightgrey;
   transition: 0.3s ease-in-out; 
-  box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
+  box-shadow: 2px 2px 30px 2px rgba(231,231,231,0.31);
   cursor: pointer;
 
 }
