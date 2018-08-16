@@ -37,7 +37,7 @@ router.post('/updatebasicinfo', (req, res) => {
     let name = req.body.name; 
     let intro = req.body.intro; 
 
-    if(req.isAuthenticated()){
+    if(req.isAuthenticated()) {
         models.user.update({
         'username': name,
         'intro': intro
@@ -46,7 +46,7 @@ router.post('/updatebasicinfo', (req, res) => {
             id: req.user,
         }
     }).then(user => {
-        res.json({'success': true})
+        res.json({success: true})
     })
 }
 }); 

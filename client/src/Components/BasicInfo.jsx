@@ -28,7 +28,7 @@ class BasicInfo extends Component {
           Intro:
         </span>
         <br />
-        <small className="intro">{basicInfo.intro}</small>
+        <p className="intro">{basicInfo.intro}</p>
         <hr />
         <small>Member since {basicInfo.joinedMonth}, {basicInfo.joinedYear}</small>
       </div>
@@ -57,8 +57,8 @@ class BasicInfo extends Component {
   }
 
   saveButtonClicked(e) {
-    let nameToSave = document.querySelector('.username').value;
-    let introToSave = document.querySelector('.intro').value;
+    let nameToSave = document.querySelector('.username').innerHTML;
+    let introToSave = document.querySelector('.intro').innerHTML;
     let usernameElement = document.querySelector('.username');
     let introElement = document.querySelector('.intro');
     let elementArray = [usernameElement, introElement]
@@ -76,18 +76,18 @@ class BasicInfo extends Component {
 
     console.log(saveData);
 
-    // axios({
-    //   url: '/updatebasicinfo',
-    //   method: 'post',
-    //   data: saveData
-    // })
-    // .then( res => console.log('the response was: ' + res))
-    // .catch(err => console.error(err)); 
+    axios({
+      url: '/updatebasicinfo',
+      method: 'post',
+      data: saveData
+    })
+    .then( res => console.log('the response was: ' + JSON.stringify(res.data)))
+    .catch(err => console.error(err)); 
 
     btn.classList.toggle('hide');
 
     elementArray.forEach(e => {
-      e.setAttribute('contenteditable', 'true');
+      e.setAttribute('contenteditable', 'false');
       e.classList.toggle('editable');
     })
 
