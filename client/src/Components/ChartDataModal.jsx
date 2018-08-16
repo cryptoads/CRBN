@@ -22,16 +22,17 @@ class ChartDataModal extends Component {
     render() {
 
         let { zip, natgas_bill, electric_bill, mpg, miles_driven, household_members } = this.state.user;
-
+   
         let modalJSX = (
             <div className="perspective-container">
                 <div id="modal-overlay" className="modal-overlay closed"></div>
                 <div id="modal" className="modal closed">
+                    <div className={this.state.isLoading ? 'loader' : 'closed'}><img src='img/loader.gif' /></div>
                     <span className="closeLink" onClick={this.closeModal.bind(this)}>X</span>
-                    <div className="modal-content container m-auto">
-                        <span className={this.state.isLoading ? 'loader' : 'closed'}><img src='img/loader.gif' /></span>
+                    <div className={this.state.isLoading ? 'modal-content container m-auto closed' : 'modal-content container m-auto'}>
+                        
                         <div role="alert" className={this.state.errorMsg.length <= 0 ? "alert alert-danger" : "alert alert-danger show"}>{this.state.errorMsg}</div>
-                        <form className="updateProfileForm">
+                        <form className="updateProfileForm m-auto">
                             <h4>Vehicle</h4>
                             <p>
                                 <label>Miles Per Gallon: </label>
@@ -190,9 +191,10 @@ class ChartDataModal extends Component {
 
     updateUser(e) {
         e.preventDefault();
-        this.setState({ isLoading: true });
 
         /* Show loader for 2s while chart updates */
+        this.setState({ isLoading: true });
+
         setTimeout(() => {
             /* Get radio button selection */
             let radioSelection;
