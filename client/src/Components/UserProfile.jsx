@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import BasicInfo from './BasicInfo';
 import FootPrintChart from './FootprintChart';
 import EventsList from './EventsList';
@@ -51,12 +51,12 @@ class UserProfile extends Component {
           <EventsList />
 
           <div className="row">
-          <div className="links col-4">
-          <a href={"https://www.facebook.com/sharer/sharer.php?u=crbnapp.herokuapp.com/test/" + this.state.userData.id} target="_blank">
-          <i className="fab fa-facebook-square fa-3x d-inline"></i></a>
-          <i className="fab fa-twitter-square fa-3x d-inline"></i>
-          <i className="fab fa-google-plus-square fa-3x d-inline"></i>
-          </div>
+            <div className="links col-4">
+              <a href={"https://www.facebook.com/sharer/sharer.php?u=crbnapp.herokuapp.com/test/" + this.state.userData.id} target="_blank">
+                <i className="fab fa-facebook-square fa-3x d-inline"></i></a>
+              <i className="fab fa-twitter-square fa-3x d-inline"></i>
+              <i className="fab fa-google-plus-square fa-3x d-inline"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -65,10 +65,10 @@ class UserProfile extends Component {
 
   componentWillMount() {
     axios.get('/test').then(res => {
-      this.setState({userData: res.data.data}); // set userData state with info from DB
+      this.setState({ userData: res.data.data }); // set userData state with info from DB
 
       if (this.props.loggedIn == true) {
-        let user = {...this.state.userData}; // make a copy of user data
+        let user = { ...this.state.userData }; // make a copy of user data
 
         this.setState({
           basicInfoObj: {
@@ -82,38 +82,7 @@ class UserProfile extends Component {
             createdAt: user.createdAt,
           },
         });
-
-        let chartDataComplete = () => {
-          let itemsToCheck = [
-            'aluminum',
-            'electric_bill',
-            'glass',
-            'maintenance',
-            'miles_driven',
-            'mpg',
-            'natgas_bill',
-            'paper',
-            'plastic',
-            'zip',
-          ];
-          for (var key in user) {
-            if (
-              itemsToCheck.includes(key) &&
-              (user.key == null || user.key == '')
-            ) {
-              return false;
-            } else if (key == 'zip' && user.key == 0) {
-              return false;
-            } else {
-              return true;
-            }
-          }
-        };
-        let chartCheck = chartDataComplete();
-        console.log(`chart check is ${chartCheck}`);
-        if (chartCheck !== false) {
-          this.calculateScore(user);
-        }
+        this.calculateScore(user);
       }
     });
   }
@@ -126,7 +95,6 @@ class UserProfile extends Component {
         return res.data.data;
       })
       .then(userData => this.calculateScore(userData))
-      .then(this.forceUpdate());
   }
 
   calculateScore(user) {
@@ -212,7 +180,7 @@ class UserProfile extends Component {
     let thecrbnScore = round(
       ((roundedScores.vehicle + roundedScores.waste + roundedScores.home) *
         100) /
-        100,
+      100,
       2,
     );
 
@@ -232,7 +200,7 @@ class UserProfile extends Component {
       labels: ['Vehicle', 'Home', 'Waste'],
     };
 
-    this.setState({chartDataObj: thechartDataObj});
+    this.setState({ chartDataObj: thechartDataObj });
 
     console.log('The CRBN score is: ' + thecrbnScore);
     return thechartDataObj;
