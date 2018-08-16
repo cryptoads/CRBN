@@ -204,7 +204,10 @@ class UserProfile extends Component {
       labels: ['Vehicle', 'Home', 'Waste'],
     };
 
-    this.setState({ chartDataObj: thechartDataObj });
+
+    this.setState({chartDataObj: thechartDataObj});
+    axios.post('/user/score', {'score':thecrbnScore})
+
 
     console.log('The CRBN score is: ' + thecrbnScore);
     return thechartDataObj;

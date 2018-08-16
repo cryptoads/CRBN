@@ -46,7 +46,9 @@ class MainApp extends Component {
       })
   }
 
+
   logout(event) {
+
     event.preventDefault();
     axios({ url: '/logout', method: 'get' })
       .then((res) => { this.setState({ loggedIn: res.loggedIn }) })

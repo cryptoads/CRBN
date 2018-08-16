@@ -116,4 +116,25 @@ router.get('/events', (req, res) => {
 
 
 
+router.post('/user/score', (req, res)=>{
+    let score = req.body.score;
+    if(req.isAuthenticated()){
+        models.user.update({
+            'score': score,
+        },{where: {id: req.user}})
+        .then(user =>{res.json({'success':true})
+    })
+    }else{
+        res.send('You need to login')
+    }
+})
+
+router.get('/all/scores', (req, res)=> {
+    models.user.findAll({
+        attributes:['username', 'imgUrl', 'score']
+    })
+    .then(data => {res.json({data})
+})
+})
+
 module.exports = router;
