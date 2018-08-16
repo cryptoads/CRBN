@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AppHeader from './AppHeader'
 import StaticBasic from './StaticBasic';
 import StaticFootprint from './StaticFootprint';
 import '../UserProfile.css';
@@ -40,7 +41,7 @@ class UserPage extends Component {
 
       <div className="container-fluid" >
         <div className="Row">
-
+        <AppHeader loggedIn={this.props.loggedIn} />
         <StaticBasic id={this.state.userData.id} loggedIn={this.props.loggedIn} basicInfo={this.state.basicInfoObj} />
         <StaticFootprint crbnScore={this.state.chartDataObj.crbnScore} loggedIn={this.props.loggedIn} chartData={this.state.chartDataObj} />
         </div>
