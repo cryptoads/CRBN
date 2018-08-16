@@ -137,4 +137,12 @@ router.get('/all/scores', (req, res)=> {
 })
 })
 
+
+router.get('/eventfeed', (req, res)=>{
+    models.event.findAll({
+        attributes:['eventname', 'eventImg', 'description', 'offsetscore']
+    })
+    .then(data => {res.json({data})
+})
+})
 module.exports = router;
