@@ -140,9 +140,21 @@ router.get('/all/scores', (req, res)=> {
 
 router.get('/eventfeed', (req, res)=>{
     models.event.findAll({
-        attributes:['eventname', 'eventImg', 'description', 'offsetscore']
     })
     .then(data => {res.json({data})
 })
+})
+
+router.get('/user/events', (req, res)=>{
+    if(req.isAuthenticated()){
+        models.user.findById(req.user, {
+              include: [{
+            model: models.event,
+            attributes:['eventname', 'offsetscore']
+         }]
+        })
+        .then(data=>{res.json({data:data.events})
+    })
+    }
 })
 module.exports = router;

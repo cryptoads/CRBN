@@ -10,5 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     offsetscore: DataTypes.FLOAT(2),
 
   }, {});
+  event.associate = function(models) {
+      event.belongsToMany(models.user, 
+                {
+                    through: 'userevents'
+                }, {hooks: false})
+  };
   return event;
 };
