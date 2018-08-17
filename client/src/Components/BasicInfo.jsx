@@ -16,9 +16,9 @@ class BasicInfo extends Component {
     let loggedIn = this.props.loggedIn;
     return (
     <div className="basic-info-container col-12">
-      <img alt="profile-pic" className='profile-picture' src={basicInfo.imgUrl} />
-      
       <div className="profile-info basic-info-text">
+      <img alt="profile-pic" className='profile-picture' src={basicInfo.imgUrl} />
+      <hr />
       <span onClick={this.editButtonClicked} className='edit-info-link'> {loggedIn !== false ? 'Edit Basic Info' : ''}</span>
       <button onClick={this.saveButtonClicked} className="saveButton appBtn hide">Save</button>
       <p className="username">
@@ -57,8 +57,8 @@ class BasicInfo extends Component {
   }
 
   saveButtonClicked(e) {
-    let nameToSave = document.querySelector('.username').innerHTML;
-    let introToSave = document.querySelector('.intro').innerHTML;
+    let nameToSave = document.querySelector('.username').textContent;
+    let introToSave = document.querySelector('.intro').textContent;
     let usernameElement = document.querySelector('.username');
     let introElement = document.querySelector('.intro');
     let elementArray = [usernameElement, introElement]

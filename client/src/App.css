@@ -2,7 +2,9 @@
 body {
     background-color: #e3ffdf;
     font-family: 'Quicksand', sans-serif;
-
+    color: transparent;
+    text-shadow: 0 1 4px rgba(126, 126, 126, 0.25);
+    position: relative;
 }
 
 .App {
@@ -16,7 +18,7 @@ body {
   height: 60px;
   padding: 10px;
   text-align: left;
-
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
 }
 
 .App-header h1 {
@@ -54,6 +56,7 @@ body {
   color: #fff;
   padding: 7px 10px;
   border: none;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
 }
 
 .appBtn a:hover {
@@ -148,10 +151,12 @@ body {
 
 /* Event Page Styles */
 .events {
+padding-top: 10px;
 padding-bottom: 20px;
 background: #fdfdfd;
-box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
+box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
 display: block;
+
 }
 
 .events ul {
@@ -194,12 +199,15 @@ display: block;
   color: #08E6C8;
   font-weight: 500;
   font-size: 18px;
-  box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
-  height: 80px;
-  bottom: 0;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  bottom: 0px;
+  height: 60px;
+  position: fixed;
 
 }
 
