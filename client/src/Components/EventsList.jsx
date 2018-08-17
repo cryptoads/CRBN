@@ -14,13 +14,13 @@ class EventsList extends Component {
     let { events } = this.state;
     return (
       <React.Fragment>
-        <div className="events col-sm-12 col-md-10 col-lg-10">
+        <div className="events col-sm-12 col-md-3 col-lg-3">
           <h2>Upcoming Events</h2>
           <ul className="events-ul">
             {events.map(event => {
               return (
                 <li>
-                {event.name.text} <a target="blank" href={event.url}><br /><button className='appBtn'>Register</button></a>
+                {event.eventname} <a target="blank" href={'localhost:3000/events/'+event.id}><br /><button className='appBtn'>Register</button></a>
                 </li>
               );
             })}
@@ -31,7 +31,7 @@ class EventsList extends Component {
   }
 
   componentWillMount() {
-    axios.get('http://localhost:3001/events')
+    axios.get('http/localhost:3000/eventfeed')
       .then(eventData => {
         console.log(eventData)
         this.setState({ events: eventData.data })
