@@ -6,7 +6,7 @@ class EventsList extends Component {
     super(props);
     this.state = {
       events: [],
-      userData: this.props.userData,
+      userData: this.props.userData
     };
   }
 
@@ -21,7 +21,9 @@ class EventsList extends Component {
             {events.map(event => {
               return (
                 <li>
-                {event.eventname} <a target="blank" href={'localhost:3000/events/'+event.id}><br /><button className='appBtn'>Register</button></a>
+                {event.eventname}
+                <br />
+                <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn'>Register</button>
                 </li>
               );
             })}
@@ -40,6 +42,16 @@ class EventsList extends Component {
   }
 
 convertDate() { (dateString) => new Date(dateString)};
+
+registerForEvent(e) {
+  e.preventDefault();
+  console.log(e.target.id)
+  let eventId = e.target.id;
+  let userId =  this.props.id;  
+  axios.post(`/events/${eventId}/attendees`, {
+    userId: userId
+  })
+}
 
 }
 

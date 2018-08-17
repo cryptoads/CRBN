@@ -4,6 +4,7 @@ body {
     font-family: 'Quicksand', sans-serif;
     color: transparent;
     text-shadow: 0 1 4px rgba(126, 126, 126, 0.25);
+    position: relative;
 }
 
 .App {
@@ -199,14 +200,14 @@ display: block;
   font-weight: 500;
   font-size: 18px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
-  height: 80px;
-  bottom: 0;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  bottom: 0;
   width: 100%;
+  bottom: 0px;
+  height: 60px;
+  position: fixed;
 
 }
 

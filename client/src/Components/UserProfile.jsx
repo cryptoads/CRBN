@@ -44,7 +44,7 @@ class UserProfile extends Component {
             loggedIn={this.props.loggedIn}
             basicInfo={this.state.basicInfoObj}
           />
-          <EventsList />
+          <EventsList id={this.state.userData.id} />
           </div>
           <div className="col-sm-12 col-md-8 col-lg-8">
             <FootPrintChart
