@@ -12,12 +12,12 @@ class AppHeader extends Component {
 
   render() {
     let { loggedIn } = this.state;
-    let { logout } = this.props;
+
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">CRBN</h1>
-          {loggedIn ? <button className="appBtn" onClick={logout}>Log Out</button> :
+          {loggedIn ? <button className="appBtn" onClick={this.logout.bind(this)}>Log Out</button> :
             <a href='/'><button className="appBtn">Log In</button></a>}
         </header>
       </div>
@@ -33,6 +33,13 @@ class AppHeader extends Component {
       })
   }
 
+  logout(event) {
+    event.preventDefault();
+    axios({ url: '/logout', method: 'get' })
+      .then((res) => { this.setState({ loggedIn: res.loggedIn }) })
+      .then(err => console.error(err))
+      .then(window.location.reload())
+  }
 }
 
 export default AppHeader; 

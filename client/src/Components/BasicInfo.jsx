@@ -15,7 +15,7 @@ class BasicInfo extends Component {
     let basicInfo = this.props.basicInfo;
     let loggedIn = this.props.loggedIn;
     return (
-    <div className="basic-info-container col-sm-12 col-md-3 col-lg-3 mr-auto">
+    <div className="basic-info-container col-12">
       <img alt="profile-pic" className='profile-picture' src={basicInfo.imgUrl} />
       
       <div className="profile-info basic-info-text">
