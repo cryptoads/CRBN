@@ -12,11 +12,10 @@
 
 .basic-info-container {
     margin-top: 50px;
-    padding: 15px;
+    margin-bottom: 30px;
 }
 
 .basic-info-text {
-    padding: 15px;
 }
 
 .chart-container {

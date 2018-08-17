@@ -5,18 +5,19 @@ class EventsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [{name: {text: 'test'}, start: { local: '2018-09-21T19:00:00' }}],
+      events: [],
       userData: this.props.userData,
     };
   }
 
   render() {
     let { events } = this.state;
+    console.log(events);
     return (
       <React.Fragment>
-        <div className="events col-sm-12 col-md-3 col-lg-3">
-          <h2>Upcoming Events</h2>
-          <ul className="events-ul">
+        <div className="events col-12 text-center">
+          <h3>Upcoming Events</h3>
+          <ul className="events-ul m-auto">
             {events.map(event => {
               return (
                 <li>
@@ -31,10 +32,9 @@ class EventsList extends Component {
   }
 
   componentWillMount() {
-    axios.get('http/localhost:3000/eventfeed')
+    axios.get('/eventfeed')
       .then(eventData => {
-        console.log(eventData)
-        this.setState({ events: eventData.data })
+        this.setState({ events: eventData.data.data })
       })
       .catch(err => console.error(err));
   }
