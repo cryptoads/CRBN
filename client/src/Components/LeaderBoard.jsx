@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import AppHeader from "./AppHeader"
+import AppFooter from "./AppFooter"
 
 class LeaderBoard extends Component{
     constructor(){
@@ -24,8 +26,9 @@ class LeaderBoard extends Component{
                                                 <td><img src={el.imgUrl} alt={el.username} style={imgStyle} />{el.username}</td> 
                                                 <td>{el.score}</td> </tr>})
         return(
-            <div className="container">
-            
+
+            <div className="container-fluid">
+            <AppHeader />
             <table className="table table-hover">
               <thead>
                 <tr>
@@ -38,7 +41,7 @@ class LeaderBoard extends Component{
                 {cards}
               </tbody>
             </table>
-            
+            <AppFooter />
             </div>
             )
     }

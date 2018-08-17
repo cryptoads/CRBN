@@ -131,7 +131,7 @@ router.post('/user/score', (req, res)=>{
 
 router.get('/all/scores', (req, res)=> {
     models.user.findAll({
-        attributes:['username', 'imgUrl', 'score']
+        attributes:['username', 'imgUrl', 'score' ], where:{score:{$ne:null}}
     })
     .then(data => {res.json({data})
 })
