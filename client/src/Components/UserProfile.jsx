@@ -6,6 +6,7 @@ import ChartDataModal from './ChartDataModal';
 import '../UserProfile.css';
 import axios from 'axios';
 import grid from '../grid.json';
+import UserEvents from './UserEvents';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class UserProfile extends Component {
               chartData={this.state.chartDataObj}
             />
             <EventsList />
+            <UserEvents />
           </div>
 
 
