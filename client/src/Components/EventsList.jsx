@@ -15,7 +15,12 @@ class EventsList extends Component {
 
   render() {
     let { events } = this.state;
-    console.log(events);
+    let { registeredEvents } = this.state;
+
+    let registeredEventIds = registeredEvents.map(event => Number(event.id));
+
+
+    console.log('the registered events: ' + registeredEventIds)
     return (
       <React.Fragment>
         <div className="events col-12 text-center">
@@ -26,7 +31,9 @@ class EventsList extends Component {
                 <li>
                   {event.eventname}
                   <br />
-                  <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn'>Register</button>
+                  {(!(registeredEventIds.includes(event.id))) ? 
+                  <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn'>Register</button> : 
+                  <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn going'>Going</button>}
                 </li>
               );
             })}
@@ -37,7 +44,7 @@ class EventsList extends Component {
   }
 
   componentWillMount() {
-    let registeredEvents = this.getRegisteredEvents();
+    this.getRegisteredEvents();
     axios.get('/eventfeed')
       .then(eventData => {
         this.setState({ events: eventData.data.data })
@@ -50,8 +57,8 @@ class EventsList extends Component {
   getRegisteredEvents() {
     /* Get registered events */
     axios.get('/user/events')
-    .then( events => events.data.data.map())
-    .catch(err => console.error(err))
+      .then(events => this.setState({ registeredEvents: events.data.data }))
+      .catch(err => console.error(err))
   }
 
   registerForEvent(e) {
@@ -62,8 +69,8 @@ class EventsList extends Component {
 
 
     axios.post(`/events/${eventId}/attendees`, {
-        userId: userId
-      })
+      userId: userId
+    })
       .then(this.setUserBadges)
 
 

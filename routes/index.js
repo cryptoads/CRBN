@@ -154,7 +154,7 @@ router.get('/user/events', (req, res)=>{
         models.user.findById(req.user, {
               include: [{
             model: models.event,
-            attributes:['eventname', 'offsetscore', 'badgeimg']
+            attributes:['eventname', 'offsetscore', 'badgeimg', 'id']
          }]
         })
         .then(data=>{res.json({data:data.events})
