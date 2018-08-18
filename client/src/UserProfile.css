@@ -164,6 +164,11 @@
     border: 0;
 }
 
+.trophyCase {
+  border: 2px solid white;
+  
+}
+
 .events {
     
 }

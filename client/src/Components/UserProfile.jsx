@@ -7,6 +7,8 @@ import '../UserProfile.css';
 import axios from 'axios';
 import grid from '../grid.json';
 import ProfileImg from "../ProfileImg.js";
+import UserEvents from './UserEvents';
+
 
 class UserProfile extends Component {
   constructor(props) {
@@ -54,6 +56,8 @@ class UserProfile extends Component {
               loggedIn={this.props.loggedIn}
               chartData={this.state.chartDataObj}
             />
+            <UserEvents />
+
           </div>
 
 

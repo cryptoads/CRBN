@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
           },
     eventImg: DataTypes.STRING,
     description: DataTypes.STRING,
+    badgeimg: DataTypes.STRING,
     offsetscore: DataTypes.FLOAT(2),
 
   }, {});
