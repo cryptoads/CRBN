@@ -16,6 +16,7 @@ class UserProfile extends Component {
     this.state = {
       modalOpen: false,
       basicInfoObj: {},
+      badges: [],
       chartDataObj: {
         showChart: false,
         crbnScore: null,
@@ -31,6 +32,7 @@ class UserProfile extends Component {
       },
       userData: {},
     };
+    this.setUserBadges = this.setUserBadges.bind(this);
   }
 
   render() {
@@ -48,7 +50,7 @@ class UserProfile extends Component {
             loggedIn={this.props.loggedIn}
             basicInfo={this.state.basicInfoObj}
           />
-          <EventsList id={this.state.userData.id} updateProfile={this.updateProfile.bind(this)} />
+          <EventsList id={this.state.userData.id} setUserBadges={this.setUserBadges} />
           </div>
           <div className="col-sm-12 col-md-8 col-lg-8">
             <FootPrintChart
@@ -56,7 +58,7 @@ class UserProfile extends Component {
               loggedIn={this.props.loggedIn}
               chartData={this.state.chartDataObj}
             />
-            <UserEvents />
+            <UserEvents badges={this.state.badges} />
 
           </div>
 
@@ -77,6 +79,8 @@ class UserProfile extends Component {
   componentWillMount() {
     axios.get('/test').then(res => {
       this.setState({ userData: res.data.data }); // set userData state with info from DB
+
+      this.setUserBadges();
 
       if (this.props.loggedIn == true) {
         let user = { ...this.state.userData }; // make a copy of user data
@@ -99,7 +103,8 @@ class UserProfile extends Component {
   }
 
   updateProfile() {
-    this.forceUpdate(); 
+    window.location.reload();
+    console.log('UPDATING THE PROFILE');
   }
 
   updateChart() {
@@ -111,6 +116,14 @@ class UserProfile extends Component {
       })
       .then(userData => this.calculateScore(userData))
       .then(window.location.reload());
+  }
+
+  setUserBadges() {
+    axios.get('/user/events')
+    .then(badges => {
+        this.setState({badges: badges.data.data})
+        console.log(this.state)
+    })
   }
 
   calculateScore(user) {
