@@ -166,10 +166,12 @@
 
 .trophyCase {
   border: 2px solid white;
+  background-color: white;
+  margin-top: 10%;
+  border-radius: 10%;
   
 }
 
 .events {
-    
+    border-radius: 10%;
 }
-

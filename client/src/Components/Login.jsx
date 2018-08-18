@@ -124,25 +124,33 @@ class Login extends Component {
         </div>
         <div className="login-2nd" style={LoginImg2}>
           <Zoom>
-            <FlexView height={175} marginTop={30} hAlignContent="center">
+            <FlexView height={75} marginTop={30} hAlignContent="center">
               <FormattedText>{flexOne}</FormattedText>
-              <i className="car fas fa-car-side fa-3x" />
             </FlexView>
-            <FlexView height={175} marginTop={30} hAlignContent="center">
+            <FlexView height={75} marginTop={30} hAlignContent="center">
+            <i className="car fas fa-car-side fa-3x" />
+            </FlexView>
+            <FlexView height={75} marginTop={30} hAlignContent="center">
               <FormattedText>{flexTwo}</FormattedText>
-              <i className="tree fas fa-seedling fa-3x" />
             </FlexView>
-            <FlexView height={175} marginTop={30} hAlignContent="center">
+            <FlexView height={75} marginTop={30} hAlignContent="center">
+            <i className="tree fas fa-seedling fa-3x" />
+            </FlexView>
+            <FlexView height={75} marginTop={30} hAlignContent="center">
               <FormattedText>{flexThree}</FormattedText>
-              <i className="star far fa-star fa-3x" />
+            </FlexView>
+            <FlexView height={75} marginTop={30} hAlignContent="center">
+            <i className="star far fa-star fa-3x" />
             </FlexView>
             <div className="signUp">
               <ScrollTo>
                 {scroll => (
                   <a onClick={() => scroll(0, 0)}>
-                    <FlexView height={100} hAlignContent="center">
+                    <FlexView height={40} hAlignContent="center">
                       <FormattedText>{flexFour}</FormattedText>
-                      <i class="fas fa-arrow-circle-up fa-1x" />
+                    </FlexView>
+                    <FlexView hAlignContent="center">
+                    <i class="fas fa-arrow-circle-up fa-1x" />
                     </FlexView>
                   </a>
                 )}

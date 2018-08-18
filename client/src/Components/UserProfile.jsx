@@ -50,14 +50,13 @@ class UserProfile extends Component {
           />
           <EventsList id={this.state.userData.id} />
           </div>
-          <div className="col-sm-12 col-md-8 col-lg-8">
+          <div className="col-sm-12 col-md-8 col-lg-4">
             <FootPrintChart
               crbnScore={this.state.chartDataObj.crbnScore}
               loggedIn={this.props.loggedIn}
               chartData={this.state.chartDataObj}
             />
             <UserEvents />
-
           </div>
 
 

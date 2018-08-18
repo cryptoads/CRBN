@@ -2,7 +2,6 @@
 body {
     background-color: #e3ffdf;
     font-family: 'Quicksand', sans-serif;
-    color: transparent;
     text-shadow: 0 1 4px rgba(126, 126, 126, 0.25);
     position: relative;
 }
