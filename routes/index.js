@@ -3,6 +3,15 @@ var router = express.Router();
 var models = require('../models');
 const ensureAuthenticated = require('../auth').ensureAuthenticated;
 const bodyParser = require('body-parser');
+const axios = require('axios');
+require('dotenv').config();
+const fclone = require('fclone');
+
+/* Initialize Eventbrite SDK */
+
+const eventbriteAPI = require('node-eventbrite');
+const token = process.env.EVENTBRITE_OAUTH_TOKEN;
+
 
 router.use(bodyParser({urlencoded:true}))
 
@@ -28,7 +37,7 @@ router.post('/updatebasicinfo', (req, res) => {
     let name = req.body.name; 
     let intro = req.body.intro; 
 
-    if(req.isAuthenticated()){
+    if(req.isAuthenticated()) {
         models.user.update({
         'username': name,
         'intro': intro
@@ -37,7 +46,7 @@ router.post('/updatebasicinfo', (req, res) => {
             id: req.user,
         }
     }).then(user => {
-        res.json({'success': true})
+        res.json({success: true})
     })
 }
 }); 
@@ -90,5 +99,74 @@ router.post('/updateInfo', function(req, res, next){
   }  
 })
 
+/* Event Routes */
+
+/* Index all CRBN events */ 
+
+
+router.get('/events', (req, res) => {
+    axios.get(`https://www.eventbriteapi.com/v3/organizers/17682837426/events?token=${process.env.EVENTBRITE_OAUTH_TOKEN}`)
+    .then( events => {
+    let safeData = fclone(events); 
+    res.json((safeData.data.events));
+    })
+    .catch( err => console.log(err))
+    })
+
+
+
+
+router.post('/user/score', (req, res)=>{
+    let score = req.body.score;
+    if(req.isAuthenticated()){
+        models.user.update({
+            'score': score,
+        },{where: {id: req.user}})
+        .then(user =>{res.json({'success':true})
+    })
+    }else{
+        res.send('You need to login')
+    }
+})
+
+router.get('/all/scores', (req, res)=> {
+    models.user.findAll({
+        attributes:['username', 'imgUrl', 'score' ], where:{score:{$ne:null}}
+    })
+    .then(data => {res.json({data})
+})
+})
+
+
+router.get('/eventfeed', (req, res)=>{
+    models.event.findAll({
+    })
+    .then(data => {res.json({data})
+})
+})
+
+router.get('/user/events', (req, res)=>{
+    if(req.isAuthenticated()){
+        models.user.findById(req.user, {
+              include: [{
+            model: models.event,
+            attributes:['eventname', 'offsetscore']
+         }]
+        })
+        .then(data=>{res.json({data:data.events})
+    })
+    }
+})
+
+router.post('/events/:id/attendees', (req, res) => {
+    let userId = req.body.userId;
+    console.log(userId)
+    let eventId = req.params.id;
+    if (req.isAuthenticated()) {
+        models.event.findById(eventId)
+        .then( event => event.setUsers(userId) )
+        .then(response => {res.json(response)}); 
+    }
+})
 
 module.exports = router;

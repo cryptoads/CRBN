@@ -5,16 +5,19 @@ var path      = require('path');
 var Sequelize = require('sequelize');
 var basename  = path.basename(__filename);
 var env       = process.env.NODE_ENV || 'development';
-// include config for local
+// include config for local/ comment out for prod
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 var dotenv = require('dotenv');
 
 dotenv.load();
-// if(process.env.DATABASE_URL){
+
+// uncomment this stuff for production
 // var sequelize = new Sequelize(process.env.DATABASE_URL);
 // }
-// else \
+// if(process.env.DATABASE_URL){
+// comment this stuff for local 
+ 
   if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {

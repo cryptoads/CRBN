@@ -31,11 +31,17 @@ module.exports = (sequelize, DataTypes) => {
     glass: DataTypes.BOOLEAN,
     paper: DataTypes.BOOLEAN,
     intro: DataTypes.TEXT(250),
+    score: DataTypes.DECIMAL(10,2),
     imgUrl: {
       type: DataTypes.STRING,
       defaultValue: "https://qph.fs.quoracdn.net/main-qimg-80b031daebee6d6cdbafec6daf5a47b9-c"
             },
 
   }, {});
+  user.associate = function(models) {
+   user.belongsToMany(models.event, {
+    through: 'userevents'
+   })
+  };
   return user;
 };

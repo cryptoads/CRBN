@@ -7,16 +7,24 @@
     "postinstall": "cd client && npm install && npm run build"
   },
   "dependencies": {
+
     "animate.css": "^3.7.0",
     "aphrodite": "^2.2.2",
+
+    "axios": "^0.18.0",
+
     "bcrypt": "^3.0.0",
+    "circular-json": "^0.5.5",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
+    "debug": "~3.1.0",
     "dotenv": "^6.0.0",
+    "eventbrite": "^1.0.2",
     "express": "~4.16.0",
     "express-session": "^1.15.6",
-    "http-errors": "~1.6.2",
+    "fclone": "^1.0.11",
+    "http-errors": "~1.7.0",
     "morgan": "~1.9.0",
+    "node-eventbrite": "0.0.19",
     "nodemon": "^1.18.3",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
@@ -30,6 +38,9 @@
     "react-reveal": "^1.2.2",
     "react-scroll-to": "^1.2.2",
     "really-smooth-scroll": "^2.1.1",
+    "querystring": "^0.2.0",
+    "react-router-dom": "^4.3.1",
+    "request": "^2.88.0",
     "sequelize": "^4.38.0",
     "sequelize-cli": "^4.0.0"
   }

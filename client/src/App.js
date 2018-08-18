@@ -1,46 +1,39 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import axios from 'axios'
-import Login from './Components/Login';
-import UserProfile from './Components/UserProfile';
+import { Link, Route, Switch } from 'react-router-dom'; 
+import UserPage from './Components/UserPage';
+import MainApp from './Components/MainApp';
+
+
+import LeaderBoard from './Components/LeaderBoard';
+
+import EventsList from './Components/EventsList';
+import Event from './Components/Event';
+
+
+
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = { loggedIn: false }
-    this.logout = this.logout.bind(this);
-
-  }
-
-  componentWillMount() {
-    axios.get('/test')
-    .then((res)=>{
-      this.setState({loggedIn: res.data.loggedIn})
-      console.log(this.state.loggedIn)
-      console.log(res)
-    })
-  }
 
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">CRBN</h1>
-          { this.state.loggedIn ? <button className="appBtn" onClick={this.logout}>Log Out</button> : "" }
-        </header>
-        {this.state.loggedIn == true ? <UserProfile loggedIn = {this.state.loggedIn}  /> : <Login className="login"></Login>}   
+      <div>
+      <Switch>
+
+      <Route exact path="/leaderboards" component={LeaderBoard} />
+
+      <Route path="/test/:id" component={UserPage} />
+      <Route exact path="/" component={MainApp} />
+      <Route exact path="/events" component={EventsList} />
+      <Route exact path="/events/:id" component={Event} />
+
+      </Switch>
       </div>
     );
   }
 
-  logout(event) {
-    event.preventDefault();
-    axios({url: '/logout', method: 'get'})
-    .then((res)=>{this.setState({ loggedIn: res.loggedIn })})
-    .then( err => console.error(err)); 
-  }
 }
-
 
 export default App;
