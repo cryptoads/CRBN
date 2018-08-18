@@ -15,10 +15,10 @@ class FootprintChart extends Component {
 
     let chartJSX = (
     <div className='profile-info chart-container col-sm-12 col-md-8 col-lg-8'>
-      <h2>Footprint</h2>
+      <h2>Carbon Emission Footprint</h2>
         <span onClick={this.editLinkClick.bind(this)} className="edit-info-link">{ loginState !== false ? 'Edit Footprint Info' : '' }</span>
         <hr />
-        <h3>CRBN Score: {userCRBNScore}</h3> <Doughnut data={data} />
+        <h3>Score: {userCRBNScore} metric tons / year</h3> <Doughnut data={data} />
     </div>)
     return (
       chartJSX

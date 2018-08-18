@@ -4,12 +4,18 @@ import "../Login.css";
 import LoginImg from "../LoginImg.js";
 import LoginImg2 from "../LoginImg2.js";
 import Zoom from "react-reveal/Zoom";
-import { tada } from "react-animations";
 import { ScrollTo } from "react-scroll-to";
 import ReallySmoothScroll from "really-smooth-scroll";
 import FlexView from "react-flexview";
+import FormattedText from "buildo-react-components/lib/FormattedText";
 
 ReallySmoothScroll.shim();
+const flexOne =
+  "Using some basic inputs from your everyday life,\nwe show how your lifestyle affects the environment.\n";
+const flexTwo =
+  "Find events you can participate in to improve your score,\nor donate to a carbon emission reducing activity of your choice.\n";
+const flexThree = "Share your score and see where you rank among others.\n";
+const flexFour = "Sign up now!  ";
 
 class Login extends Component {
   constructor(props) {
@@ -108,8 +114,8 @@ class Login extends Component {
               <ScrollTo>
                 {scroll => (
                   <a onClick={() => scroll(0, 2000)}>
-                    <p>
-                      <h4 className="learnMore">Learn More</h4>
+                    <p className="learnMore">
+                      <h4>Learn More</h4>
                       <i className="fas fa-chevron-circle-down fa-3x" />
                     </p>
                   </a>
@@ -119,11 +125,35 @@ class Login extends Component {
           )}
         </div>
         <div className="login-2nd" id="login-2nd" style={LoginImg2}>
-          <FlexView height={200} hAlignContent="left" vAlignContent="center" marginLeft={75}>I'm vertically centered!</FlexView>
-          <FlexView height={200} hAlignContent="center" vAlignContent="center" >I'm vertically centered!</FlexView>
-          <FlexView height={200} hAlignContent="right" vAlignContent="center" marginRight={75}>I'm vertically centered!</FlexView>
-        </div>      </div>
-   );
+          <Zoom>
+            <FlexView height={200} marginTop={40}>
+              <FormattedText>{flexOne}</FormattedText>
+              <i className="car fas fa-car-side fa-3x" />
+            </FlexView>
+            <FlexView height={200} marginTop={40}>
+              <FormattedText>{flexTwo}</FormattedText>
+              <i className="tree fas fa-seedling fa-3x" />
+            </FlexView>
+            <FlexView height={200} marginTop={40}>
+              <FormattedText>{flexThree}</FormattedText>
+              <i className="star far fa-star fa-3x" />
+            </FlexView>
+            <div className="signUp">
+              <ScrollTo>
+                {scroll => (
+                  <a onClick={() => scroll(0, 0)}>
+                    <FlexView height={100}>
+                      <FormattedText>{flexFour}</FormattedText>
+                      <i class="fas fa-arrow-circle-up fa-1x" />
+                    </FlexView>
+                  </a>
+                )}
+              </ScrollTo>
+            </div>
+          </Zoom>
+        </div>
+      </div>
+    );
   }
 
   showLoginForm = event => {

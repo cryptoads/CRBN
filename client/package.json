@@ -5,6 +5,7 @@
   "dependencies": {
     "ajv": "^6.5.2",
     "axios": "^0.18.0",
+    "buildo-react-components": "^0.38.2",
     "chart.js": "^2.7.2",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",

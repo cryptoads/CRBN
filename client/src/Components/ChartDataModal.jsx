@@ -36,6 +36,7 @@ class ChartDataModal extends Component {
                         <p>
                             <label>Miles Per Gallon: </label>
                             <input defaultValue={mpg} type="text" name="mpg"/>
+                            <a href="https://www.fueleconomy.gov/feg/bymake/bymanuNF.shtml" target='_blank'> MPG help!</a>
                         </p>
                         <p>
                             <label>Miles Driven Annually: </label>
@@ -60,7 +61,7 @@ class ChartDataModal extends Component {
                             <input defaultValue={natgas_bill} type="text" name="gasBill" />
                         </p>
                         <p>
-                            <label>Electric Bill: </label>
+                            <label>Electric Bill (monthly): </label>
                             <input defaultValue={electric_bill} type="text" name="electricBill" />
                         </p>
                         <p>

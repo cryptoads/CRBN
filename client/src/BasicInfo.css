@@ -1,0 +1,16 @@
+.profile-picture {
+    border-radius: 35%;
+}
+
+.edit-info-link {
+    font-weight: bold;
+}
+
+.profile-info {
+    border-radius: 10%;
+}
+
+.username {
+    font-weight: bold;
+    color: #08E6C8;
+}
