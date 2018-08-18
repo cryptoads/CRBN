@@ -55,7 +55,7 @@ class UserProfile extends Component {
           <EventsList id={this.state.userData.id} setUserBadges={this.setUserBadges} />
 
           </div>
-          <div className="col-sm-12 col-md-8 col-lg-6">
+          <div className="col-sm-12 col-md-8 col-lg-5">
             <FootPrintChart
               crbnScore={this.state.chartDataObj.crbnScore}
               loggedIn={this.props.loggedIn}
@@ -63,9 +63,10 @@ class UserProfile extends Component {
             />
 
           </div>
+          <UserEvents badges={this.state.badges} />
           <div>
 
-            <UserEvents badges={this.state.badges} />
+            
 
 
           </div>
