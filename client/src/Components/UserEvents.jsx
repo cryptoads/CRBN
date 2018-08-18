@@ -12,6 +12,7 @@ class UserEvents extends Component{
         axios.get('/user/events')
         .then(res => {
             this.setState({res: res.data.data})
+            console.log(this.state)
         })
     }
 
@@ -19,12 +20,12 @@ class UserEvents extends Component{
         const imgStyle = {height: '100px'};
         const eventItem = this.state.res.map((el, i)=>{return <div><h1>{el.eventname}</h1>
             <div>
-            <img src="https://www.4roffice.co.uk/storefront/images/dealers/CO2%20left%20footprint.png" style={imgStyle} key={i} />
+            <img src={el.badgeimg} style={imgStyle} key={i} />
             </div>
             </div>})
 
         return(
-            <div>
+            <div className="trophyCase col-4" >
             {eventItem}
             </div>)
     }
