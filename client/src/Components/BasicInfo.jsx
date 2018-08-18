@@ -1,7 +1,3 @@
-import React, { Component } from "react";
-import axios from "axios";
-import "../BasicInfo.css";
-
 
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -13,14 +9,12 @@ class BasicInfo extends Component {
   constructor(props) {
     super(props);
     this.state = { id: this.props.id }
-
   }
 
   render(props) {
     let basicInfo = this.props.basicInfo;
     let loggedIn = this.props.loggedIn;
     return (
-
     <div className="basic-info-container col-12">
       <div className="profile-info basic-info-text">
       <img alt="profile-pic" className='profile-picture' src={basicInfo.imgUrl} />
@@ -40,13 +34,10 @@ class BasicInfo extends Component {
       </div>
     </div>
     )
-
   }
 
   editButtonClicked(e) {
     let btnText = e.target.innerHTML;
-
-
     let usernameElement = document.querySelector('.username');
     let introElement = document.querySelector('.intro');
     let elementArray = [usernameElement, introElement]
@@ -73,19 +64,17 @@ class BasicInfo extends Component {
     let elementArray = [usernameElement, introElement]
 
 
-
     e.preventDefault();
 
-    let btn = document.querySelector(".saveButton");
+    let btn = document.querySelector('.saveButton')
 
     let saveData = {
       name: nameToSave,
       intro: introToSave,
       id: 2
-    };
+    }
 
     console.log(saveData);
-
 
     axios({
       url: '/updatebasicinfo',
@@ -95,19 +84,23 @@ class BasicInfo extends Component {
     .then( res => console.log('the response was: ' + JSON.stringify(res.data)))
     .catch(err => console.error(err)); 
 
-
-    btn.classList.toggle("hide");
+    btn.classList.toggle('hide');
 
     elementArray.forEach(e => {
-
       e.setAttribute('contenteditable', 'false');
       e.classList.toggle('editable');
     })
 
     document.querySelector('.edit-info-link').classList.remove('hide');
 
-
   }
+
+
+
+
+
 }
 
+
 export default BasicInfo;
+

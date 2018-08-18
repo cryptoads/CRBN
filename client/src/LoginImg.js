@@ -5,9 +5,7 @@ const LoginImg = {
     height: '100vh',
     backgroundImage: `url(${Background})`,
     backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'absolute',
-    backgroundPosition: 'center center',
+    backgroundPosition: 'center',
     overflow: 'hidden'
   };
   
