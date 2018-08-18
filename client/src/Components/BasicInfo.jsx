@@ -15,24 +15,24 @@ class BasicInfo extends Component {
     let basicInfo = this.props.basicInfo;
     let loggedIn = this.props.loggedIn;
     return (
-    <div className="basic-info-container col-12">
-      <div className="profile-info basic-info-text">
-      <img alt="profile-pic" className='profile-picture' src={basicInfo.imgUrl} />
-      <hr />
-      <span onClick={this.editButtonClicked} className='edit-info-link'> {loggedIn !== false ? 'Edit Basic Info' : ''}</span>
-      <button onClick={this.saveButtonClicked} className="saveButton appBtn hide">Save</button>
-      <p className="username">
-        {basicInfo.name}
-      </p>
-        <span>
-          Intro:
+      <div className="basic-info-container col-12">
+        <div className="profile-info basic-info-text">
+          <img alt="profile-pic" className='profile-picture' src={basicInfo.imgUrl} />
+          <hr />
+          <span onClick={this.editButtonClicked} className='edit-info-link'> {loggedIn !== false ? 'Edit Basic Info' : ''}</span>
+          <button onClick={this.saveButtonClicked} className="saveButton appBtn hide">Save</button>
+          <p className="username">
+            {basicInfo.name}
+          </p>
+          <span>
+            Intro:
         </span>
-        <br />
-        <p className="intro">{basicInfo.intro}</p>
-        <hr />
-        <small>Member since {basicInfo.joinedMonth}, {basicInfo.joinedYear}</small>
+          <br />
+          <p className="intro">{basicInfo.intro}</p>
+          <hr />
+          <small>Member since {basicInfo.joinedMonth}, {basicInfo.joinedYear}</small>
+        </div>
       </div>
-    </div>
     )
   }
 
@@ -81,8 +81,8 @@ class BasicInfo extends Component {
       method: 'post',
       data: saveData
     })
-    .then( res => console.log('the response was: ' + JSON.stringify(res.data)))
-    .catch(err => console.error(err)); 
+      .then(res => console.log('the response was: ' + JSON.stringify(res.data)))
+      .catch(err => console.error(err));
 
     btn.classList.toggle('hide');
 
@@ -94,13 +94,7 @@ class BasicInfo extends Component {
     document.querySelector('.edit-info-link').classList.remove('hide');
 
   }
-
-
-
-
-
 }
-
 
 export default BasicInfo;
 
