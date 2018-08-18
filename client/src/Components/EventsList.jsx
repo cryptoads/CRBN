@@ -9,6 +9,8 @@ class EventsList extends Component {
       userData: this.props.userData,
       registeredEvents: []
     };
+
+    this.updateProfile = this.props.updateProfile;
   }
 
   render() {
@@ -60,6 +62,7 @@ class EventsList extends Component {
     axios.post(`/events/${eventId}/attendees`, {
       userId: userId
     })
+    .then( this.updateProfile())
   }
 
 }
