@@ -131,7 +131,11 @@ router.post('/user/score', (req, res)=>{
 
 router.get('/all/scores', (req, res)=> {
     models.user.findAll({
-        attributes:['username', 'imgUrl', 'score' ], where:{score:{$ne:null}}
+        attributes:['username', 'imgUrl', 'score' ], 
+        where:
+            {score:
+                {$ne:null}
+            }
     })
     .then(data => {res.json({data})
 })
@@ -150,7 +154,7 @@ router.get('/user/events', (req, res)=>{
         models.user.findById(req.user, {
               include: [{
             model: models.event,
-            attributes:['eventname', 'offsetscore']
+            attributes:['eventname', 'offsetscore', 'badgeimg']
          }]
         })
         .then(data=>{res.json({data:data.events})
