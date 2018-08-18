@@ -9,7 +9,7 @@ class EventsList extends Component {
       userData: this.props.userData,
       registeredEvents: []
     };
-
+    this.setUserBadges = this.props.setUserBadges;
     this.updateProfile = this.props.updateProfile;
   }
 
@@ -59,12 +59,15 @@ class EventsList extends Component {
     console.log(e.target.id)
     let eventId = e.target.id;
     let userId = this.props.id;
-    axios.post(`/events/${eventId}/attendees`, {
-      userId: userId
-    })
-    .then( this.updateProfile())
-  }
 
+
+    axios.post(`/events/${eventId}/attendees`, {
+        userId: userId
+      })
+      .then(this.setUserBadges)
+
+
+  }
 }
 
 export default EventsList;
