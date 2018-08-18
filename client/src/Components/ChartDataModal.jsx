@@ -17,6 +17,7 @@ class ChartDataModal extends Component {
             errorMsg: "",
             isLoading: false
         }
+        this.updateChart = this.props.updateChart; 
     }
 
     render() {
@@ -89,6 +90,7 @@ class ChartDataModal extends Component {
                     </div>
                 </div>
             </div>);
+            console.log(this.state.user);
         return (
             modalJSX
         );
@@ -184,10 +186,6 @@ class ChartDataModal extends Component {
         theModal.classList.toggle("closed");
         modalOverlay.classList.toggle("closed");
     }
-    updateChart() {
-        this.props.updateChart();
-        this.closeModal();
-    }
 
 
     updateUser(e) {
@@ -239,9 +237,13 @@ class ChartDataModal extends Component {
                     method: 'post',
                     data: { formData: userData }
                 })
+                .then(this.updateChart);
                 this.validateFormFunc()
-                this.updateChart()
-                this.setState({isLoading: false});
+                this.closeModal();
+                this.setState({isLoading: false})
+             
+                
+
             }
         }, 3000
         )

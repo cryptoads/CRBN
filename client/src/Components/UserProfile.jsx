@@ -33,6 +33,7 @@ class UserProfile extends Component {
       userData: {},
     };
     this.setUserBadges = this.setUserBadges.bind(this);
+    this.updateChart = this.updateChart.bind(this);
   }
 
   render() {
@@ -102,20 +103,8 @@ class UserProfile extends Component {
     });
   }
 
-  updateProfile() {
-    window.location.reload();
-    console.log('UPDATING THE PROFILE');
-  }
-
   updateChart() {
-    console.log('chart update initiated');
-    axios
-      .get('/test')
-      .then(res => {
-        return res.data.data;
-      })
-      .then(userData => this.calculateScore(userData))
-      .then(window.location.reload());
+    window.location.reload();
   }
 
   setUserBadges() {
