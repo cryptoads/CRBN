@@ -24,6 +24,7 @@ class UserPage extends Component {
             backgroundColor : [
               '#08E6C8','#472029', '#a7ed9c' 
             ],
+            borderColor: ["#000000", "#000000", "#000000"]
         }],
     
          labels: [
