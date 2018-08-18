@@ -18,14 +18,14 @@ class MainApp extends Component {
     let MainJSX;
 
     if (this.state.loggedIn) {
-      MainJSX = (<div className="App container-fluid">
+      MainJSX = (<div className="App">
         <AppHeader logout={this.logout} />
         {this.state.loggedIn == true ? 
         <React.Fragment><UserProfile loggedIn={this.state.loggedIn} logout={this.logout} /><AppFooter /></React.Fragment> : 
         <React.Fragment><Login className="login"></Login><AppFooter /></React.Fragment>}
       </div>)
     } else {
-      MainJSX = (<div className="App container-fluid">
+      MainJSX = (<div className="App">
         <LoginPageHeader />
         <Login className="login"></Login>
         <AppFooter />
