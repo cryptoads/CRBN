@@ -15,21 +15,24 @@ class UserProfile extends Component {
     this.state = {
       modalOpen: false,
       basicInfoObj: {},
+      badges: [],
       chartDataObj: {
         showChart: false,
         crbnScore: null,
         datasets: [
           {
-            data: [10, 20, 30],
-            backgroundColor: ["#08E6C8", "#472029", "#a7ed9c"],
-            borderColor: ["#000000", "#000000", "#000000"]
-          }
+
+            data: [10, 20, 30 , 0],
+            backgroundColor: ['#08E6C8', '#472029', '#a7ed9c', '#470000'],
+            borderColor: ["#000000", "#000000", "#000000", "#000000"]
+          },
         ],
 
-        labels: ["Vehicle", "Home", "Waste"]
+        labels: ['Vehicle', 'Home', 'Waste', 'Events'],
       },
       userData: {}
     };
+    this.setUserBadges = this.setUserBadges.bind(this);
   }
 
   render() {
@@ -42,12 +45,14 @@ class UserProfile extends Component {
             chartData={this.state.chartDataObj}
           />
           <div className="col-sm-12 col-md-3 col-lg-3">
-            <BasicInfo
-              id={this.state.userData.id}
-              loggedIn={this.props.loggedIn}
-              basicInfo={this.state.basicInfoObj}
-            />
-          <UserEvents />
+
+          <BasicInfo
+            id={this.state.userData.id}
+            loggedIn={this.props.loggedIn}
+            basicInfo={this.state.basicInfoObj}
+          />
+          <EventsList id={this.state.userData.id} setUserBadges={this.setUserBadges} />
+
           </div>
           <div className="col-sm-12 col-md-8 col-lg-6">
             <FootPrintChart
@@ -55,9 +60,13 @@ class UserProfile extends Component {
               loggedIn={this.props.loggedIn}
               chartData={this.state.chartDataObj}
             />
+
           </div>
           <div>
-            <EventsList id={this.state.userData.id} />
+
+            <UserEvents badges={this.state.badges} />
+
+
           </div>
 
           {/* <div className="row">
@@ -82,6 +91,8 @@ class UserProfile extends Component {
     axios.get("/test").then(res => {
       this.setState({ userData: res.data.data }); // set userData state with info from DB
 
+      this.setUserBadges();
+
       if (this.props.loggedIn == true) {
         let user = { ...this.state.userData }; // make a copy of user data
 
@@ -102,6 +113,11 @@ class UserProfile extends Component {
     });
   }
 
+  updateProfile() {
+    window.location.reload();
+    console.log('UPDATING THE PROFILE');
+  }
+
   updateChart() {
     console.log("chart update initiated");
     axios
@@ -111,6 +127,14 @@ class UserProfile extends Component {
       })
       .then(userData => this.calculateScore(userData))
       .then(window.location.reload());
+  }
+
+  setUserBadges() {
+    axios.get('/user/events')
+    .then(badges => {
+        this.setState({badges: badges.data.data})
+        console.log(this.state)
+    })
   }
 
   calculateScore(user) {
@@ -132,6 +156,7 @@ class UserProfile extends Component {
     let vehiclecO2;
     let wastecO2 = 700; // baseline is 700. reduces based on recycling habits
     let homecO2;
+    let eventcO2;
 
     /* Vehicle cO2 calculations */
     if (maintenance == true) {
@@ -187,14 +212,31 @@ class UserProfile extends Component {
       return Math.round(num * multiplier) / multiplier;
     }
 
+    function eventOffsetter(){  
+      return axios.get('/user/events')
+      .then(res => {
+           let offsetArray = res.data.data.map((el)=> {return el.offsetscore})
+           let offsetSum = offsetArray.reduce((a, b)=>{return a+b})
+           return(offsetSum)
+          })
+    }
+
+    
+eventOffsetter().then(res=>{eventcO2 = res;
     /* Final Score */
     let roundedScores = {
       vehicle: round(vehiclecO2, 2),
       waste: round(wastecO2, 2),
-      home: round(homecO2, 2)
+
+      home: round(homecO2, 2),
+      event: round(eventcO2, 2),
+
+
     };
+
+
     let thecrbnScore = round(
-      ((roundedScores.vehicle + roundedScores.waste + roundedScores.home) *
+      ((roundedScores.vehicle + roundedScores.waste + roundedScores.home - roundedScores.event) *
         100) /
         100,
       2
@@ -207,13 +249,16 @@ class UserProfile extends Component {
           data: [
             roundedScores.vehicle,
             roundedScores.home,
-            roundedScores.waste
+
+            roundedScores.waste,
+            roundedScores.event,
           ],
-          backgroundColor: ["#08E6C8", "#472029", "#a7ed9c"]
-        }
+          backgroundColor: ['#08E6C8', '#472029', '#a7ed9c', '#a7f000'],
+        },
       ],
 
-      labels: ["Vehicle", "Home", "Waste"]
+      labels: ['Vehicle', 'Home', 'Waste', 'Events'],
+
     };
 
     this.setState({ chartDataObj: thechartDataObj });
@@ -221,6 +266,7 @@ class UserProfile extends Component {
 
     console.log("The CRBN score is: " + thecrbnScore);
     return thechartDataObj;
+    })
   }
 }
 
