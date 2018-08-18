@@ -48,7 +48,7 @@ class UserProfile extends Component {
             loggedIn={this.props.loggedIn}
             basicInfo={this.state.basicInfoObj}
           />
-          <EventsList id={this.state.userData.id} />
+          <EventsList id={this.state.userData.id} updateProfile={this.updateProfile.bind(this)} />
           </div>
           <div className="col-sm-12 col-md-8 col-lg-8">
             <FootPrintChart
@@ -96,6 +96,10 @@ class UserProfile extends Component {
         this.calculateScore(user);
       }
     });
+  }
+
+  updateProfile() {
+    this.forceUpdate(); 
   }
 
   updateChart() {

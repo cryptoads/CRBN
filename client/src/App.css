@@ -170,7 +170,6 @@ display: block;
   font-size: 1.2em;
   margin-top: 4%;
   border-bottom: 1px solid #bebebe;
- 
 }
 
 .events ul li button {
@@ -207,6 +206,5 @@ display: block;
   bottom: 0px;
   height: 30px;
   position: absolute;
-  
-}
+  }
 
