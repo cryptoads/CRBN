@@ -6,6 +6,15 @@
     font-weight: bold;
 }
 
+.edit-info-link:hover {
+    color: yellow;
+}
+
+.edit-info-link:hover {
+    background-color: white;
+    border-radius: 10%;
+}
+
 .profile-info {
     border-radius: 10%;
 }

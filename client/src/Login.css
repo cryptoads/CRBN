@@ -13,6 +13,11 @@ h4 {
     font-weight: bold;
 }
 
+.learnMore:hover {
+    color: yellow;
+    cursor: pointer;
+}
+
 .user-form {
     margin-top: 4%;
 }
@@ -26,6 +31,11 @@ h4 {
     color: #08E6C8;
 }
 
+.signUp:hover {
+    color: yellow;
+    cursor: pointer;
+}
+
 .car {
     color: red;
 }
@@ -36,6 +46,26 @@ h4 {
 
 .star {
     color: yellow;
+}
+
+input[type=text]:focus {
+    background-color: #08E6C8;
+}
+
+input[type=text]:hover {
+    background-color: #08E6C8;
+}
+
+input[type=password]:focus {
+    background-color: #08E6C8;
+}
+
+input[type=password]:hover {
+    background-color: #08E6C8;
+}
+
+button {
+    font-weight: bold;
 }
 
 /* i {

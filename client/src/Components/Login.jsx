@@ -36,7 +36,7 @@ class Login extends Component {
         <div className="login-form" style={LoginImg}>
           <Zoom>
             <div className="loginDescription">
-              <h4>Track your annual carbon emmission output.</h4>
+              <h1>Track your annual carbon emmission output.</h1>
               <h4>
                 Share your score / Improve your output / Shame your friends
               </h4>
