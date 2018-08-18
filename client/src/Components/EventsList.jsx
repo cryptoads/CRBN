@@ -6,7 +6,8 @@ class EventsList extends Component {
     super(props);
     this.state = {
       events: [],
-      userData: this.props.userData
+      userData: this.props.userData,
+      registeredEvents: []
     };
   }
 
@@ -21,9 +22,9 @@ class EventsList extends Component {
             {events.map(event => {
               return (
                 <li>
-                {event.eventname}
-                <br />
-                <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn'>Register</button>
+                  {event.eventname}
+                  <br />
+                  <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn'>Register</button>
                 </li>
               );
             })}
@@ -34,6 +35,7 @@ class EventsList extends Component {
   }
 
   componentWillMount() {
+    let registeredEvents = this.getRegisteredEvents();
     axios.get('/eventfeed')
       .then(eventData => {
         this.setState({ events: eventData.data.data })
@@ -41,17 +43,24 @@ class EventsList extends Component {
       .catch(err => console.error(err));
   }
 
-convertDate() { (dateString) => new Date(dateString)};
+  convertDate() { (dateString) => new Date(dateString) };
 
-registerForEvent(e) {
-  e.preventDefault();
-  console.log(e.target.id)
-  let eventId = e.target.id;
-  let userId =  this.props.id;  
-  axios.post(`/events/${eventId}/attendees`, {
-    userId: userId
-  })
-}
+  getRegisteredEvents() {
+    /* Get registered events */
+    axios.get('/user/events')
+    .then( events => events.data.data.map())
+    .catch(err => console.error(err))
+  }
+
+  registerForEvent(e) {
+    e.preventDefault();
+    console.log(e.target.id)
+    let eventId = e.target.id;
+    let userId = this.props.id;
+    axios.post(`/events/${eventId}/attendees`, {
+      userId: userId
+    })
+  }
 
 }
 
