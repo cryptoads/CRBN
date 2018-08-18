@@ -24,7 +24,6 @@ class UserPage extends Component {
             backgroundColor : [
               '#08E6C8','#472029', '#a7ed9c' 
             ],
-            borderColor: ["#000000", "#000000", "#000000"]
         }],
     
          labels: [
@@ -103,11 +102,118 @@ class UserPage extends Component {
     .then( userData => this.calculateScore(userData)); 
   }
 
-  calculateScore(user) {
+  // calculateScore(user) {
+  //   /************************
+  //   * CRBN Score Equation
+  // //   *************************/
+  //   console.log(user)
+  //   /* Set up variables for CRBN score equation */
+  //   let maintenance = user.data.maintenance;
+  //   let mpg = user.data.mpg;
+  //   let milesDriven = user.data.miles_driven;
+  //   let aluminum = user.data.aluminum;
+  //   let plastic = user.data.plastic;
+  //   let glass = user.data.glass;
+  //   let paper = user.data.paper;
+  //   let householdMembers = user.data .household_members;
+
+  //   /*Individual variables that make up the CRBN score */
+  //   let vehiclecO2;
+  //   let wastecO2 = 700; // baseline is 700. reduces based on recycling habits
+  //   let homecO2;
+
+  //   /* Vehicle cO2 calculations */
+  //   if (maintenance == true) {
+  //     vehiclecO2 = (((milesDriven / mpg) * 19.59) / 2204.62);
+  //   } else {
+  //     vehiclecO2 = (((milesDriven / mpg) * 19.59) / 2204.62) * (1.04);
+  //   }
+  //   console.log('vehicle cO2 is ' + vehiclecO2)
+    
+  //   /*Waste cO2 calculations */
+  //   let recyclingScores = {
+  //     aluminum: 90,
+  //     plastic: 35, 
+  //     glass: 25,
+  //     paper: 125
+  //   }
+
+  //   for (var key in recyclingScores) {
+  //     if ( user[key] == true) {
+  //       wastecO2 = wastecO2 - recyclingScores[key];
+  //     } else {
+  //       wastecO2 = wastecO2;
+  //     }
+  //   }
+
+  //   wastecO2 = wastecO2 / 2204.62;
+
+
+  //   console.log('waste cO2 is ' + wastecO2)
+
+  //   /* Get the output rate */ 
+  //   let getOutputRate = (zip) => {
+  //     let zipsAndRates = grid;
+  //     let theEntry = zipsAndRates.find(entry => {
+  //       return entry.zip == zip; 
+  //     });
+  //     return theEntry.output_rate;
+  //   }
+    
+  //   /* Home cO2 calculations */
+  //   let outputRate = getOutputRate(user.data.zip);
+  //   console.log('the output rate is ' + outputRate);
+  //   let natGasBill = user.data.natgas_bill; 
+  //   let electricBill = user.data.electric_bill;
+  //   let natgascO2 = (((natGasBill / 10.68) * 119.58) * 12) / 2204.62;
+  //   let electriccO2 = ((electricBill / .119) * (outputRate) * 12) / 2204.62;
+  //   homecO2 = (natgascO2 + electriccO2) / householdMembers; 
+
+  //   console.log('home cO2 is ' + homecO2);
+
+  //   function round(num, places) {
+  //     var multiplier = Math.pow(10, places);
+  //     return Math.round(num * multiplier) / multiplier;
+  //   }
+    
+  //   /* Final Score */
+  //   let roundedScores = {
+  //     vehicle: round(vehiclecO2, 2),
+  //     waste: round(wastecO2, 2),
+  //     home: round(homecO2, 2)
+  //   }
+  //   let thecrbnScore = round(((roundedScores.vehicle + roundedScores.waste + roundedScores.home) * 100) / 100, 2);
+
+  //   let thechartDataObj =
+  //     {
+  //       crbnScore: thecrbnScore,
+  //       datasets: [{
+  //           data: [roundedScores.vehicle, roundedScores.home, roundedScores.waste],
+  //           backgroundColor : [
+  //             '#08E6C8','#472029', '#a7ed9c' 
+  //           ],
+  //       }],
+    
+  //       labels: [
+  //           'Vehicle',
+  //           'Home',
+  //           'Waste'
+  //         ]
+  //   }
+
+
+  //   this.setState({chartDataObj: thechartDataObj}); 
+
+  //   console.log('The CRBN score is: ' + thecrbnScore); 
+  //   return thechartDataObj; 
+    
+  // }
+  // 
+    calculateScore(user) {
     /************************
-    * CRBN Score Equation
-    *************************/
-    console.log(user)
+     * CRBN Score Equation
+     *************************/
+
     /* Set up variables for CRBN score equation */
     let maintenance = user.data.maintenance;
     let mpg = user.data.mpg;
@@ -116,31 +222,32 @@ class UserPage extends Component {
     let plastic = user.data.plastic;
     let glass = user.data.glass;
     let paper = user.data.paper;
-    let householdMembers = user.data .household_members;
+    let householdMembers = user.data.household_members;
 
     /*Individual variables that make up the CRBN score */
     let vehiclecO2;
     let wastecO2 = 700; // baseline is 700. reduces based on recycling habits
     let homecO2;
+    let eventcO2;
 
     /* Vehicle cO2 calculations */
     if (maintenance == true) {
-      vehiclecO2 = (((milesDriven / mpg) * 19.59) / 2204.62);
+      vehiclecO2 = ((milesDriven / mpg) * 19.59) / 2204.62;
     } else {
-      vehiclecO2 = (((milesDriven / mpg) * 19.59) / 2204.62) * (1.04);
+      vehiclecO2 = (((milesDriven / mpg) * 19.59) / 2204.62) * 1.04;
     }
-    console.log('vehicle cO2 is ' + vehiclecO2)
-    
+    console.log("vehicle cO2 is " + vehiclecO2);
+
     /*Waste cO2 calculations */
     let recyclingScores = {
       aluminum: 90,
-      plastic: 35, 
+      plastic: 35,
       glass: 25,
       paper: 125
-    }
+    };
 
     for (var key in recyclingScores) {
-      if ( user[key] == true) {
+      if (user.data[key] == true) {
         wastecO2 = wastecO2 - recyclingScores[key];
       } else {
         wastecO2 = wastecO2;
@@ -149,65 +256,88 @@ class UserPage extends Component {
 
     wastecO2 = wastecO2 / 2204.62;
 
+    console.log("waste cO2 is " + wastecO2);
 
-    console.log('waste cO2 is ' + wastecO2)
+    /* Get the output rate */
 
-    /* Get the output rate */ 
-    let getOutputRate = (zip) => {
+    let getOutputRate = zip => {
       let zipsAndRates = grid;
       let theEntry = zipsAndRates.find(entry => {
-        return entry.zip == zip; 
+        return entry.zip == zip;
       });
       return theEntry.output_rate;
-    }
-    
+    };
+
     /* Home cO2 calculations */
     let outputRate = getOutputRate(user.data.zip);
-    console.log('the output rate is ' + outputRate);
-    let natGasBill = user.data.natgas_bill; 
+    console.log("the output rate is " + outputRate);
+    let natGasBill = user.data.natgas_bill;
     let electricBill = user.data.electric_bill;
-    let natgascO2 = (((natGasBill / 10.68) * 119.58) * 12) / 2204.62;
-    let electriccO2 = ((electricBill / .119) * (outputRate) * 12) / 2204.62;
-    homecO2 = (natgascO2 + electriccO2) / householdMembers; 
+    let natgascO2 = ((natGasBill / 10.68) * 119.58 * 12) / 2204.62;
+    let electriccO2 = ((electricBill / 0.119) * outputRate * 12) / 2204.62;
+    homecO2 = (natgascO2 + electriccO2) / householdMembers;
 
-    console.log('home cO2 is ' + homecO2);
+    console.log("home cO2 is " + homecO2);
 
     function round(num, places) {
       var multiplier = Math.pow(10, places);
       return Math.round(num * multiplier) / multiplier;
     }
+
+    function eventOffsetter(){  
+      return axios.get('/user/events')
+      .then(res => {
+           try{let offsetArray = res.data.data.map((el)=> {return el.offsetscore})
+           let offsetSum = offsetArray.reduce((a, b)=>{return a+b})
+           return(offsetSum)}
+           catch(err){return 0}
+          })
+    }
+
     
+eventOffsetter().then(res=>{eventcO2 = res;
     /* Final Score */
     let roundedScores = {
       vehicle: round(vehiclecO2, 2),
       waste: round(wastecO2, 2),
-      home: round(homecO2, 2)
-    }
-    let thecrbnScore = round(((roundedScores.vehicle + roundedScores.waste + roundedScores.home) * 100) / 100, 2);
 
-    let thechartDataObj =
-      {
-        crbnScore: thecrbnScore,
-        datasets: [{
-            data: [roundedScores.vehicle, roundedScores.home, roundedScores.waste],
-            backgroundColor : [
-              '#08E6C8','#472029', '#a7ed9c' 
-            ],
-        }],
-    
-        labels: [
-            'Vehicle',
-            'Home',
-            'Waste'
-          ]
-    }
+      home: round(homecO2, 2),
+      event: round(eventcO2, 2),
 
 
-    this.setState({chartDataObj: thechartDataObj}); 
+    };
 
-    console.log('The CRBN score is: ' + thecrbnScore); 
-    return thechartDataObj; 
-    
+
+    let thecrbnScore = round(
+      ((roundedScores.vehicle + roundedScores.waste + roundedScores.home - roundedScores.event) *
+        100) /
+        100,
+      2
+    );
+
+    let thechartDataObj = {
+      crbnScore: thecrbnScore,
+      datasets: [
+        {
+          data: [
+            roundedScores.vehicle,
+            roundedScores.home,
+
+            roundedScores.waste,
+            roundedScores.event,
+          ],
+          backgroundColor: ['#08E6C8', '#472029', '#a7ed9c', '#a7f000'],
+        },
+      ],
+
+      labels: ['Vehicle', 'Home', 'Waste', 'Events'],
+
+    };
+
+    this.setState({ chartDataObj: thechartDataObj });
+
+    return thechartDataObj;
+    })
   }
 }
 
