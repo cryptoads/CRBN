@@ -5,22 +5,25 @@ class EventsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [{name: {text: 'test'}, start: { local: '2018-09-21T19:00:00' }}],
-      userData: this.props.userData,
+      events: [],
+      userData: this.props.userData
     };
   }
 
   render() {
     let { events } = this.state;
+    console.log(events);
     return (
       <React.Fragment>
-        <div className="events col-sm-12 col-md-3 col-lg-3">
-          <h2>Upcoming Events</h2>
-          <ul className="events-ul">
+        <div className="events col-12 text-center">
+          <h3>Upcoming Events</h3>
+          <ul className="events-ul m-auto">
             {events.map(event => {
               return (
                 <li>
-                {event.eventname} <a target="blank" href={'localhost:3000/events/'+event.id}><br /><button className='appBtn'>Register</button></a>
+                {event.eventname}
+                <br />
+                <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn'>Register</button>
                 </li>
               );
             })}
@@ -31,15 +34,24 @@ class EventsList extends Component {
   }
 
   componentWillMount() {
-    axios.get('http/localhost:3000/eventfeed')
+    axios.get('/eventfeed')
       .then(eventData => {
-        console.log(eventData)
-        this.setState({ events: eventData.data })
+        this.setState({ events: eventData.data.data })
       })
       .catch(err => console.error(err));
   }
 
 convertDate() { (dateString) => new Date(dateString)};
+
+registerForEvent(e) {
+  e.preventDefault();
+  console.log(e.target.id)
+  let eventId = e.target.id;
+  let userId =  this.props.id;  
+  axios.post(`/events/${eventId}/attendees`, {
+    userId: userId
+  })
+}
 
 }
 

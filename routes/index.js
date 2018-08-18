@@ -161,4 +161,16 @@ router.get('/user/events', (req, res)=>{
     })
     }
 })
+
+router.post('/events/:id/attendees', (req, res) => {
+    let userId = req.body.userId;
+    console.log(userId)
+    let eventId = req.params.id;
+    if (req.isAuthenticated()) {
+        models.event.findById(eventId)
+        .then( event => event.setUsers(userId) )
+        .then(response => {res.json(response)}); 
+    }
+})
+
 module.exports = router;
