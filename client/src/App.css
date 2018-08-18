@@ -42,13 +42,21 @@ body {
   transition: 0.3s ease-in-out; 
   box-shadow: 2px 2px 30px 2px rgba(231,231,231,0.31);
   cursor: pointer;
-
 }
 
 .appBtn a {
   text-transform: uppercase;
   color: #08E6C8;
   text-decoration: none;
+  }
+
+  .going {
+    background: #08E6C8;
+    color: #fff;
+    padding: 7px 10px;
+    border: none;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    cursor: default;
   }
 
 .appBtn:hover,  .gitHubButton:hover {
@@ -174,7 +182,6 @@ display: block;
 
 .events ul li button {
   font-size: 14px;
-  color: #08E6C8;
   margin-top: 10px;
   margin-bottom: 25px;
 }
