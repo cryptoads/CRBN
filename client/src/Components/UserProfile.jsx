@@ -66,9 +66,6 @@ class UserProfile extends Component {
           <UserEvents badges={this.state.badges} />
           <div>
 
-            
-
-
           </div>
 
           {/* <div className="row">
@@ -111,6 +108,7 @@ class UserProfile extends Component {
           }
         });
         this.calculateScore(user);
+
       }
     });
   }
@@ -123,7 +121,7 @@ class UserProfile extends Component {
         return res.data.data;
       })
       .then(userData => this.calculateScore(userData))
-      .then(window.location.reload());
+      .then(this.forceUpdate());
   }
 
   setUserBadges() {
@@ -131,7 +129,7 @@ class UserProfile extends Component {
     .then(badges => {
         this.setState({badges: badges.data.data})
         console.log(this.state)
-    })
+    }).then(this.forceUpdate(this.updateChart))
   }
 
   calculateScore(user) {

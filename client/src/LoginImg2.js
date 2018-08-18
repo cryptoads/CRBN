@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Background from './LoginImg3.jpg';
 
 const LoginImg2 = {
-    width: '100vw',
+    // width: '100vw',
     height: '100vh',
     backgroundImage: `url(${Background})`,
     backgroundSize: 'cover',

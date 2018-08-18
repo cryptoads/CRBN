@@ -4,6 +4,7 @@ body {
     font-family: 'Quicksand', sans-serif;
     text-shadow: 0 1 4px rgba(126, 126, 126, 0.25);
     position: relative;
+    margin: 0;
 }
 
 .App {
@@ -209,4 +210,7 @@ display: block;
   
 }
 
-
+.container-fluid {
+  margin: 0 auto;
+  width: 100%;
+}
