@@ -33,6 +33,7 @@ class UserProfile extends Component {
       userData: {}
     };
     this.setUserBadges = this.setUserBadges.bind(this);
+    this.updateChart = this.updateChart.bind(this);
   }
 
   render() {
@@ -111,11 +112,6 @@ class UserProfile extends Component {
         this.calculateScore(user);
       }
     });
-  }
-
-  updateProfile() {
-    window.location.reload();
-    console.log('UPDATING THE PROFILE');
   }
 
   updateChart() {
