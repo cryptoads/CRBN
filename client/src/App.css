@@ -198,16 +198,15 @@ display: block;
   background: #fdfdfd;
   color: #08E6C8;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
-  height: 60px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: bottom;
   width: 100%;
   bottom: 0px;
-  height: 60px;
-  position: fixed;
-
+  height: 30px;
+  position: absolute;
+  
 }
 
