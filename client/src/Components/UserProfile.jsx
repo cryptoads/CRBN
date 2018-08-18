@@ -212,9 +212,10 @@ class UserProfile extends Component {
     function eventOffsetter(){  
       return axios.get('/user/events')
       .then(res => {
-           let offsetArray = res.data.data.map((el)=> {return el.offsetscore})
+           try{let offsetArray = res.data.data.map((el)=> {return el.offsetscore})
            let offsetSum = offsetArray.reduce((a, b)=>{return a+b})
-           return(offsetSum)
+           return(offsetSum)}
+           catch(err){return 0}
           })
     }
 
