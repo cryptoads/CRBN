@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link, Router, Route, Switch } from 'react-router-dom'; 
+import LeaderBoard from './LeaderBoard'
 
 class AppHeader extends Component {
 
@@ -17,8 +19,10 @@ class AppHeader extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">CRBN</h1>
+
           {loggedIn ? <button className="appBtn" onClick={this.logout.bind(this)}>Log Out</button> :
             <a href='/'><button className="appBtn">Log In</button></a>}
+          <button className="appBtn"><Link to="/leaderboards" >Leaderboards </Link></button>
         </header>
       </div>
     )

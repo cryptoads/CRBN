@@ -19,14 +19,11 @@ class App extends Component {
     return (
       <div>
       <Switch>
-
       <Route exact path="/leaderboards" component={LeaderBoard} />
-
       <Route path="/test/:id" component={UserPage} />
       <Route exact path="/" component={MainApp} />
       <Route exact path="/events" component={EventsList} />
       <Route exact path="/events/:id" component={Event} />
-
       </Switch>
       </div>
     );

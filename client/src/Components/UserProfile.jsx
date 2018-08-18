@@ -22,13 +22,13 @@ class UserProfile extends Component {
         crbnScore: null,
         datasets: [
           {
-            data: [10, 20, 30],
-            backgroundColor: ['#08E6C8', '#472029', '#a7ed9c'],
-            borderColor: ["#000000", "#000000", "#000000"]
+            data: [10, 20, 30 , 0],
+            backgroundColor: ['#08E6C8', '#472029', '#a7ed9c', '#470000'],
+            borderColor: ["#000000", "#000000", "#000000", "#000000"]
           },
         ],
 
-        labels: ['Vehicle', 'Home', 'Waste'],
+        labels: ['Vehicle', 'Home', 'Waste', 'Events'],
       },
       userData: {},
     };
@@ -145,6 +145,7 @@ class UserProfile extends Component {
     let vehiclecO2;
     let wastecO2 = 700; // baseline is 700. reduces based on recycling habits
     let homecO2;
+    let eventcO2;
 
     /* Vehicle cO2 calculations */
     if (maintenance == true) {
@@ -200,14 +201,29 @@ class UserProfile extends Component {
       return Math.round(num * multiplier) / multiplier;
     }
 
+    function eventOffsetter(){  
+      return axios.get('/user/events')
+      .then(res => {
+           let offsetArray = res.data.data.map((el)=> {return el.offsetscore})
+           let offsetSum = offsetArray.reduce((a, b)=>{return a+b})
+           return(offsetSum)
+          })
+    }
+
+    
+eventOffsetter().then(res=>{eventcO2 = res;
     /* Final Score */
     let roundedScores = {
       vehicle: round(vehiclecO2, 2),
       waste: round(wastecO2, 2),
       home: round(homecO2, 2),
+      event: round(eventcO2, 2),
+
     };
+
+
     let thecrbnScore = round(
-      ((roundedScores.vehicle + roundedScores.waste + roundedScores.home) *
+      ((roundedScores.vehicle + roundedScores.waste + roundedScores.home - roundedScores.event) *
         100) /
       100,
       2,
@@ -221,12 +237,13 @@ class UserProfile extends Component {
             roundedScores.vehicle,
             roundedScores.home,
             roundedScores.waste,
+            roundedScores.event,
           ],
-          backgroundColor: ['#08E6C8', '#472029', '#a7ed9c'],
+          backgroundColor: ['#08E6C8', '#472029', '#a7ed9c', '#a7f000'],
         },
       ],
 
-      labels: ['Vehicle', 'Home', 'Waste'],
+      labels: ['Vehicle', 'Home', 'Waste', 'Events'],
     };
 
 
@@ -236,6 +253,7 @@ class UserProfile extends Component {
 
     console.log('The CRBN score is: ' + thecrbnScore);
     return thechartDataObj;
+    })
   }
 }
 
