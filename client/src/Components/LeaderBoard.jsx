@@ -20,6 +20,7 @@ class LeaderBoard extends Component{
 
     render(){
         const imgStyle = {height: '100px'};
+        const textStyle = {color: 'black'};
         const sorted = this.state.res.data.sort((a,b)=>{return a.score-b.score})
         const cards = sorted.map((el, i)=>{return <tr key={i}>
                                                 <th scope="row">{i+1}</th>
@@ -29,7 +30,7 @@ class LeaderBoard extends Component{
 
             <div className="container-fluid">
             <AppHeader />
-            <table className="table table-hover">
+            <table className="table table-hover" style={textStyle} >
               <thead>
                 <tr>
                   <th scope="col">#</th>
