@@ -27,6 +27,7 @@ class ChartDataModal extends Component {
             <div className="perspective-container">
                 <div id="modal-overlay" className="modal-overlay closed"></div>
                 <div id="modal" className="modal closed">
+
                     <div className={this.state.isLoading ? 'loader' : 'closed'}><img src='img/loader.gif' /></div>
                     <span className="closeLink" onClick={this.closeModal.bind(this)}>X</span>
                     <div className={this.state.isLoading ? 'modal-content container m-auto closed' : 'modal-content container m-auto'}>
@@ -86,6 +87,7 @@ class ChartDataModal extends Component {
                             <button className="appBtn" type="submit" onClick={this.updateUser.bind(this)}>Update</button>
                         </form>
                     </div>
+
                 </div>
             </div>);
         return (

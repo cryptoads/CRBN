@@ -1,4 +1,5 @@
-import Background from './LoginImg2.jpg';
+import React, { Component } from "react";
+import Background from './ProfileImg.jpg';
 
 const LoginImg = {
     width: '100vw',

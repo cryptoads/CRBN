@@ -1,6 +1,7 @@
-import Background from './LoginImg2.jpg';
+import React, { Component } from "react";
+import Background from './LoginImg3.jpg';
 
-const LoginImg = {
+const LoginImg2 = {
     width: '100vw',
     height: '100vh',
     backgroundImage: `url(${Background})`,
@@ -12,5 +13,5 @@ const LoginImg = {
   };
   
 
-  export default LoginImg;
+  export default LoginImg2;
 
