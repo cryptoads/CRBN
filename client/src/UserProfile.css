@@ -175,3 +175,32 @@
 .events {
     border-radius: 10%;
 }
+
+.fb {
+    color: #3B5998;
+    margin-right: 5%;
+}
+
+.fb:hover {
+    color:#000;
+    cursor: pointer;
+}
+
+.twtr {
+    color: #1DA1F2;
+    margin-right: 5%;
+}
+
+.twtr:hover {
+    color:#000;
+    cursor: pointer;
+}
+
+.googl {
+    color: #DB4437;
+}
+
+.googl:hover {
+    color:#000;
+    cursor: pointer;
+}

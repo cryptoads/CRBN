@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Doughnut } from 'react-chartjs-2';
+import "../UserProfile.css";
 
 class FootprintChart extends Component {
 
@@ -19,6 +20,11 @@ class FootprintChart extends Component {
         <span onClick={this.editLinkClick.bind(this)} className="edit-info-link">{ loginState !== false ? 'Edit Footprint Info' : '' }</span>
         <hr />
         <h3>CRBN Score: {userCRBNScore}</h3> <Doughnut data={data} />
+        <hr />
+          <p>Share:</p>
+              <i className="fb fab fa-facebook-square fa-3x d-inline" />
+              <i className="twtr fab fa-twitter-square fa-3x d-inline" />
+              <i className="googl fab fa-google-plus-square fa-3x d-inline" />
     </div>)
     return (
       chartJSX
