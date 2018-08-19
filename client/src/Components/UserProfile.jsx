@@ -34,6 +34,7 @@ class UserProfile extends Component {
     };
     this.setUserBadges = this.setUserBadges.bind(this);
     this.updateChart = this.updateChart.bind(this);
+    this.setRegisteredEvents = this.setRegisteredEvents.bind(this);
   }
 
   render() {
@@ -52,7 +53,7 @@ class UserProfile extends Component {
             loggedIn={this.props.loggedIn}
             basicInfo={this.state.basicInfoObj}
           />
-          <EventsList id={this.state.userData.id} setUserBadges={this.setUserBadges} />
+          <EventsList id={this.state.userData.id} setUserBadges={this.setUserBadges} setRegisteredEvents={this.setRegisteredEvents} />
 
           </div>
           <div className="col-sm-12 col-md-8 col-lg-5">
@@ -111,6 +112,10 @@ class UserProfile extends Component {
 
       }
     });
+  }
+
+  setRegisteredEvents() {
+    this.forceUpdate(this.setState(this.state));
   }
 
   updateChart() {

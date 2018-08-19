@@ -10,7 +10,6 @@ class EventsList extends Component {
       registeredEvents: []
     };
     this.setUserBadges = this.props.setUserBadges;
-    this.updateProfile = this.props.updateProfile;
   }
 
   render() {
@@ -66,12 +65,17 @@ class EventsList extends Component {
     console.log(e.target.id)
     let eventId = e.target.id;
     let userId = this.props.id;
+    let registerBtn = document.getElementById(eventId)
+    
 
 
     axios.post(`/events/${eventId}/attendees`, {
       userId: userId
     })
       .then(this.setUserBadges)
+        /* change button styles and content */
+        registerBtn.classList.add('going');
+        registerBtn.textContent = 'Going';
 
 
   }
