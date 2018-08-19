@@ -14,6 +14,9 @@ class FootprintChart extends Component {
     let loginState = this.props.loggedIn;
     let data = this.props.chartData;
     let userCRBNScore = this.props.crbnScore;
+    if(isNaN(userCRBNScore)){
+      userCRBNScore = "Set up your info"
+    }
     let willLoadChart = this.props.showChart;
     let rankInfo = this.props.rankInfo;
 
