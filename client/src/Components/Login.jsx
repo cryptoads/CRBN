@@ -112,10 +112,10 @@ class Login extends Component {
               <ScrollTo>
                 {scroll => (
                   <a onClick={() => scroll(0, 2000)}>
-                    <p className="learnMore">
-                      <h4>Learn More</h4>
+                    <h4 className="learnMore">
+                      <p>Learn More</p>
                       <i className="fas fa-chevron-circle-down fa-3x" />
-                    </p>
+                    </h4>
                   </a>
                 )}
               </ScrollTo>
@@ -125,19 +125,19 @@ class Login extends Component {
         <div className="login-2nd" style={LoginImg2}>
           <Zoom>
             <FlexView height={75} marginTop={30} hAlignContent="center">
-              <FormattedText>{flexOne}</FormattedText>
+              <FormattedText key="1">{flexOne}</FormattedText>
             </FlexView>
             <FlexView height={75} marginTop={30} hAlignContent="center">
             <i className="car fas fa-car-side fa-3x" />
             </FlexView>
             <FlexView height={75} marginTop={30} hAlignContent="center">
-              <FormattedText>{flexTwo}</FormattedText>
+              <FormattedText key="2">{flexTwo}</FormattedText>
             </FlexView>
             <FlexView height={75} marginTop={30} hAlignContent="center">
             <i className="tree fas fa-seedling fa-3x" />
             </FlexView>
             <FlexView height={75} marginTop={30} hAlignContent="center">
-              <FormattedText>{flexThree}</FormattedText>
+              <FormattedText key="3">{flexThree}</FormattedText>
             </FlexView>
             <FlexView height={75} marginTop={30} hAlignContent="center">
             <i className="star far fa-star fa-3x" />
@@ -147,10 +147,10 @@ class Login extends Component {
                 {scroll => (
                   <a onClick={() => scroll(0, 0)}>
                     <FlexView height={40} hAlignContent="center">
-                      <FormattedText>{flexFour}</FormattedText>
+                      <FormattedText key="4">{flexFour}</FormattedText>
                     </FlexView>
                     <FlexView hAlignContent="center">
-                    <i class="fas fa-arrow-circle-up fa-1x" />
+                    <i className="fas fa-arrow-circle-up fa-4x" />
                     </FlexView>
                   </a>
                 )}

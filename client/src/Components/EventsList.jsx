@@ -26,9 +26,9 @@ class EventsList extends Component {
           <h3>Upcoming Events</h3>
           <hr />
           <ul className="events-ul m-auto">
-            {events.map(event => {
+            {events.map((event, i) => {
               return (
-                <li>
+                <li key={i}>
                   {event.eventname}
                   <br />
                   {(!(registeredEventIds.includes(event.id))) ? 

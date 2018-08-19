@@ -8,7 +8,7 @@ import MainApp from './Components/MainApp';
 import LeaderBoard from './Components/LeaderBoard';
 
 import EventsList from './Components/EventsList';
-import Event from './Components/Event';
+
 
 
 
@@ -23,7 +23,6 @@ class App extends Component {
       <Route path="/test/:id" component={UserPage} />
       <Route exact path="/" component={MainApp} />
       <Route exact path="/events" component={EventsList} />
-      <Route exact path="/events/:id" component={Event} />
       </Switch>
       </div>
     );

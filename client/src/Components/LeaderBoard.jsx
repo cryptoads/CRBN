@@ -26,7 +26,7 @@ class LeaderBoard extends Component{
         const cards = sorted.map((el, i)=>{return <tr key={i}>
                                                 <th scope="row">{i+1}</th>
                                                 <td><img src={el.imgUrl} alt={el.username} style={imgStyle} />{el.username}</td> 
-                                                <td>{el.score}</td> </tr>})
+                                                <td>{el.score}</td></tr>})
         return(
 
 
