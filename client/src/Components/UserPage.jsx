@@ -6,6 +6,7 @@ import '../UserProfile.css';
 import axios from 'axios';
 import grid from '../grid.json';
 import ProfileImg from '../ProfileImg'
+import StaticBadge from './StaticBadge';
 
  
 class UserPage extends Component {
@@ -14,6 +15,8 @@ class UserPage extends Component {
     super(props);
     this.state = {
       modalOpen: false,
+      badges:[],
+      userID: this.props.match.params,
       basicInfoObj: {
 
       },
@@ -41,11 +44,11 @@ class UserPage extends Component {
   }
     
   render() {
-    return (
 
+     return (
       <div className="container-fluid" style={ProfileImg}>
-      <AppHeader logout={this.logout} />
         <div className="row">
+
           <div className="col-sm-12 col-md-3 col-lg-3">
 
           <StaticBasic
@@ -53,19 +56,21 @@ class UserPage extends Component {
             loggedIn={this.props.loggedIn}
             basicInfo={this.state.basicInfoObj}
           />
+          
 
-
+          <StaticBadge badges={this.state.badges} userId={this.state.userID.id} />
+          
+         
           </div>
-          <div className="col-sm-12 col-md-8 col-lg-6">
+          <div className="col-sm-12 col-md-8 col-lg-5">
             <StaticFootprint
               crbnScore={this.state.chartDataObj.crbnScore}
               loggedIn={this.props.loggedIn}
               chartData={this.state.chartDataObj}
+              rankInfo={this.state.rankInfo}
             />
 
           </div>
-          <div>
-
 
 
           </div>
@@ -84,7 +89,7 @@ class UserPage extends Component {
             </div>
           </div> */}
         </div>
-      </div>
+
     );
   }
 

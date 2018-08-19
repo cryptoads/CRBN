@@ -17,7 +17,7 @@ class StaticBasic extends Component
   {  
     let basicInfo = this.props.basicInfo;
     let loggedIn = this.props.loggedIn;
-    return (<div className="basic-info-container col-sm-12 col-md-4 col-lg-4">
+    return (<div className="mt-5">
               <img alt="profile-pic" className='profile-picture' src={basicInfo.imgUrl} />
               <p className="username">
                 {basicInfo.name} 

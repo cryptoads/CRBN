@@ -174,14 +174,31 @@ router.get('/user/events', (req, res)=>{
     }
 })
 
+router.get('/userstatic/events/', (req, res)=>{
+    const user = Number(req.query.user)
+    console.log(user)
+        models.user.findById(user, {
+              include: [{
+            model: models.event,
+            attributes:['eventname', 'offsetscore', 'badgeimg', 'id']
+         }]
+        })
+        .then(data=>{res.json({data:data.events})
+    })
+})
+
+
 router.post('/events/:id/attendees', (req, res) => {
-    let userId = req.body.userId;
-    console.log(userId)
     let eventId = req.params.id;
     if (req.isAuthenticated()) {
-        models.event.findById(eventId)
-        .then( event => event.setUsers(userId) )
-        .then(response => {res.json(response)}); 
+                models.event.findById(eventId)
+                .then(event => {
+                    models.user.findById(req.user)
+                    .then(user =>{
+                        event.addUser([user])
+                         .then(response => res.json(response))     
+                    })           
+            })
     }
 })
 

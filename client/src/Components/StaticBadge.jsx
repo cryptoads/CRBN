@@ -8,18 +8,23 @@ class UserEvents extends Component{
     }
 
     componentWillMount(){
-        axios.get('/user/events')
+        axios.get('/userstatic/events/', {
+            params: {
+                user: this.props.userId
+            }
+        })
         .then(badges => {
+
             this.setState({badges: badges.data.data})
+            console.log('this')
             console.log(this.state)
-            
         })
     }
 
     render(props){
-
+        console.log(this.props.userId)
         const imgStyle = {height: '75px'};
-        const eventItem = this.props.badges.map((el, i)=>{return <div className="col-3">
+        const eventItem = this.state.badges.map((el, i)=>{return <div className="col-3">
             <img src={el.badgeimg} style={imgStyle} key={i} alt={el.eventname} title={el.eventname} className="inline-block mb-3" />
             </div>})
 
