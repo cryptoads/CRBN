@@ -69,26 +69,13 @@ class UserProfile extends Component {
               loggedIn={this.props.loggedIn}
               chartData={this.state.chartDataObj}
               rankInfo={this.state.rankInfo}
+              userData={this.state.userData}
             />
 
           </div>
           <div className="col-sm-12 col-md-4 col-lg-4 mt-5">
             <EventsList id={this.state.userData.id} setUserBadges={this.setUserBadges} setRegisteredEvents={this.setRegisteredEvents} />
           </div>
-
-          {/* <div className="row">
-            <div className="links col-4">
-              <a
-                href={
-                  "https://www.facebook.com/sharer/sharer.php?u=crbnapp.herokuapp.com/test/" +
-                  this.state.userData.id
-                }
-                target="_blank"
-              >
-                <i className="fab fa-facebook-square fa-3x d-inline" />
-              </a>
-            </div>
-          </div> */}
         </div>
       </div>
     );

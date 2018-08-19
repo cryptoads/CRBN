@@ -5,9 +5,8 @@ import StaticFootprint from './StaticFootprint';
 import '../UserProfile.css';
 import axios from 'axios';
 import grid from '../grid.json';
-import ProfileImg from '../ProfileImg'
 import StaticBadge from './StaticBadge';
-
+import ProfileImg from "../ProfileImg.js";
  
 class UserPage extends Component {
   

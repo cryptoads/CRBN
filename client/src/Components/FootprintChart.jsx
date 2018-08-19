@@ -30,9 +30,12 @@ class FootprintChart extends Component {
         <h6>*metric tons per year</h6>
         <hr />
           <p>Share:</p>
-              <i className="fb fab fa-facebook-square fa-3x d-inline" />
-              <i className="twtr fab fa-twitter-square fa-3x d-inline" />
-              <i className="googl fab fa-google-plus-square fa-3x d-inline" />
+              <a href={"https://www.facebook.com/sharer/sharer.php?u=crbnapp.herokuapp.com/test/" + this.props.userData.id} target="_blank"> 
+              <i className="fb fab fa-facebook-square fa-3x d-inline" /></a>
+              <a href={"https://twitter.com/home?status=Check%20out%20my%20CRBN%20score!%0Ahttps%3A//crbnapp.herokuapp.com/test/" + this.props.userData.id} target="_blank"> 
+              <i className="twtr fab fa-twitter-square fa-3x d-inline" /></a>
+              <a href={"https://plus.google.com/share?url=https%3A//crbnapp.herokuapp.com/test/" + this.props.userData.id} target="_blank"> 
+              <i className="googl fab fa-google-plus-square fa-3x d-inline" /></a>
     </div>)
     return (
       chartJSX
