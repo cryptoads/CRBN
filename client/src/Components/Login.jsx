@@ -8,8 +8,7 @@ import { ScrollTo } from "react-scroll-to";
 import FlexView from "react-flexview";
 import FormattedText from "buildo-react-components/lib/FormattedText";
 
-const flexOne =
-  "Using some basic inputs from your everyday life,\nwe show how your lifestyle affects the environment.\n";
+const flexOne =  "Using some basic inputs from your everyday life,\nwe show how your lifestyle affects the environment.\n"
 const flexTwo =
   "Find events you can participate in to improve your score,\nor donate to a carbon emission reducing activity of your choice.\n";
 const flexThree = "Share your score and see where you rank among others.\n";
@@ -124,8 +123,8 @@ class Login extends Component {
         </div>
         <div className="login-2nd" style={LoginImg2}>
           <Zoom>
-            <FlexView height={75} marginTop={30} hAlignContent="center">
-              <FormattedText key="1">{flexOne}</FormattedText>
+            <FlexView key="1" height={75} marginTop={30} hAlignContent="center">
+              <FormattedText key="7" >{flexOne}</FormattedText>
             </FlexView>
             <FlexView height={75} marginTop={30} hAlignContent="center">
             <i className="car fas fa-car-side fa-3x" />

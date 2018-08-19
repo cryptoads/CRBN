@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import grid from '../grid.json';
-import { resolve } from 'url';
+// import { resolve } from 'url';
 
 
 class ChartDataModal extends Component {
@@ -90,7 +90,6 @@ class ChartDataModal extends Component {
                     </div>
                 </div>
             </div>);
-            console.log(this.state.user);
         return (
             modalJSX
         );
@@ -201,7 +200,7 @@ class ChartDataModal extends Component {
             let radioBtns = document.getElementsByName('maintenance');
             for (let i = 0; i < radioBtns.length; i++) {
                 if (radioBtns[i].checked) {
-                    console.log(radioBtns[i].value);
+                    // console.log(radioBtns[i].value);
                     radioSelection = radioBtns[i].value;
                     break;
                 }
@@ -215,7 +214,7 @@ class ChartDataModal extends Component {
             let recyclingSelections = [];
             for (let i = 0; i < checkboxes.length; i++) {
                 if (checkboxes[i].checked) {
-                    console.log(checkboxes[i].value);
+                    // console.log(checkboxes[i].value);
                     recyclingSelections.push(checkboxes[i].value);
                 }
             }

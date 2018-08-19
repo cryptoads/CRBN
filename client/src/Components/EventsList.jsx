@@ -19,7 +19,7 @@ class EventsList extends Component {
     let registeredEventIds = registeredEvents.map(event => Number(event.id));
 
 
-    console.log('the registered events: ' + registeredEventIds)
+    // console.log('the registered events: ' + registeredEventIds)
     return (
       <React.Fragment>
         <div className="events col-12 text-center">
@@ -52,7 +52,9 @@ class EventsList extends Component {
       .catch(err => console.error(err));
   }
 
-  convertDate() { (dateString) => new Date(dateString) };
+  // convertDate(){ 
+  //   (dateString)=>{new Date(dateString) }
+  // };
 
   getRegisteredEvents() {
     /* Get registered events */
@@ -63,7 +65,7 @@ class EventsList extends Component {
 
   registerForEvent(e) {
     e.preventDefault();
-    console.log(e.target.id)
+    // console.log(e.target.id)
     let eventId = e.target.id;
     let userId = this.props.id;
     let registerBtn = document.getElementById(eventId)

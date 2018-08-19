@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import "../UserProfile.css";
-import axios from "axios";
 
 class FootprintChart extends Component {
-
-  constructor(props) {
-    super(props); 
-
-  }
 
   render() {
     let loginState = this.props.loggedIn;
@@ -17,7 +11,6 @@ class FootprintChart extends Component {
     if(isNaN(userCRBNScore)){
       userCRBNScore = "Set up your info"
     }
-    let willLoadChart = this.props.showChart;
     let rankInfo = this.props.rankInfo;
 
     let chartJSX = (

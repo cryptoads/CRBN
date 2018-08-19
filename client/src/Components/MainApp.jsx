@@ -20,7 +20,7 @@ class MainApp extends Component {
     if (this.state.loggedIn) {
       MainJSX = (<div className="App">
         <AppHeader logout={this.logout} />
-        {this.state.loggedIn == true ? 
+        {this.state.loggedIn === true ? 
         <React.Fragment><UserProfile loggedIn={this.state.loggedIn} logout={this.logout} /><AppFooter /></React.Fragment> : 
         <React.Fragment><Login className="login"></Login><AppFooter /></React.Fragment>}
       </div>)
@@ -41,8 +41,6 @@ class MainApp extends Component {
     axios.get('/test')
       .then((res) => {
         this.setState({ loggedIn: res.data.loggedIn })
-        console.log(this.state.loggedIn)
-        console.log(res)
       })
   }
 

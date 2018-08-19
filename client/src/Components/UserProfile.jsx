@@ -114,7 +114,6 @@ class UserProfile extends Component {
   }
 
   updateRank(){
-    console.log("chart update initiated");
     axios.get('/all/scores')
     .then(res =>{
       let sortedUser = res.data.data.sort((a,b)=>{return a.score - b.score});
@@ -139,7 +138,6 @@ class UserProfile extends Component {
     axios.get('/user/events')
     .then(badges => {
         this.setState({badges: badges.data.data})
-        console.log(this.state)
     }).then(this.forceUpdate(this.updateChart))
   }
 
@@ -170,7 +168,7 @@ class UserProfile extends Component {
     } else {
       vehiclecO2 = (((milesDriven / mpg) * 19.59) / 2204.62) * 1.04;
     }
-    console.log("vehicle cO2 is " + vehiclecO2);
+    // console.log("vehicle cO2 is " + vehiclecO2);
 
     /*Waste cO2 calculations */
     let recyclingScores = {
@@ -190,7 +188,7 @@ class UserProfile extends Component {
 
     wastecO2 = wastecO2 / 2204.62;
 
-    console.log("waste cO2 is " + wastecO2);
+    // console.log("waste cO2 is " + wastecO2);
 
     /* Get the output rate */
 
@@ -204,14 +202,14 @@ class UserProfile extends Component {
 
     /* Home cO2 calculations */
     let outputRate = getOutputRate(user.zip);
-    console.log("the output rate is " + outputRate);
+    // console.log("the output rate is " + outputRate);
     let natGasBill = user.natgas_bill;
     let electricBill = user.electric_bill;
     let natgascO2 = ((natGasBill / 10.68) * 119.58 * 12) / 2204.62;
     let electriccO2 = ((electricBill / 0.119) * outputRate * 12) / 2204.62;
     homecO2 = (natgascO2 + electriccO2) / householdMembers;
 
-    console.log("home cO2 is " + homecO2);
+    // console.log("home cO2 is " + homecO2);
 
     function round(num, places) {
       var multiplier = Math.pow(10, places);
@@ -272,7 +270,7 @@ eventOffsetter().then(res=>{eventcO2 = res;
     axios.post("/user/score", { score: thecrbnScore });
     this.forceUpdate(this.updateRank)
 
-    console.log("The CRBN score is: " + thecrbnScore);
+    // console.log("The CRBN score is: " + thecrbnScore);
     return thechartDataObj;
     })
   }

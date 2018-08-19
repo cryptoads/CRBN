@@ -44,7 +44,7 @@ class BasicInfo extends Component {
   }
 
   editButtonClicked(e) {
-    let btnText = e.target.innerHTML;
+    // let btnText = e.target.innerHTML;
     let usernameElement = document.querySelector(".username");
     let introElement = document.querySelector(".intro");
     let elementArray = [usernameElement, introElement];

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link, Router, Route, Switch } from 'react-router-dom'; 
-import LeaderBoard from './LeaderBoard'
+import { Link } from 'react-router-dom'; 
 
 class AppHeader extends Component {
 
@@ -15,7 +14,6 @@ class AppHeader extends Component {
   render() {
     let { loggedIn } = this.state;
     let path = window.location.pathname
-    console.log(path)
 
     return (
   
@@ -37,8 +35,6 @@ class AppHeader extends Component {
     axios.get('/test')
       .then((res) => {
         this.setState({ loggedIn: res.data.loggedIn })
-        console.log(this.state.loggedIn)
-        console.log(res)
       })
   }
 

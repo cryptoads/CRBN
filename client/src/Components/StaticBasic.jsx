@@ -1,6 +1,5 @@
 
 import React, {Component} from 'react';
-import axios from 'axios';
 import "../BasicInfo.css";
 
 
@@ -17,7 +16,6 @@ class StaticBasic extends Component
   render(props) 
   {  
     let basicInfo = this.props.basicInfo;
-    let loggedIn = this.props.loggedIn;
     return (
       <div className="basic-info-container col-12">
         <div className="profile-info basic-info-text">

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AppHeader from './AppHeader'
 import StaticBasic from './StaticBasic';
 import StaticFootprint from './StaticFootprint';
 import '../UserProfile.css';
@@ -120,9 +119,9 @@ class UserPage extends Component {
           let itemsToCheck =  [ 'aluminum', 'electric_bill', 'glass', 'maintenance', 
             'miles_driven', 'mpg', 'natgas_bill', 'paper', 'plastic', 'zip']; 
           for (var key in user) {
-            if (itemsToCheck.includes(key) && (user.key == null || user.key == "")) {
+            if (itemsToCheck.includes(key) && (user.key === null || user.key === "")) {
               return false;
-            } else if (key == 'zip' && user.key == 0) {
+            } else if (key === 'zip' && user.key === 0) {
               return false; 
             } else {
               return true;
@@ -169,7 +168,7 @@ class UserPage extends Component {
     let eventcO2;
 
     /* Vehicle cO2 calculations */
-    if (maintenance == true) {
+    if (maintenance === true) {
       vehiclecO2 = ((milesDriven / mpg) * 19.59) / 2204.62;
     } else {
       vehiclecO2 = (((milesDriven / mpg) * 19.59) / 2204.62) * 1.04;
@@ -185,7 +184,7 @@ class UserPage extends Component {
     };
 
     for (var key in recyclingScores) {
-      if (user.data[key] == true) {
+      if (user.data[key] === true) {
         wastecO2 = wastecO2 - recyclingScores[key];
       } else {
         wastecO2 = wastecO2;

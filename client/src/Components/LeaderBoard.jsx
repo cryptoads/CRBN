@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
-import LdrBrdImg from "../LdrBrdImg.js";
+
 
 class LeaderBoard extends Component{
     constructor(){
