@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
+import LdrBrdImg from "../LdrBrdImg.js";
 
 class LeaderBoard extends Component{
     constructor(){
@@ -28,7 +29,7 @@ class LeaderBoard extends Component{
                                                 <td>{el.score}</td> </tr>})
         return(
 
-            <div className="container-fluid">
+            <div className="container-fluid" style={LdrBrdImg}>
             <AppHeader />
             <table className="table table-hover" style={textStyle} >
               <thead>

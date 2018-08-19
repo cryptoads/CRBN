@@ -24,6 +24,7 @@ class EventsList extends Component {
       <React.Fragment>
         <div className="events col-12 text-center">
           <h3>Upcoming Events</h3>
+          <hr />
           <ul className="events-ul m-auto">
             {events.map(event => {
               return (

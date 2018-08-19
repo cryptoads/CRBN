@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Background from './ProfileImg.jpg';
+import Background from './LdrBrdImg.jpg';
 
-const ProfileImg = {
+const LdrBrdImg = {
     // width: '100vw',
     // height: '100vh',
     backgroundImage: `url(${Background})`,
@@ -13,4 +13,4 @@ const ProfileImg = {
   };
   
 
-  export default ProfileImg;
+  export default LdrBrdImg;
