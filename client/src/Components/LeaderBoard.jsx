@@ -28,7 +28,7 @@ class LeaderBoard extends Component{
                                                 <td>{el.score}</td> </tr>})
         return(
 
-            <div className="container-fluid">
+            <div >
             <AppHeader />
             <table className="table table-hover" style={textStyle} >
               <thead>
