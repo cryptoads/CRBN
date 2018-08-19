@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
+import LdrBrdImg from "../LdrBrdImg.js";
 
 class LeaderBoard extends Component{
     constructor(){
@@ -27,6 +28,7 @@ class LeaderBoard extends Component{
                                                 <td><img src={el.imgUrl} alt={el.username} style={imgStyle} />{el.username}</td> 
                                                 <td>{el.score}</td> </tr>})
         return(
+
 
             <div >
             <AppHeader />
