@@ -14,6 +14,10 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       modalOpen: false,
+      rankInfo: {
+        rank: 0, 
+        total:0
+      },
       basicInfoObj: {},
       badges: [],
       chartDataObj: {
@@ -30,7 +34,7 @@ class UserProfile extends Component {
 
         labels: ['Vehicle', 'Home', 'Waste', 'Events'],
       },
-      userData: {}
+      userData: {},
     };
     this.setUserBadges = this.setUserBadges.bind(this);
     this.updateChart = this.updateChart.bind(this);
@@ -64,6 +68,7 @@ class UserProfile extends Component {
               crbnScore={this.state.chartDataObj.crbnScore}
               loggedIn={this.props.loggedIn}
               chartData={this.state.chartDataObj}
+              rankInfo={this.state.rankInfo}
             />
 
           </div>
@@ -94,6 +99,7 @@ class UserProfile extends Component {
       this.setState({ userData: res.data.data }); // set userData state with info from DB
 
       this.setUserBadges();
+      this.updateRank();
 
       if (this.props.loggedIn == true) {
         let user = { ...this.state.userData }; // make a copy of user data
@@ -120,15 +126,26 @@ class UserProfile extends Component {
     this.forceUpdate(this.setState(this.state));
   }
 
-  updateChart() {
+  updateRank(){
     console.log("chart update initiated");
+    axios.get('/all/scores')
+    .then(res =>{
+      let sortedUser = res.data.data.sort((a,b)=>{return a.score - b.score});
+      let mappedUser = sortedUser.map((el)=>{return el.id})
+      let userRank = mappedUser.indexOf(res.data.user)+ 1;
+      this.setState({rankInfo:{rank: userRank, total: res.data.data.length}})
+    })
+  }
+
+  updateChart() {
+
     axios
       .get("/test")
       .then(res => {
         return res.data.data;
       })
       .then(userData => this.calculateScore(userData))
-      .then(this.forceUpdate());
+      .then(this.forceUpdate(this.updateRank));
   }
 
   setUserBadges() {
@@ -266,6 +283,7 @@ eventOffsetter().then(res=>{eventcO2 = res;
 
     this.setState({ chartDataObj: thechartDataObj });
     axios.post("/user/score", { score: thecrbnScore });
+    this.forceUpdate(this.updateRank)
 
     console.log("The CRBN score is: " + thecrbnScore);
     return thechartDataObj;

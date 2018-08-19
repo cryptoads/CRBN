@@ -130,7 +130,18 @@ router.post('/user/score', (req, res)=>{
 })
 
 router.get('/all/scores', (req, res)=> {
+    if(req.isAuthenticated()){
     models.user.findAll({
+        attributes:['id','username', 'imgUrl', 'score' ], 
+        where:
+            {score:
+                {$ne:null}
+            }
+    })
+    .then(data => {res.json({data:[...data], user: req.user})
+})
+}else{
+        models.user.findAll({
         attributes:['username', 'imgUrl', 'score' ], 
         where:
             {score:
@@ -139,6 +150,7 @@ router.get('/all/scores', (req, res)=> {
     })
     .then(data => {res.json({data})
 })
+}
 })
 
 
