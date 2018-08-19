@@ -16,17 +16,18 @@ class UserEvents extends Component{
     }
 
     render(props){
-        const imgStyle = {height: '100px'};
-        const eventItem = this.props.badges.map((el, i)=>{return <div><h4>{el.eventname}</h4>
-            <div>
-            <img src={el.badgeimg} style={imgStyle} key={i} />
-            </div>
+        const imgStyle = {height: '75px'};
+        const eventItem = this.props.badges.map((el, i)=>{return <div className="col-3">
+            <img src={el.badgeimg} style={imgStyle} key={i} alt={el.eventname} title={el.eventname} className="inline-block mb-3" />
             </div>})
 
         return(
-            <div className="trophyCase col-3" >
-            <h3>Event Badges</h3>
+            <div className="container">
+            <div className="trophyCase row" >
+            
+            <h3 className="col-12">Event Badges</h3>
             {eventItem}
+            </div>
             </div>)
     }
 }
