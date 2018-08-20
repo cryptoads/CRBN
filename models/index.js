@@ -12,7 +12,7 @@ var dotenv = require('dotenv');
 
 dotenv.load();
 
-uncomment this stuff for production
+// uncomment this stuff for production
 var sequelize = new Sequelize(process.env.DATABASE_URL);
 }
 if(process.env.DATABASE_URL){
