@@ -9,4 +9,5 @@ import { BrowserRouter as Routes } from 'react-router-dom';
 
 
 ReactDOM.render(<Routes><App /></Routes>, document.getElementById('root'));
+
 unregister()
