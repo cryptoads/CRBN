@@ -35,9 +35,7 @@ class FootprintChart extends Component {
     )
   }
 
-  componentWillMount(){
 
-  }
 
   editLinkClick() {
     let modal = document.querySelector('#modal');
