@@ -104,14 +104,14 @@ router.post('/updateInfo', function(req, res, next){
 /* Index all CRBN events */ 
 
 
-router.get('/events', (req, res) => {
-    axios.get(`https://www.eventbriteapi.com/v3/organizers/17682837426/events?token=${process.env.EVENTBRITE_OAUTH_TOKEN}`)
-    .then( events => {
-    let safeData = fclone(events); 
-    res.json((safeData.data.events));
-    })
-    .catch( err => console.log(err))
-    })
+// router.get('/events', (req, res) => {
+//     axios.get(`https://www.eventbriteapi.com/v3/organizers/17682837426/events?token=${process.env.EVENTBRITE_OAUTH_TOKEN}`)
+//     .then( events => {
+//     let safeData = fclone(events); 
+//     res.json((safeData.data.events));
+//     })
+//     .catch( err => console.log(err))
+//     })
 
 
 
