@@ -97,7 +97,7 @@ class UserPage extends Component {
   componentWillMount() {
     var id = this.props.match.params
     console.log(id)
-    axios.get('/test/' + id.id)
+    axios.get('/user/' + id.id)
     .then((res) => {
       this.setState({ userData: res.data}); // set userData state with info from DB     
         let user = {...this.state.userData} // make a copy of user data
@@ -140,7 +140,7 @@ class UserPage extends Component {
   updateChart() {
     var id = this.props.match.params
     console.log('chart update initiated')
-    axios.get('/test/' +id.id)
+    axios.get('/user/' +id.id)
     .then( res => {return res.data.data} )
     .then( userData => this.calculateScore(userData)); 
   }
