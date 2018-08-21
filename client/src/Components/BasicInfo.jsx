@@ -28,7 +28,7 @@ class BasicInfo extends Component {
           <span className={this.state.editMode ? "show" : "invisible"}>
           <label>Image URL:</label>
           <br />
-          <input className="profileImageUrl" type="text" name="profileImageUrl"></input>
+          <input className="profileImageUrl" defaultValue={basicInfo.imgUrl} type="text" name="profileImageUrl"></input>
           </span>
           <hr />
           <span onClick={this.editButtonClicked} className="edit-info-link">

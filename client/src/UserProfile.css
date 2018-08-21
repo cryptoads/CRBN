@@ -189,6 +189,20 @@
     border-radius: 10%;
 }
 
+.cancelLink {
+    color: tomato;
+    margin-left: 1em;
+    font-size: .65em;
+    transition: color 0.2s ease-in-out;
+    display: block;
+    margin-bottom: 18px;
+}
+
+.cancelLink:hover {
+    color: rgb(194, 0, 0);
+    text-decoration: none;
+}
+
 .fb {
     color: #3B5998;
     margin-right: 5%;
