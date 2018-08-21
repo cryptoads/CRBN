@@ -27,7 +27,7 @@ class UserProfile extends Component {
           {
 
             data: [10, 20, 30 , 0],
-            backgroundColor: ['#FF0000', '#666699', '#ffff00', '#470000'],
+            backgroundColor: ['#FF0000', '#ff9933', '#ffff00', '#470000'],
             borderColor: ["#000000", "#000000", "#000000", "#000000"]
           },
         ],
@@ -258,7 +258,7 @@ eventOffsetter().then(res=>{eventcO2 = res;
             roundedScores.waste,
             roundedScores.event,
           ],
-          backgroundColor: ['#FF0000', '#666699', '#ffff00', '#08E6C8'],
+          backgroundColor: ['#FF0000', '#ff9933', '#ffff00', '#08E6C8'],
         },
       ],
 

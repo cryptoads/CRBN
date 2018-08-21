@@ -213,7 +213,7 @@ display: block;
   bottom: 0px;
   height: 30px;
 
-  position: fixed;
+  position: static;
   
 }
 
@@ -224,4 +224,19 @@ display: block;
 
 .badges {
   border-radius: 100%
+}
+
+.LeaderImg {
+  border-radius: 20%;
+  margin-right: 5px;
+}
+
+.tabledata {
+  font-weight: bold;
+  color: #08E6C8;
+  text-shadow: 2px 2px black;
+}
+
+cards:hover {
+  background-color: white;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import "../App.css";
 
 class UserEvents extends Component{
     constructor(props){
@@ -16,9 +17,9 @@ class UserEvents extends Component{
 
     render(props){
 
-        const imgStyle = {height: '75px'};
+        const imgStyle = {height: '75px', width: '60px'};
         const eventItem = this.props.badges.map((el, i)=>{return <div key={i} className="col-3">
-            <img src={el.badgeimg} style={imgStyle} alt={el.eventname} title={el.eventname} className="inline-block mb-3" />
+            <img src={el.badgeimg} style={imgStyle} alt={el.eventname} title={el.eventname} className="badges inline-block mb-3" />
             </div>})
 
         return(
