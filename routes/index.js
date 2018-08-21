@@ -26,7 +26,11 @@ router.get('/test', function(req, res, next) {
 })
 
 
+<<<<<<< HEAD
 router.get('/userinfo/:id', function(req, res, next) {
+=======
+router.get('/user/:id', function(req, res, next) {
+>>>>>>> 0971cd4f1080be4e0e2dec8be1f278457738115d
     const id = Number(req.params.id);
     models.user.findById(id,{})
     .then((data)=>{res.json({data, loggedIn: false})
@@ -104,14 +108,14 @@ router.post('/updateInfo', function(req, res, next){
 /* Index all CRBN events */ 
 
 
-router.get('/events', (req, res) => {
-    axios.get(`https://www.eventbriteapi.com/v3/organizers/17682837426/events?token=${process.env.EVENTBRITE_OAUTH_TOKEN}`)
-    .then( events => {
-    let safeData = fclone(events); 
-    res.json((safeData.data.events));
-    })
-    .catch( err => console.log(err))
-    })
+// router.get('/events', (req, res) => {
+//     axios.get(`https://www.eventbriteapi.com/v3/organizers/17682837426/events?token=${process.env.EVENTBRITE_OAUTH_TOKEN}`)
+//     .then( events => {
+//     let safeData = fclone(events); 
+//     res.json((safeData.data.events));
+//     })
+//     .catch( err => console.log(err))
+//     })
 
 
 
