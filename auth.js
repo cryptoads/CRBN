@@ -52,7 +52,7 @@ const setupAuth = (app) => {
             }
         }).then(result => {
             models.user.update({
-                username: profile.username,
+                username: profile.displayName,
                 imgUrl: profile.photos[0].value
             }, {
                 where: {
@@ -189,7 +189,7 @@ const setupAuth = (app) => {
     });
 
     app.get('/facebook/auth',
-        passport.authenticate('facebook', { failureRedirect: '/facebook/login' }),
+        passport.authenticate('facebook', {successRedirect: '/', failureRedirect: '/facebook/login' }),
         (req, res) => {
             res.redirect('/');
         });
