@@ -46,23 +46,23 @@ const setupAuth = (app) => {
         clientSecret: process.env.fb_client_secret,
         callbackURL: process.env.fb_callbackURL
     }, (accessToken, refreshToken, profile, done) => {
-        console.log(profile)
+
         models.user.findOrCreate({
             where: {
                 fbid: profile.id,
             }
         })
-        // .then(result => {
-        //     models.user.update({
-        //         username: profile.name,
-        //         // imgUrl: profile.photos[0].value
-        //     }, {
-        //         where: {
-        //             fbid: profile.id
-        //         }
-        //         })
-        //     return done(null, result[0]);
-        // })
+        .then(result => {
+            models.user.update({
+                username: profile.username,
+                // imgUrl: profile.photos[0].value
+            }, {
+                where: {
+                    fbid: profile.id
+                }
+                })
+            return done(null, result[0]);
+        })
             .catch(done)
     }));
 
