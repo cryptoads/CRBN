@@ -170,10 +170,7 @@ const setupAuth = (app) => {
     )
     // adding a session destroy on request line to fix github cache issue
     app.get('/github/login', passport.authenticate('github'));
-    app.get('/logout', function (req, res, next) {
-        req.session.destroy();
-        res.json({ loggedIn: false });
-    });
+
 
     app.get('/github/auth',
         passport.authenticate('github', { failureRedirect: '/github/login' }),
@@ -182,17 +179,19 @@ const setupAuth = (app) => {
         });
 
 
-    app.get('/facebook/login', passport.authenticate('facebook'));
+    app.get('/auth/facbook', passport.authenticate('facebook'));
+    app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {successRedirect: '/', failureRedirect: '/facebook/login' }),
+    (req, res) => {
+        res.redirect('/');
+    });
+
     app.get('/logout', function (req, res, next) {
         req.session.destroy();
         res.json({ loggedIn: false });
     });
 
-    app.get('/facebook/auth',
-        passport.authenticate('facebook', {successRedirect: '/', failureRedirect: '/facebook/login' }),
-        (req, res) => {
-            res.redirect('/');
-        });
+
 };
 
 
