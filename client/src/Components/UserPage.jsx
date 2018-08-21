@@ -25,7 +25,7 @@ class UserPage extends Component {
           {
 
             data: [10, 20, 30 , 0],
-            backgroundColor: ['#08E6C8', '#472029', '#a7ed9c', '#470000'],
+            backgroundColor: ['#FF0000', '#ff9933', '#ffff00', '#470000'],
             borderColor: ["#000000", "#000000", "#000000", "#000000"]
           },
         ],
@@ -272,7 +272,7 @@ eventOffsetter().then(res=>{eventcO2 = res;
             roundedScores.waste,
             roundedScores.event,
           ],
-          backgroundColor: ['#08E6C8', '#472029', '#a7ed9c', '#a7f000'],
+          backgroundColor: ['#FF0000', '#ff9933', '#ffff00', '#470000'],
         },
       ],
 
