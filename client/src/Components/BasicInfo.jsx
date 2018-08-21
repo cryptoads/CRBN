@@ -5,20 +5,31 @@ import "../BasicInfo.css";
 class BasicInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = { id: this.props.id };
+    this.state = { 
+      id: this.props.id,
+      editMode: false
+     };
+     this.editButtonClicked = this.editButtonClicked.bind(this)
+     this.saveButtonClicked = this.saveButtonClicked.bind(this)
   }
 
   render(props) {
     let basicInfo = this.props.basicInfo;
     let loggedIn = this.props.loggedIn;
+    let defaultImgUrl = "https://eadb.org/wp-content/uploads/2015/08/profile-placeholder-300x300.jpg"; 
     return (
       <div className="basic-info-container col-12">
         <div className="profile-info basic-info-text">
           <img
             alt="profile-pic"
             className="profile-picture"
-            src={basicInfo.imgUrl}
+            src={ (basicInfo.imgUrl !== "" || null) ? basicInfo.imgUrl : defaultImgUrl }
           />
+          <span className={this.state.editMode ? "show" : "invisible"}>
+          <label>Image URL:</label>
+          <br />
+          <input className="profileImageUrl" type="text" name="profileImageUrl"></input>
+          </span>
           <hr />
           <span onClick={this.editButtonClicked} className="edit-info-link">
             {" "}
@@ -45,9 +56,11 @@ class BasicInfo extends Component {
 
   editButtonClicked(e) {
     // let btnText = e.target.innerHTML;
+    this.setState({editMode: true});
     let usernameElement = document.querySelector(".username");
     let introElement = document.querySelector(".intro");
-    let elementArray = [usernameElement, introElement];
+    let imgUrlInput = document.querySelector(".profileImageUrl");
+    let elementArray = [usernameElement, introElement, imgUrlInput];
     let editBtn = document.querySelector(".edit-info-link");
 
     /* Toggle to save button */
@@ -64,17 +77,21 @@ class BasicInfo extends Component {
   }
 
   saveButtonClicked(e) {
+    let imgToSave = document.querySelector(".profileImageUrl").value; 
+    let imgElement = document.querySelector(".profile-picture"); 
     let nameToSave = document.querySelector(".username").textContent;
     let introToSave = document.querySelector(".intro").textContent;
     let usernameElement = document.querySelector(".username");
     let introElement = document.querySelector(".intro");
     let elementArray = [usernameElement, introElement];
+    
 
     e.preventDefault();
 
     let btn = document.querySelector(".saveButton");
 
     let saveData = {
+      img: imgToSave,
       name: nameToSave,
       intro: introToSave,
       id: 2
@@ -90,8 +107,10 @@ class BasicInfo extends Component {
       .then(res => console.log("the response was: " + JSON.stringify(res.data)))
       .catch(err => console.error(err));
 
+    imgElement.setAttribute('src', imgToSave);
+    
     btn.classList.toggle("hide");
-
+    this.setState({editMode: false});
     elementArray.forEach(e => {
       e.setAttribute("contenteditable", "false");
       e.classList.toggle("editable");

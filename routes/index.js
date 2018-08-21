@@ -35,11 +35,13 @@ router.get('/userinfo/:id', function(req, res, next) {
 })
 
 router.post('/updatebasicinfo', (req, res) => {
+    let img = req.body.img; 
     let name = req.body.name; 
     let intro = req.body.intro; 
 
     if(req.isAuthenticated()) {
         models.user.update({
+        'imgUrl': img,
         'username': name,
         'intro': intro
     },{
