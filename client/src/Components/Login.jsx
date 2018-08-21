@@ -85,7 +85,7 @@ class Login extends Component {
                     </button>
                   </a>
                   <br />
-                  <a href="/facebook/auth">
+                  <a href="/auth/facebook/callback">
                     <button className="fbButton" type="submit">
                       Facebook
                     </button>
