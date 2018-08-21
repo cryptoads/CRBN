@@ -151,6 +151,7 @@ class UserPage extends Component {
 
 
     calculateScore(user) {
+    var id = this.props.match.params
     /************************
      * CRBN Score Equation
      *************************/
@@ -225,8 +226,12 @@ class UserPage extends Component {
       return Math.round(num * multiplier) / multiplier;
     }
 
-    function eventOffsetter(){  
-      return axios.get('/user/events')
+    function eventOffsetter(){ 
+      return axios.get('/userstatic/events/', {
+            params: {
+                user: id.id
+            }
+        })
       .then(res => {
            try{let offsetArray = res.data.data.map((el)=> {return el.offsetscore})
            let offsetSum = offsetArray.reduce((a, b)=>{return a+b})
