@@ -46,6 +46,7 @@ const setupAuth = (app) => {
         clientSecret: process.env.fb_client_secret,
         callbackURL: process.env.fb_callbackURL
     }, (accessToken, refreshToken, profile, done) => {
+        console.log(profile);
         models.user.findOrCreate({
             where: {
                 fbid: profile.id,
