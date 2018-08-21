@@ -85,7 +85,7 @@ class Login extends Component {
                     </button>
                   </a>
                   <br />
-                  <a href="/auth/facebook/callback">
+                  <a href="/auth/facebook">
                     <button className="fbButton" type="submit">
                       Facebook
                     </button>
@@ -112,7 +112,7 @@ class Login extends Component {
                       GitHub
                     </button>
                   </a>
-                   <a href="/facebook/auth">
+                   <a href="/auth/facebook/">
                     <button className="fbButton" type="submit">
                       Facebook
                     </button>
