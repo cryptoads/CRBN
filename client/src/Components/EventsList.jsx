@@ -10,6 +10,7 @@ class EventsList extends Component {
       registeredEvents: []
     };
     this.setUserBadges = this.props.setUserBadges;
+    this.cancelLinkClicked = this.cancelLinkClicked.bind(this);
   }
 
   render() {
@@ -34,6 +35,7 @@ class EventsList extends Component {
                   {(!(registeredEventIds.includes(event.id))) ? 
                   <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn'>Register</button> : 
                   <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn going'>Going</button>}
+                  <a id={"cancel-"+event.id} className="cancelLink" onClick={this.cancelLinkClicked} href="#0">Cancel Registration</a>
                 </li>
               );
             })}
@@ -79,8 +81,21 @@ class EventsList extends Component {
         /* change button styles and content */
         registerBtn.classList.add('going');
         registerBtn.textContent = 'Going';
+  }
 
+  cancelLinkClicked(e) {
+    e.preventDefault();
+    let cancelBtn = document.getElementById(e.target.id)
+    let eventId = e.target.id.replace("cancel-", "");
+    let userId = this.props.id;
+    let registerBtn = document.getElementById(eventId); 
+    console.log(eventId); 
+    axios.delete(`/events/${eventId}/attendees?user=${userId}`)
+    .then(this.setUserBadges)
 
+    registerBtn.classList.remove('going');
+    registerBtn.textContent = 'Register';
+    cancelBtn.className += ' invisible';
   }
 }
 

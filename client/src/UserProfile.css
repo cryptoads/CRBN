@@ -7,6 +7,15 @@
 .profile-picture {
     width: 95%;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    margin-bottom: 18px;
+}
+
+.invisible {
+    display: none;
+}
+
+.show {
+    display: block;
 }
 
 .basic-info-container {
@@ -66,7 +75,7 @@
 .modal {
    display: block;
    width: 600px;
-   height: 750px;
+   height: 780px;
    max-width: 100%;
    max-height: 100%;
    position: fixed;
@@ -84,6 +93,7 @@
    -ms-transform: translateX(-50%) translateY(-50%);
    transform: translateX(-50%) translateY(-50%);
    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+   overflow: hidden;
 }
 
 
@@ -105,6 +115,8 @@
 .modal-content button {
     margin-bottom: 20px;
 }
+
+
 
 .editable {
     border: 1px solid #08E6C8;
@@ -178,6 +190,20 @@
 
 .events {
     border-radius: 10%;
+}
+
+.cancelLink {
+    color: tomato;
+    margin-left: 1em;
+    font-size: .65em;
+    transition: color 0.2s ease-in-out;
+    display: block;
+    margin-bottom: 18px;
+}
+
+.cancelLink:hover {
+    color: rgb(194, 0, 0);
+    text-decoration: none;
 }
 
 .fb {

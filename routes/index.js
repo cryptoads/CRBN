@@ -35,11 +35,13 @@ router.get('/userinfo/:id', function(req, res, next) {
 })
 
 router.post('/updatebasicinfo', (req, res) => {
+    let img = req.body.img; 
     let name = req.body.name; 
     let intro = req.body.intro; 
 
     if(req.isAuthenticated()) {
         models.user.update({
+        'imgUrl': img,
         'username': name,
         'intro': intro
     },{
@@ -202,5 +204,20 @@ router.post('/events/:id/attendees', (req, res) => {
             })
     }
 })
+
+router.delete('/events/:id/attendees'), (req, res) => {
+    let eventId = req.params.id;
+    let userId = req.query.user;
+        models.event.findById(eventId)
+        console.log(userId)
+        .then( event => {
+            models.user.findById(userId)
+            .then( user => { 
+                event.removeUser([user])
+                .then(response => res.json(response)); 
+             })
+        })
+
+}
 
 module.exports = router;

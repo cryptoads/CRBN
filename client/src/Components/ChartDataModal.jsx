@@ -67,7 +67,8 @@ class ChartDataModal extends Component {
                                 <input defaultValue={electric_bill} type="text" name="electricBill" />
                             </p>
                             <p>
-                                <label>Size of Household: </label>
+                                <label>Household Members:</label>
+
                                 <input defaultValue={household_members} type="text" name="householdSize" />
                             </p>
 
