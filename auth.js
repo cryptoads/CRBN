@@ -47,12 +47,11 @@ const setupAuth = (app) => {
         callbackURL: process.env.fb_callbackURL
     }, (accessToken, refreshToken, profile, done) => {
         console.log(profile)
-
         models.user.findOrCreate({
             where: {
                 fbid: profile.id,
             }
-        }).then(res.send(profile))
+        })
         // .then(result => {
         //     models.user.update({
         //         username: profile.name,
