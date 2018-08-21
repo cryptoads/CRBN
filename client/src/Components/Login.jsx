@@ -112,6 +112,7 @@ class Login extends Component {
                       GitHub
                     </button>
                   </a>
+                  <br />
                    <a href="/auth/facebook/">
                     <button className="fbButton" type="submit">
                       Facebook

@@ -32,20 +32,22 @@ class LeaderBoard extends Component{
         return(
 
 
-            <div style={LdrBrdImg}>
+            <div>
             <AppHeader />
+            <div style={LdrBrdImg}>
             <table className="table table-hover" style={textStyle} >
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">User</th>
-                  <th scope="col">CRBN Score</th>
+                  <th className="tabledata" scope="col">#</th>
+                  <th className="tabledata" scope="col">User</th>
+                  <th className="tabledata" scope="col">CRBN Score</th>
                 </tr>
               </thead>
               <tbody>
                 {cards}
               </tbody>
             </table>
+            </div>
             <AppFooter />
             </div>
             )
