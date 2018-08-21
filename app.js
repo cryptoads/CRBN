@@ -28,14 +28,10 @@ setupAuth(app);
 
 app.use('/', indexRouter);
 app.get('*', (request, response) => {
-<<<<<<< HEAD
    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
-=======
-    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
 
->>>>>>> 0971cd4f1080be4e0e2dec8be1f278457738115d
+
 // // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));

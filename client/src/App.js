@@ -19,7 +19,7 @@ class App extends Component {
       <div>
       <Switch>
       <Route exact path="/leaderboards" component={LeaderBoard} />
-      <Route path="/test/:id" component={UserPage} />
+      <Route path="/userprofile/:id" component={UserPage} />
       <Route exact path="/" component={MainApp} />
       <Route exact path="/events" component={EventsList} />
       </Switch>

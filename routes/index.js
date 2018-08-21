@@ -26,11 +26,8 @@ router.get('/test', function(req, res, next) {
 })
 
 
-<<<<<<< HEAD
+
 router.get('/userinfo/:id', function(req, res, next) {
-=======
-router.get('/user/:id', function(req, res, next) {
->>>>>>> 0971cd4f1080be4e0e2dec8be1f278457738115d
     const id = Number(req.params.id);
     models.user.findById(id,{})
     .then((data)=>{res.json({data, loggedIn: false})
