@@ -151,6 +151,7 @@ class UserPage extends Component {
 
 
     calculateScore(user) {
+    var id = this.props.match.params
     /************************
      * CRBN Score Equation
      *************************/
@@ -225,10 +226,10 @@ class UserPage extends Component {
       return Math.round(num * multiplier) / multiplier;
     }
 
-    function eventOffsetter(){  
+    function eventOffsetter(){ 
       return axios.get('/userstatic/events/', {
             params: {
-                user: this.props.match.params
+                user: id.id
             }
         })
       .then(res => {
