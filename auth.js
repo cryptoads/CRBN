@@ -181,10 +181,8 @@ const setupAuth = (app) => {
 
     app.get('/auth/facebook', passport.authenticate('facebook'));
     app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {successRedirect: '/', failureRedirect: '/facebook/login' }),
-    (req, res) => {
-        res.redirect('/');
-    });
+    passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+
 
     app.get('/logout', function (req, res, next) {
         req.session.destroy();
