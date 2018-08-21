@@ -189,7 +189,7 @@ const setupAuth = (app) => {
     });
 
     app.get('/facebook/auth',
-        passport.authenticate('facebook', { failureRedirect: '/github/login' }),
+        passport.authenticate('facebook', { failureRedirect: '/facebook/login' }),
         (req, res) => {
             res.redirect('/');
         });
