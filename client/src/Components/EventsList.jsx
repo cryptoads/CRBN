@@ -35,7 +35,7 @@ class EventsList extends Component {
                   {(!(registeredEventIds.includes(event.id))) ? 
                   <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn'>Register</button> : 
                   <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn going'>Going</button>}
-                  <a id={"cancel-"+event.id} className="cancelLink" onClick={this.cancelLinkClicked} href="#0">Cancel Registration</a>
+                  <a id={"cancel-"+event.id} className="cancelLink invisible" onClick={this.cancelLinkClicked} href="#0">Cancel Registration</a>
                 </li>
               );
             })}
@@ -71,6 +71,7 @@ class EventsList extends Component {
     let eventId = e.target.id;
     let userId = this.props.id;
     let registerBtn = document.getElementById(eventId)
+    let cancelBtn = document.getElementById('cancel-'+eventId)
     
 
 
@@ -81,6 +82,7 @@ class EventsList extends Component {
         /* change button styles and content */
         registerBtn.classList.add('going');
         registerBtn.textContent = 'Going';
+        cancelBtn.classList.remove('invisible');
   }
 
   cancelLinkClicked(e) {
