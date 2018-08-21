@@ -123,29 +123,29 @@ class Login extends Component {
         </div>
         <div className="login-2nd" style={LoginImg2}>
           <Zoom>
-            <FlexView key="1" height={75} marginTop={30} hAlignContent="center">
+            <FlexView key="1" height={75} marginTop={40} hAlignContent="center">
               <FormattedText key="7" >{flexOne}</FormattedText>
             </FlexView>
-            <FlexView height={75} marginTop={30} hAlignContent="center">
+            <FlexView height={75} marginTop={40} hAlignContent="center">
             <i className="car fas fa-car-side fa-3x" />
             </FlexView>
-            <FlexView height={75} marginTop={30} hAlignContent="center">
+            <FlexView height={75} marginTop={40} hAlignContent="center">
               <FormattedText key="2">{flexTwo}</FormattedText>
             </FlexView>
-            <FlexView height={75} marginTop={30} hAlignContent="center">
+            <FlexView height={75} marginTop={40} hAlignContent="center">
             <i className="tree fas fa-seedling fa-3x" />
             </FlexView>
-            <FlexView height={75} marginTop={30} hAlignContent="center">
+            <FlexView height={35} marginTop={40} hAlignContent="center">
               <FormattedText key="3">{flexThree}</FormattedText>
             </FlexView>
-            <FlexView height={75} marginTop={30} hAlignContent="center">
+            <FlexView height={75} marginTop={40} hAlignContent="center">
             <i className="star far fa-star fa-3x" />
             </FlexView>
             <div className="signUp">
               <ScrollTo>
                 {scroll => (
                   <a onClick={() => scroll(0, 0)}>
-                    <FlexView height={40} hAlignContent="center">
+                    <FlexView height={40} marginTop={10} hAlignContent="center">
                       <FormattedText key="4">{flexFour}</FormattedText>
                     </FlexView>
                     <FlexView hAlignContent="center">

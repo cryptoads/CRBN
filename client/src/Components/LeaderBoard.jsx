@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
+import "../App.css";
+import LdrBrdImg from "../LdrBrdImg.js";
 
 
 class LeaderBoard extends Component{
@@ -23,14 +25,14 @@ class LeaderBoard extends Component{
         const imgStyle = {height: '100px'};
         const textStyle = {color: 'black'};
         const sorted = this.state.res.data.sort((a,b)=>{return a.score-b.score})
-        const cards = sorted.map((el, i)=>{return <tr key={i}>
+        const cards = sorted.map((el, i)=>{return <tr className="tabledata" key={i}>
                                                 <th scope="row">{i+1}</th>
-                                                <td><img src={el.imgUrl} alt={el.username} style={imgStyle} />{el.username}</td> 
-                                                <td>{el.score}</td></tr>})
+                                                <td><img className="LeaderImg" src={el.imgUrl} alt={el.username} style={imgStyle} />{el.username}</td> 
+                                                <td className="tabledata">{el.score}</td></tr>})
         return(
 
 
-            <div >
+            <div style={LdrBrdImg}>
             <AppHeader />
             <table className="table table-hover" style={textStyle} >
               <thead>
