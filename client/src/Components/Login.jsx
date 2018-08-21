@@ -84,6 +84,12 @@ class Login extends Component {
                       GitHub
                     </button>
                   </a>
+                  <br />
+                  <a href="/facebook/auth">
+                    <button className="fbButton" type="submit">
+                      Facebook
+                    </button>
+                  </a>
                 </div>
               ) : (
                 <div>
@@ -104,6 +110,11 @@ class Login extends Component {
                   <a href="/github/auth">
                     <button className="gitHubButton" type="submit">
                       GitHub
+                    </button>
+                  </a>
+                   <a href="/facebook/auth">
+                    <button className="fbButton" type="submit">
+                      Facebook
                     </button>
                   </a>
                 </div>

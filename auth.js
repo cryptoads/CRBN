@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const models = require('./models');
@@ -40,6 +41,28 @@ const setupAuth = (app) => {
             .catch(done)
     }));
 
+    passport.use(new FacebookStrategy({
+        clientID: process.env.fb_client_id,
+        clientSecret: process.env.fb_client_secret,
+        callbackURL: process.env.fb_callbackURL
+    }, (accessToken, refreshToken, profile, done) => {
+        models.user.findOrCreate({
+            where: {
+                fbid: profile.id,
+            }
+        }).then(result => {
+            models.user.update({
+                username: profile.username,
+                imgUrl: profile.photos[0].value
+            }, {
+                where: {
+                    githubid: profile.id
+                }
+                })
+            return done(null, result[0]);
+        })
+            .catch(done)
+    }));
 
     passport.use(new LocalStrategy({
         // options: https://github.com/jaredhanson/passport-local#parameters
@@ -157,7 +180,21 @@ const setupAuth = (app) => {
         (req, res) => {
             res.redirect('/');
         });
+
+
+    app.get('/facebook/login', passport.authenticate('facebook'));
+    app.get('/logout', function (req, res, next) {
+        req.session.destroy();
+        res.json({ loggedIn: false });
+    });
+
+    app.get('/facebook/auth',
+        passport.authenticate('facebook', { failureRedirect: '/github/login' }),
+        (req, res) => {
+            res.redirect('/');
+        });
 };
+
 
 const ensureAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
