@@ -226,7 +226,11 @@ class UserPage extends Component {
     }
 
     function eventOffsetter(){  
-      return axios.get('/userstatic/events/')
+      return axios.get('/userstatic/events/', {
+            params: {
+                user: this.props.match.params
+            }
+        })
       .then(res => {
            try{let offsetArray = res.data.data.map((el)=> {return el.offsetscore})
            let offsetSum = offsetArray.reduce((a, b)=>{return a+b})
