@@ -205,4 +205,19 @@ router.post('/events/:id/attendees', (req, res) => {
     }
 })
 
+router.delete('/events/:id/attendees'), (req, res) => {
+    let eventId = req.params.id;
+    let userId = req.query.user;
+        models.event.findById(eventId)
+        console.log(userId)
+        .then( event => {
+            models.user.findById(userId)
+            .then( user => { 
+                event.removeUser([user])
+                .then(response => res.json(response)); 
+             })
+        })
+
+}
+
 module.exports = router;
