@@ -33,7 +33,10 @@ class EventsList extends Component {
                   {event.eventname}
                   <br />
                   {(!(registeredEventIds.includes(event.id))) ? 
-                  <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn'>Register</button> : 
+                  <React.Fragment>
+                  <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn'>Register</button>
+                  <a id={"cancel-"+event.id} className="cancelLink invisible" onClick={this.cancelLinkClicked} href="#0">Cancel Registration</a>
+                  </React.Fragment>: 
                   <React.Fragment>
                   <button id={event.id} onClick={this.registerForEvent.bind(this)} className='appBtn going'>Going</button>
                   <a id={"cancel-"+event.id} className="cancelLink" onClick={this.cancelLinkClicked} href="#0">Cancel Registration</a>
@@ -84,7 +87,7 @@ class EventsList extends Component {
         /* change button styles and content */
         registerBtn.classList.add('going');
         registerBtn.textContent = 'Going';
-        cancelBtn.className.remove = ('invisible');
+        cancelBtn.classList.remove('invisible');
   }
 
   cancelLinkClicked(e) {
