@@ -33,7 +33,7 @@ body {
   margin-right: 30px;
 }
 
-.appBtn, .gitHubButton {
+.appBtn, .gitHubButton, .fbButton {
   background: #fff;
   text-transform: uppercase;
   color: #08E6C8;
@@ -59,7 +59,7 @@ body {
     cursor: default;
   }
 
-.appBtn:hover,  .gitHubButton:hover {
+.appBtn:hover,  .gitHubButton:hover, .fbButton:hover {
   background: #08E6C8 ;
   color: #fff;
   padding: 7px 10px;
@@ -71,7 +71,7 @@ body {
   color: #fff;
 }
 
-.login-form .appBtn,  .gitHubButton {
+.login-form .appBtn,  .gitHubButton, .fbButton {
   background: #fff;
   color: rgb(14, 201, 176);
   padding: 7px 10px;
@@ -82,19 +82,19 @@ body {
   margin-top: 60px;
 }
 
-.login-form .appBtn:hover,  .gitHubButton:hover {
+.login-form .appBtn:hover,  .gitHubButton:hover, .fbButton:hover {
   background: #08E6C8;
   color: #fff;
   padding: 7px 10px;
   border: none;
 }
 
-.appBtn:active, .gitHubButton:active {
+.appBtn:active, .gitHubButton:active, .fbButton:active {
   box-shadow: 2px -1px 10px 1px rgba(231,231,231,0.31);
 
 }
 
-.appBtn:focus, .gitHubButton:focus {
+.appBtn:focus, .gitHubButton:focus, .fbButton:focus {
   outline: 0;
 }
 
@@ -152,7 +152,7 @@ body {
   outline: 0;
 }
 
-.user-form form .appBtn, .gitHubButton{
+.user-form form .appBtn, .gitHubButton, .fbButton{
   margin-top: 25px;
   width: 150px;
 }

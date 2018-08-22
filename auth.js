@@ -54,7 +54,7 @@ const setupAuth = (app) => {
         })
         .then(result => {
             models.user.update({
-                username: profile.username,
+                username: profile.id,
                 // imgUrl: profile.photos[0].value
             }, {
                 where: {

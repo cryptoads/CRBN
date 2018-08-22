@@ -18,7 +18,7 @@ class BasicInfo extends Component {
     let loggedIn = this.props.loggedIn;
     let defaultImgUrl = "https://eadb.org/wp-content/uploads/2015/08/profile-placeholder-300x300.jpg"; 
     return (
-      <div className="basic-info-container col-12">
+      <div className="basic-info-container ">
         <div className="profile-info basic-info-text">
           <img
             alt="profile-pic"

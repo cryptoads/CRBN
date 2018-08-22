@@ -3,7 +3,7 @@ import Background from './LdrBrdImg.jpg';
 
 const LdrBrdImg = {
     // width: '100vw',
-    // height: '100vh',
+    height: '100vh',
     backgroundImage: `url(${Background})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
