@@ -132,7 +132,7 @@ router.get('/all/scores', (req, res) => {
             })
     } else {
         models.user.findAll({
-            attributes: ['username', 'imgUrl', 'score'],
+            attributes: ['displayname', 'username', 'imgUrl', 'score'],
             where:
             {
                 score:
