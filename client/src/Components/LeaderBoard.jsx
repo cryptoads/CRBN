@@ -27,7 +27,7 @@ class LeaderBoard extends Component{
         const sorted = this.state.res.data.sort((a,b)=>{return a.score-b.score})
         const cards = sorted.map((el, i)=>{return <tr className="tabledata" key={i}>
                                                 <th scope="row">{i+1}</th>
-                                                <td><img className="LeaderImg" src={el.imgUrl} alt={el.username} style={imgStyle} />{el.username}</td> 
+                                                <td><img className="LeaderImg" src={el.imgUrl} alt={el.displayname ? el.displayname  : el.username} style={imgStyle} />{el.displayname ? el.displayname  : el.username}</td> 
                                                 <td className="tabledata">{el.score}</td></tr>})
         return(
 

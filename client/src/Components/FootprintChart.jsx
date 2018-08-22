@@ -8,15 +8,18 @@ class FootprintChart extends Component {
     let loginState = this.props.loggedIn;
     let data = this.props.chartData;
     let userCRBNScore = this.props.crbnScore;
+    let pulserClass = "edit-info-link";
     if(isNaN(userCRBNScore)){
-      userCRBNScore = "Set up your info"
+      userCRBNScore = "Set up your info";
+      pulserClass = "edit-info-link pulsate"
+
     }
     let rankInfo = this.props.rankInfo;
 
     let chartJSX = (
     <div className='profile-info chart-container col-sm-12 col-md-8 col-lg-8 ml-auto mr-auto'>
       <h2>Carbon Emission Footprint</h2>
-        <span onClick={this.editLinkClick.bind(this)} className="edit-info-link">{ loginState !== false ? 'Edit Footprint Info' : '' }</span>
+        <span onClick={this.editLinkClick.bind(this)} className={pulserClass}>{ loginState !== false ? 'Edit Footprint Info' : '' }</span>
         <hr />
         <h3>CRBN Score: {userCRBNScore}*  |  Rank: {rankInfo.rank} / {rankInfo.total}</h3> <Doughnut data={data} />
         <br />

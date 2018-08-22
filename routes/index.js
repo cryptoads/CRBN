@@ -43,7 +43,7 @@ router.post('/updatebasicinfo', (req, res) => {
     if (req.isAuthenticated()) {
         models.user.update({
             'imgUrl': img,
-            'username': name,
+            'displayname': name,
             'intro': intro
         }, {
                 where: {
@@ -120,7 +120,7 @@ router.post('/user/score', (req, res) => {
 router.get('/all/scores', (req, res) => {
     if (req.isAuthenticated()) {
         models.user.findAll({
-            attributes: ['id', 'username', 'imgUrl', 'score'],
+            attributes: ['id', 'username', 'displayname', 'imgUrl', 'score'],
             where:
             {
                 score:

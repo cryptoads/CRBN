@@ -235,3 +235,24 @@
     color:#000;
     cursor: pointer;
 }
+
+.pulsate {
+    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    opacity: 0.5;
+}
+
+@-webkit-keyframes pulsate {
+    0% { 
+        opacity: 0.1;
+        font-size: 1em;
+    }
+    50% { 
+        opacity: 1.0;
+        font-size: 1.5em;
+    }
+    100% { 
+        opacity: 0.1;
+        font-size: 1em;
+    }
+}

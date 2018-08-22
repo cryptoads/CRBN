@@ -94,6 +94,7 @@ class UserProfile extends Component {
         this.setState({
           basicInfoObj: {
             name: user.username,
+            displayname: user.displayname,
             city: user.city,
             state: user.state,
             joinedMonth: "May",

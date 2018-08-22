@@ -108,6 +108,7 @@ class UserPage extends Component {
               basicInfoObj:  {
                 name: user.data.username,
                 city: user.data.city,
+                displayname: user.data.displayname,
                 state: user.data.state,
                 joinedMonth: 'May',
                 joinedYear: '2018',
