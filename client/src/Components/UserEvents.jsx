@@ -26,7 +26,7 @@ class UserEvents extends Component{
             <div className="container">
             <div className="trophyCase row" >   
             <h3 className="col-12">Event Badges</h3>
-            {eventItem}
+            {this.props.badges.length >= 1 ? eventItem : <small>You haven't earned any badges yet. Check your <b>Upcoming Events</b> feed for opportunities to offset your footprint and earn badges with your community!</small> }
             </div>
             </div>)
     }
