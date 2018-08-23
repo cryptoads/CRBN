@@ -180,6 +180,10 @@
     border: 0;
 }
 
+.App{
+  background-color: white;
+}
+
 .trophyCase {
   border: 2px solid white;
   background-color: white;
