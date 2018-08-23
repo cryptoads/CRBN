@@ -27,8 +27,9 @@ class AppHeader extends Component {
           <ul className="navbar-nav ml-auto">
           {path === "/leaderboards" ?<li className="nav-item"> <a className="appBtn nav-link"><Link to="/" >Profile</Link></a></li> :
           <li className="nav-item"><a className="appBtn nav-link"><Link to="/leaderboards" >Leaderboards</Link></a></li>}
-          {loggedIn ? <li className="nav-item"><a className="appBtn nav-link" href="#" onClick={this.logout.bind(this)}>Log Out</a> </li>:
-           <li className="nav-item"> <a className="nav-link appBtn" href='/'>Log In</a></li>}
+
+          {loggedIn ? <li className="nav-item"><a className="appBtn nav-link" onClick={this.logout.bind(this)}><Link to="/">Log Out</Link></a> </li>:
+           <li className="nav-item"> <a className="nav-link appBtn"><Link to="/"> Log In</Link></a></li>}
           </ul>
         </div>
         {/*</header>*/}
