@@ -17,16 +17,22 @@ class AppHeader extends Component {
 
     return (
   
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">CRBN</h1>
-
-          {loggedIn ? <button className="appBtn" onClick={this.logout.bind(this)}>Log Out</button> :
-            <a href='/'><button className="appBtn">Log In</button></a>}
-          {path === "/leaderboards" ? <button className="appBtn"><Link to="/" >Profile</Link></button> :
-          <button className="appBtn"><Link to="/leaderboards" >Leaderboards</Link></button>}
-        </header>
-      </div>
+      <nav className="App navbar navbar-expand-lg navbar-light ">
+        {/*<header className="App-header">*/}
+          <h1 className="App-title" >CRBN</h1>
+           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+           <span className="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ml-auto">
+          {path === "/leaderboards" ?<li className="nav-item"> <a className="appBtn nav-link"><Link to="/" >Profile</Link></a></li> :
+          <li className="nav-item"><a className="appBtn nav-link"><Link to="/leaderboards" >Leaderboards</Link></a></li>}
+          {loggedIn ? <li className="nav-item"><a className="appBtn nav-link" href="#" onClick={this.logout.bind(this)}>Log Out</a> </li>:
+           <li className="nav-item"> <a className="nav-link appBtn" href='/'>Log In</a></li>}
+          </ul>
+        </div>
+        {/*</header>*/}
+      </nav>
 
     )
   }

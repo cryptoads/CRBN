@@ -41,7 +41,7 @@ class BasicInfo extends Component {
           >
             Save
           </button>
-          <p className="username">{basicInfo.name}</p>
+          <p className="username">{basicInfo.displayname ? basicInfo.displayname : basicInfo.name}</p>
           <span>Intro:</span>
           <br />
           <p className="intro">{basicInfo.intro}</p>

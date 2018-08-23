@@ -69,6 +69,7 @@ body {
 
 .appBtn a:hover {
   color: #fff;
+  
 }
 
 .login-form .appBtn,  .gitHubButton, .fbButton {
@@ -99,6 +100,7 @@ body {
 }
 
 .App-title {
+  color: #08E6C8;
   font-size: 1.5em;
   font-weight: 800;
 }

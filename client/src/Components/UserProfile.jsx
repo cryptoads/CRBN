@@ -94,6 +94,7 @@ class UserProfile extends Component {
         this.setState({
           basicInfoObj: {
             name: user.username,
+            displayname: user.displayname,
             city: user.city,
             state: user.state,
             joinedMonth: "May",
@@ -120,7 +121,7 @@ class UserProfile extends Component {
       let mappedUser = sortedUser.map((el)=>{return el.id})
       let userRank = mappedUser.indexOf(res.data.user)+ 1;
       this.setState({rankInfo:{rank: userRank, total: res.data.data.length}})
-    })
+    }).then(this.forceUpdate())
   }
 
   updateChart() {

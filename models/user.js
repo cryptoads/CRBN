@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
          isEmail: true
         }
      },
+    displayname: DataTypes.STRING(25),
     fbid: DataTypes.STRING,
     githubid: DataTypes.STRING,
     password:DataTypes.STRING,
